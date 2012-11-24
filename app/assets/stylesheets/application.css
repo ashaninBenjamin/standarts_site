@@ -1,0 +1,119 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+
+.container {
+    /*width: 800px;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    background: #cff;
+}
+
+header {
+    padding-top: 20px;
+}
+
+header img {
+    padding: 1em;
+    background: #fff;
+}
+
+section {
+    margin-top: 1em;
+    padding: 20px;
+    background: #fff;
+}
+
+a {
+    color: #09c;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #069;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #069;
+}
+
+/* Navigation */
+
+nav {
+    float: right;
+}
+
+nav {
+    background-color: white;
+    padding: 0 0.7em;
+    white-space: nowrap;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0.2em 0;
+}
+
+nav ul li a {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+nav ul li a:visited {
+    color: #09c;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Round corners */
+
+.round {
+    -moz-border-radius:    10px;
+    -webkit-border-radius: 10px;
+    border-radius:         10px;
+}
+.roundMenu {
+    -moz-border-radius:    3px;
+    -webkit-border-radius: 3px;
+    border-radius:         3px;
+}
+
+/* footer */
+
+footer {
+    text-align: center;
+    margin-top: 10px;
+    width: 710px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer nav {
+    float: none;
+}

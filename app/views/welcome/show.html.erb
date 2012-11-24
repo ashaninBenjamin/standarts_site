@@ -1,0 +1,33 @@
+<%= @first.name %><br>
+
+<p id="big">
+  <%= User.find(1).user_info.name %><br>
+  <%= User.find(1).role.id %>
+</p>
+
+<%=  Block.find(1).name %>
+
+<p id="big">test</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Txt</th>
+  </tr>
+
+  <% Firsts.all.each do |table| %>
+      <tr>
+        <td><%= table.name %></td>
+        <td><%= link_to table.txt.html_safe, show_one_path(table) %> </td>
+      </tr>
+  <% end %>
+  <br>
+
+</table>
+<p>
+  <%= Firsts.find_by_name("name1").id %>
+</p>
+<p>
+  <%= link_to 'ttttt', :action => 'show', :id => 2 %>
+</p>
+
+<%= link_to "Back", welcome_index_path %>

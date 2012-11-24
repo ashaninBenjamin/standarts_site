@@ -1,0 +1,28 @@
+<h1><%= @point.block.number.to_s + ". " + @point.block.name %></h1>
+<h2><%= @point.code + ". " + @point.name %></h2>
+<%= link_to " << На страницу стандартов", standarts_path %> <%= link_to " << К блоку", block_path(@point.block_id) %>
+<%= if !@point.parent_id.nil?
+      link_to "<< К родительскому пункту", point_path(@point.point.code.gsub(".", "-"))
+    end%>
+<% if !@txt.nil? %>
+    <h4><%= link_to "Редактировать", point_edit_path %></h4>
+    <%= @txt.html_safe %>
+<% else %>
+    <br><br>
+    <i>Данный раздел пуст, <%= link_to "Заполнить?", point_edit_path %> </i>
+<% end %><br><br>
+<% if @children.count != 0 %>
+    Дочерние пункты:
+    <% @children.each do |onePoint| %>
+        <% if onePoint.level != 1
+             @classThis = "class='point' style='padding-left:" + ((onePoint.level - 1) * 20).to_s + "px'"
+           else
+             @classThis = "class='point'"
+           end
+        %>
+        <div <%= @classThis %>  >
+          <%= link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")),
+                      :class => "pointLink" %>
+        </div>
+    <% end %>
+<% end %>
