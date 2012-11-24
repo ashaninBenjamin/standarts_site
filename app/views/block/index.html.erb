@@ -12,7 +12,7 @@
            else
              blockNumberAndName = oneBlock.name.to_s
            end %>
-        <%= link_to blockNumberAndName, block_path(oneBlock.id) %>
+        <%= link_to blockNumberAndName, block_path(oneBlock.number) %>
       </div></td></tr>
     </table>
     <div class="blockAllContent" id="<%= id %>">

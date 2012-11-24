@@ -4,6 +4,7 @@ class PointController < ApplicationController
 
   def edit
     @code = params[:code]
+    #@point = Point.where(:code => @code.gsub("-", "."), :blocks => )
     @point = Point.find_by_code(@code.gsub("-", "."))
   end
 

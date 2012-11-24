@@ -13,9 +13,9 @@ RoR::Application.routes.draw do
   root :to => 'session#new'
   match 'standarts' => 'block#index', :as => :standarts
 
-  get "standarts/block/:id/edit" => "block#edit", :as => :block_edit
-  put "standarts/block/:id" => "block#update"
-  match 'standarts/block/:id' => 'block#show', :as => :block
+  get "standarts/block/:number/edit" => "block#edit", :as => :block_edit
+  put "standarts/block/:number" => "block#update"
+  match 'standarts/block/:number' => 'block#show', :as => :block
 
   get "standarts/point/:code/edit" => "point#edit", :as => :point_edit
   put "standarts/point/:code" => "point#update"
