@@ -7,7 +7,7 @@
       <%= image_tag("arr_right.jpg", :size => "15x15", :alt => "Перейти", :class => "imgOpenBlock", :onclick => onclick, :id => "arrShowContent" + oneBlock.id.to_s ) %>
     </td><td>
       <div class="blockName">
-        <% if oneBlock.number > 0
+        <% if oneBlock.is_show.eql?("true")
              blockNumberAndName = oneBlock.number.to_s + ". " + oneBlock.name.to_s
            else
              blockNumberAndName = oneBlock.name.to_s

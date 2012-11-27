@@ -1,12 +1,9 @@
 # coding: utf-8
 class WelcomeController < ApplicationController
   before_filter :authenticate
+
   def index
       @blocks = Block.find_all_by_user_id(current_user.id)
-  end
-
-  def show
-    @first = Firsts.find(params[:id])
   end
 
   def point
