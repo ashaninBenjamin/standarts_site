@@ -1,44 +1,30 @@
 <%= link_to "<< К списку всех стандартов", standarts_path %>
-<% @id = "block_content" + @block.id.to_s
-   @onclick = "slideDiv('#" + @id + "')"
-%>
-<% if @block.number > 0
-     blockNumberAndName = @block.number.to_s + ". " + @block.name.to_s
-   else
-     blockNumberAndName = @block.name.to_s
-   end %>
-<div class="blockNameInBlock" ><%= blockNumberAndName %></div>
-<div class="blockAllContent" id="<%= @id %>" style="display: block;">
+<%= content_tag :div,
+    (@block.is_show.eql?("true") ? @block.number.to_s + ". " + @block.name.to_s : @block.name.to_s),
+  :class => "blockNameInBlock" %>
+<%= content_tag :div, :class => "blockAllContent", :id => "block_content" + @block.id.to_s, :style => "display: block;" do %>
   <% if !@block.content.nil? %>
-      <% if @points.each.count > 0
-           id_BC = "content" + @block.id.to_s
-           onclick_BC = "slideDiv('#" + id_BC + "')"
-      %>
-          <div class="blockContentWatchAll" onclick="<%= onclick_BC %>">Просмотреть содержание</div>
-          <div class="blockContent" id="<%= id_BC %>">
-            <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
-            <%= @block.content.html_safe %>
-          </div>
-      <% else %>
-          <div >
-            <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
-            <%= @block.content.html_safe %>
-          </div>
-
-      <% end %><br>
+    <% if @points.each.count > 0 %>
+      <%= content_tag :div, "Просмотреть содержание", :class => "blockContentWatchAll",
+        :onclick => "slideDiv('#content" + @block.id.to_s + "')" %>
+      <%= content_tag :div, :class => "blockContent", :id => "content" + @block.id.to_s do %>
+        <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
+        <%= @block.content.html_safe %>
+      <% end %>
+  <% else %>
+    <div >
+      <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
+      <%= @block.content.html_safe %>
+    </div>
+  <% end %><br>
   <% else %>
       <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
   <% end %>
   <% @points.each do |onePoint| %>
-      <% if onePoint.level != 1
-           @classThis = "class='point' style='padding-left:" + ((onePoint.level - 1) * 20).to_s + "px'"
-         else
-           @classThis = "class='point'"
-         end
-      %>
-      <div <%= @classThis %>  >
-        <%= link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")),
-                    :class => "pointLink" %>
-      </div>
+      <%= content_tag :div,
+          (link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")),
+                    :class => "pointLink"),
+        :class => "point",
+        :style => ("padding-left:" + ((onePoint.level - 1) * 20).to_s + "px" if onePoint.level != 1) %>
   <% end %>
-</div>
+<% end %>

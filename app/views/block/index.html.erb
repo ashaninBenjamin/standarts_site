@@ -1,40 +1,25 @@
 <h3>Стандарты</h3>
 <% @blocks.each do |oneBlock| %>
-    <% id = "block_all_content" + oneBlock.id.to_s
-       onclick = "slideDiv('#" + id + "')"
-    %>
     <table><tr><td>
-      <%= image_tag("arr_right.jpg", :size => "15x15", :alt => "Перейти", :class => "imgOpenBlock", :onclick => onclick, :id => "arrShowContent" + oneBlock.id.to_s ) %>
+      <%= image_tag("arr_right.jpg", :size => "15x15", :alt => "Перейти", :class => "imgOpenBlock",
+        :onclick => "slideDiv('#block_all_content" + oneBlock.id.to_s + "')",
+      :id => "arrShowContent" + oneBlock.id.to_s ) %>
     </td><td>
-      <div class="blockName">
-        <% if oneBlock.is_show.eql?("true")
-             blockNumberAndName = oneBlock.number.to_s + ". " + oneBlock.name.to_s
-           else
-             blockNumberAndName = oneBlock.name.to_s
-           end %>
-        <%= link_to blockNumberAndName, block_path(oneBlock.number) %>
-      </div></td></tr>
+    <%= content_tag :div,
+        (link_to oneBlock.is_show.eql?("true") ? oneBlock.number.to_s + ". " + oneBlock.name.to_s : oneBlock.name.to_s, block_path(oneBlock.number)),
+        :class => "blockName"%>
+    </td></tr>
     </table>
-    <div class="blockAllContent" id="<%= id %>">
-      <% if !oneBlock.content.nil?
-           id_BC = "content" + oneBlock.id.to_s
-           onclick_BC = "slideDiv('#" + id_BC + "')"
-      %>
-          <div class="blockContentWatchAll" onclick="<%= onclick_BC %>">Просмотреть содержание</div>
-          <div class="blockContent" id="<%= id_BC %>"><%= oneBlock.content.html_safe %></div>
+    <%= content_tag :div, :class => "blockAllContent", :id => "block_all_content" + oneBlock.id.to_s do %>
+      <% if !oneBlock.content.nil? %>
+          <%= content_tag :div, "Просмотреть содержание", :class => "blockContentWatchAll", :onclick => "slideDiv('#content" + oneBlock.id.to_s + "')"%>
+          <%= content_tag :div, oneBlock.content.html_safe, :class => "blockContent", :id => "content" + oneBlock.id.to_s %>
       <% end %>
       <% Point.find_all_by_block_id(oneBlock.id).each do |onePoint| %>
-          <% if onePoint.level != 1
-               classThis = "class='point' style='padding-left:" + ((onePoint.level - 1) * 20).to_s + "px'"
-             else
-               classThis = "class='point'"
-             end
-          %>
-          <div <%= classThis %> >
-            <%= link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")),
-                        :class => "pointLink" %>
-          </div>
+        <%= content_tag :div,
+            (link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")), :class => "pointLink"),
+          :class => "point", :style => ("padding-left:" + ((onePoint.level - 1) * 20).to_s + "px" if onePoint.level != 1) %>
       <% end %>
-    </div>
+    <% end %>
 <% end %>
 <br />
