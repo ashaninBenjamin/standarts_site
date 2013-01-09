@@ -14,12 +14,27 @@ class BlockController < ApplicationController
   end
 
   def update
-    updateBlock = Block.find_by_number_and_user_id(params[:number], current_user)
+    updateBlock =  Block.find_by_number_and_user_id(params[:number], current_user)
+    if params[:block][:content] == "<br />\r\n"
+      params[:block][:content] = nil
+    end
     if updateBlock.update_attributes(params[:block])
       flash[:success] = "Изменения вступили в силу"
-      redirect_to block_path(params[:number])
+      redirect_to block_path(params[:block][:number])
     else
       render block_index_path
+    end
+  end
+
+  def clear
+    block = Block.find_by_number_and_user_id(params[:number], current_user)
+    block.content = nil
+    if block.save
+      flash[:success] = "Содержание блока очищено"
+      redirect_to block_path(params[:number])
+    else
+      flash[:error] = "Что-то пошло не так, попробуйте ещё раз"
+      redirect_to block_edit_path(params[:number])
     end
   end
 

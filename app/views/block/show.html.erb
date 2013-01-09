@@ -5,10 +5,10 @@
 <%= content_tag :div, :class => "blockAllContent", :id => "block_content" + @block.id.to_s, :style => "display: block;" do %>
   <% if !@block.content.nil? %>
     <% if @points.each.count > 0 %>
+      <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
       <%= content_tag :div, "Просмотреть содержание", :class => "blockContentWatchAll",
         :onclick => "slideDiv('#content" + @block.id.to_s + "')" %>
       <%= content_tag :div, :class => "blockContent", :id => "content" + @block.id.to_s do %>
-        <h4><%= link_to "Редактировать блок", block_edit_path %></h4>
         <%= @block.content.html_safe %>
       <% end %>
   <% else %>

@@ -4,16 +4,21 @@ class Point < ActiveRecord::Base
 
   has_many :child, :class_name => "Point", :foreign_key => "parent_id"
   belongs_to :parent, :class_name => "Point"
+
+  validates :name, :presence => true
+  validates :content, :presence => true
+  validates :code, :presence => true
+  validates :block_id, :presence => true
   #default_scope :order => 'code'
 
   def level
     temp = self
-    level = 0
+    level = 1
     while !temp.parent.nil?
       level += 1
       temp = temp.parent
     end
-    level + 1
+    level
   end
 
   def number
@@ -30,6 +35,15 @@ class Point < ActiveRecord::Base
     self.number.gsub(".", "-")
   end
 
+  def self.find_by_link_and_user(link, user)
+    find get_id_by_link_and_user link, user
+  end
+
+  private
+  def self.find_by_block_id_code_and_parent(block_id, code, parent)
+    self.where(:block_id => Block.find(block_id), :parent_id => parent, :code => code).first
+  end
+
   def self.get_id_by_link_and_user(link, user)
     id = 0
     arr = link.split("-")
@@ -40,15 +54,6 @@ class Point < ActiveRecord::Base
       id = tt.id
     end
     id
-  end
-
-  def self.find_by_link_and_user(link, user)
-    find get_id_by_link_and_user link, user
-  end
-
-  private
-  def self.find_by_block_id_code_and_parent(block_id, code, parent)
-    self.where(:block_id => Block.find(block_id), :parent_id => parent, :code => code).first
   end
 
 end

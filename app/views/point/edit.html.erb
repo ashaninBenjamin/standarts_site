@@ -1,14 +1,19 @@
 <h2>Редактировать стандарт</h2>
 <%= link_to " << На страницу стандартов", block_index_path %>
-<%= link_to " << К блоку", block_path(@point.block_id) %> <%= link_to " << К пункту", point_path %>
+<%= link_to " << К блоку", block_path(@point.block.number) %> <%= link_to " << К пункту", point_path %>
 
 <%= form_for :point, :url => { :action => :update, :code => @code }, :method => :put do |f| %>
     <div class="field">
-      <span style="font-size: 16px;">Нумерация пункта:</span><b> <%=  @code.gsub("-",".") %></b>
+      <span style="font-size: 16px;">Нумерация пункта:</span><b> <%=  @point.number %></b>
     </div>
+
     <div class="field">
       <%= f.label "Принадлежит блоку" %><br />
-      <%= f.select(:block_id, Block.all.collect {|p| [ p.name, p.id ] }) %>
+      <%= f.select(:block_id, Block.find_all_by_user_id(current_user.id).collect {|p| [ p.name, p.id ] }) %>
+    </div>
+    <div class="field">
+      <%= f.label "Номер" %><br />
+      <%= f.text_field :code %>
     </div>
     <div class="field">
       <%= f.label "Название" %><br />

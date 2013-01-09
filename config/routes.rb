@@ -13,6 +13,7 @@ RoR::Application.routes.draw do
   get "block/:number/edit" => "block#edit", :as => :block_edit
   put "block/:number" => "block#update"
   match 'block/:number' => 'block#show', :as => :block
+  get 'block/:number/clear' => 'block#clear', :as => :block_clear
 
   get "point/:code/edit" => "point#edit", :as => :point_edit
   put "point/:code" => "point#update"

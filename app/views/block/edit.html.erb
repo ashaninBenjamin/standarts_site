@@ -1,8 +1,12 @@
 <h2>Редактировать блок</h2>
-<%= link_to " << На страницу стандартов", standarts_path %>
+<%= link_to " << На страницу стандартов", block_index_path %>
 <%= link_to " << К блоку", block_path %>
 
-<%= form_for :block, :url => { :action => :update, :id => @block.id }, :method => :put do |f| %>
+<%= form_for :block, :url => { :action => :update, :number => @block.number }, :method => :put do |f| %>
+    <div class="field">
+      <%= f.label "Номер" %><br />
+      <%= f.text_field :number %>
+    </div>
     <div class="field">
       <%= f.label "Название" %><br />
       <%= f.text_field :name %>
@@ -13,5 +17,6 @@
     </div>
     <div class="actions">
       <%= f.submit "Редактировать" %>
+      <%= link_to "Очистить",  block_clear_path(@block.number), :confirm => "Вы уверены, что хотите очистить содержание блока?" %>
     </div>
 <% end %>
