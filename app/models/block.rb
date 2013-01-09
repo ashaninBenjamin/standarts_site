@@ -4,4 +4,8 @@ class Block < ActiveRecord::Base
 
   attr_accessible :name, :content
   default_scope :order => 'number'
+
+  def find_by_number_and_user(number, user)
+    where(:number => number, :user_id => user.id).first
+  end
 end

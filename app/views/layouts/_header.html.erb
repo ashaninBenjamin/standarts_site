@@ -2,7 +2,7 @@
   <%= image_tag("rails.png", :alt => "Sample App", :class => "round", :id => "logo") %>
   <nav class="round">
     <ul>
-      <li><%= link_to "Главная", standarts_path %></li>
+      <li><%= link_to "Главная", block_index_path %></li>
       <li><%= link_to "Помощь", '#' %></li>
       <% if !signed_in? %>
           <li><%= link_to "Войти", signin_path %></li>

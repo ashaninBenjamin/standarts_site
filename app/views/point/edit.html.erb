@@ -1,5 +1,5 @@
 <h2>Редактировать стандарт</h2>
-<%= link_to " << На страницу стандартов", standarts_path %>
+<%= link_to " << На страницу стандартов", block_index_path %>
 <%= link_to " << К блоку", block_path(@point.block_id) %> <%= link_to " << К пункту", point_path %>
 
 <%= form_for :point, :url => { :action => :update, :code => @code }, :method => :put do |f| %>

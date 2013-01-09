@@ -1,4 +1,4 @@
-<%= link_to "<< К списку всех стандартов", standarts_path %>
+<%= link_to "<< К списку всех стандартов", block_index_path %>
 <%= content_tag :div,
     (@block.is_show.eql?("true") ? @block.number.to_s + ". " + @block.name.to_s : @block.name.to_s),
   :class => "blockNameInBlock" %>
@@ -22,7 +22,7 @@
   <% end %>
   <% @points.each do |onePoint| %>
       <%= content_tag :div,
-          (link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")),
+          (link_to onePoint.number + ". " + onePoint.name, point_path(onePoint.link),
                     :class => "pointLink"),
         :class => "point",
         :style => ("padding-left:" + ((onePoint.level - 1) * 20).to_s + "px" if onePoint.level != 1) %>

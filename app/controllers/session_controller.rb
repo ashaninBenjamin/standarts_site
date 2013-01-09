@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   def new
       if signed_in?
-        redirect_to standarts_path
+        redirect_to block_index_path
       end
   end
 
@@ -14,7 +14,7 @@ class SessionController < ApplicationController
       render 'new'
     else
       sign_in user
-      redirect_back_or standarts_path
+      redirect_back_or block_index_path
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126235150) do
+ActiveRecord::Schema.define(:version => 20130104105520) do
 
   create_table "blocks", :force => true do |t|
     t.integer "number"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20121126235150) do
     t.integer "block_id"
     t.string  "name"
     t.string  "code"
-    t.integer "level"
     t.text    "content"
   end
 

@@ -17,7 +17,7 @@
       <% end %>
       <% Point.find_all_by_block_id(oneBlock.id).each do |onePoint| %>
         <%= content_tag :div,
-            (link_to onePoint.code + ". " + onePoint.name, point_path(onePoint.code.gsub(".", "-")), :class => "pointLink"),
+            (link_to onePoint.number + ". " + onePoint.name, point_path(onePoint.link), :class => "pointLink"),
           :class => "point", :style => ("padding-left:" + ((onePoint.level - 1) * 20).to_s + "px" if onePoint.level != 1) %>
       <% end %>
     <% end %>

@@ -4,14 +4,13 @@ class PointController < ApplicationController
 
   def edit
     @code = params[:code]
-    @point = Point.where("code = ? AND block_id IN (?)", @code.gsub("-", "."), Block.find_all_by_user_id(current_user.id)).first
-    #@point = Point.find_by_code(@code.gsub("-", "."))
+    @point = Point.find_by_link_and_user(@code, current_user)
   end
 
   def update
-    code = params[:code].gsub("-", ".")
-    @standart = Point.where("code = ? AND block_id IN (?)", code, Block.find_all_by_user_id(current_user.id)).first
-    if @standart.update_attributes(params[:point])
+    standart = Point.find_by_link_and_user(params[:code], current_user)
+
+    if standart.update_attributes(params[:point])
       flash[:success] = "Изменения вступили в силу"
       redirect_to point_path(params[:code])
     else
@@ -21,10 +20,9 @@ class PointController < ApplicationController
   end
 
   def show
-    code = params[:code].gsub("-", ".")
-    @point = Point.where("code = ? AND block_id IN (?)", code.gsub("-", "."), Block.find_all_by_user_id(current_user.id)).first
+    @point = Point.find_by_link_and_user(params[:code], current_user)
     @txt = @point.content
-    @children = Point.find_all_by_parent_id(@point.id)
+    @children = @point.child
   end
 
   def show_by_block
