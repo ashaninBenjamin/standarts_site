@@ -14,7 +14,7 @@ class BlockController < ApplicationController
   end
 
   def update
-    updateBlock =  Block.find_by_number_and_user_id(params[:number], current_user)
+    updateBlock = Block.find_by_number_and_user_id(params[:number], current_user)
     if params[:block][:content] == "<br />\r\n"
       params[:block][:content] = nil
     end

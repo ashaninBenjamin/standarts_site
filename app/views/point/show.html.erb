@@ -4,16 +4,16 @@
 <%= if !@point.parent_id.nil?
       link_to "<< К родительскому пункту", point_path(@point.parent.link)
     end%>
-<% if !@txt.nil? %>
+<% if !@point.content.nil? %>
     <h4><%= link_to "Редактировать", point_edit_path %></h4>
-    <%= @txt.html_safe %>
+    <%= @point.content.html_safe %>
 <% else %>
     <br><br>
     <i>Данный раздел пуст, <%= link_to "Заполнить?", point_edit_path %> </i>
 <% end %><br><br>
-<% if @children.count != 0 %>
+<% if @point.child.count != 0 %>
   Дочерние пункты:
-  <% @children.each do |onePoint| %>
+  <% @point.child.each do |onePoint| %>
     <%= content_tag :div,
       (link_to onePoint.number + ". " + onePoint.name, point_path(onePoint.link),
         :class => "pointLink"),
