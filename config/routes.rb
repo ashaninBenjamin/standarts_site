@@ -1,28 +1,14 @@
 RoR::Application.routes.draw do
 
   root :to => 'session#new'
-  mount Ckeditor::Engine => '/ckeditor'
-
-  post "/signin", :to => 'session#create', :as => :signin_post
-  match '/signin',  :to => 'session#new'
-  match '/signout', :to => 'session#destroy'
+  resources :standard
+  post "/login", :to => 'session#create', :as => :signin_post
+  match '/login',  :to => 'session#new'
+  match '/logout', :to => 'session#destroy'
   resources :user
-  #match "/test/:par", :to => "welcome#test"
+  resources :help
 
-  get "block/index"
-  get "block/:number/edit" => "block#edit", :as => :block_edit
-  put "block/:number" => "block#update"
-  match 'block/:number' => 'block#show', :as => :block
-  get 'block/:number/clear' => 'block#clear', :as => :block_clear
-
-  get "point/:code/edit" => "point#edit", :as => :point_edit
-  put "point/:code" => "point#update"
-  match 'point/:code' => 'point#show', :as => :point
-
-  #match 'welcome/index' => 'welcome#index', :as => :index
-
-  #match 'standarts' => 'block#index', :as => :standarts
-
+  mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

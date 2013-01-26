@@ -1,0 +1,23 @@
+<h2>Редактирование раздела</h2>
+
+<%= form_for :edit, :url => { :action => :update, :id => @edit.link }, :method => :put do |f| %>
+    <div class="field">
+      <%= f.label "Номер" %>
+      <%= f.text_field :number %>
+    </div>
+    <div class="field">
+      <%= f.label "Название" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label "Принадлежит разделу" %>
+      <%= f.select(:parent_id, Standard.find_all_by_user_id(current_user.id).collect {|p| [ p.for_select, p.id ] }, {:prompt => 'Выберите из списка'}) %>
+    </div>
+    <div class="field">
+      <%= f.label "Содержание" %>
+      <%= f.cktext_area :content, :toolbar => "My" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Редактировать", :class => "btn" %>
+    </div>
+<% end %>

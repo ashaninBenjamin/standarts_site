@@ -4,23 +4,33 @@ class UserController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
   def new
     @user = User.new
+    @user_info = UserInfo.new
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.roles_id = 1
-    @user.user_info_id = 1
-    if @user.save
-      sign_in @user
+    user = User.new(params[:user])
+    user.roles_id = Role.find_by_name("admin").id
+    user_info = UserInfo.new(params[:user_info])
+    if !user_info.save
+      flash[:error] = "Что-то пошло не так"
+      render "new"
+    end
+    user.user_info_id = user_info.id
+    st_blocks = Block.get_template
+    st_points = Point.get_template
+    st_blocks.each {|x| x.user_id = 2 }
+    st_blocks.each {|x| n = Block.new(x), n.save}
+    if user.save
+      sign_in user
       flash[:success] = "Регистрация прошла успешно"
-      redirect_to @user
+      redirect_to user
     else
       render 'new'
     end
   end
 
   def index
-    @users = User.all
+    @users = User.find_all_by_roles_id(Role.find_by_name("admin").id)
   end
 
   def destroy
@@ -35,15 +45,16 @@ class UserController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @user_info = UserInfo.find(@user.user_info_id)
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    user = User.find(params[:id])
+    user_info = user.user_info
+    if user.update_attributes params[:user] && user_info.update_attributes(params[:user_info])
       flash[:success] = "Изменения вступили в силу"
-      redirect_to @user
+      redirect_to user
     else
-      @title = "Edit user"
       render 'edit'
     end
   end

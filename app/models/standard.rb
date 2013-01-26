@@ -1,0 +1,94 @@
+# coding: utf-8
+class Standard < ActiveRecord::Base
+  attr_accessible :content, :name, :number, :parent_id, :user_id
+
+  has_many :children, :class_name => "Standard", :foreign_key => "parent_id"
+  belongs_to :parent, :class_name => "Standard"
+  belongs_to :user, :primary_key => 'id', :foreign_key => 'user_id'
+
+  validates :name, :presence => true
+  validates :number, :presence => true
+
+  before_update :check_content
+  before_destroy :destroy_children
+
+  def self.sort_it(it)
+    it.sort_by{|a| a.code.split('.').map &:to_i }
+  end
+
+  def self.find_all_with_user(user)
+    self.sort_it self.where(:user_id => user)
+  end
+
+  def for_select
+    ("-" * level) + code + " " + name
+  end
+
+  def level
+    temp = self
+    level = 0
+    while !temp.parent.nil?
+      level += 1
+      temp = temp.parent
+    end
+    level
+  end
+
+  def code
+    ret = self.number.to_s
+    temp = self
+    while !temp.parent.nil?
+      temp = temp.parent
+      ret = temp.number.to_s + "." + ret
+    end
+    ret
+  end
+
+  def link
+    self.code.gsub(".", "-")
+  end
+
+  def code_with_name
+    code + ". " + name
+  end
+
+  def has_parent?
+    (parent.nil?) ? false : true
+  end
+
+  def has_children?
+    (children.empty?) ? false : true
+  end
+
+  def self.find_by_link(link, user)
+    find get_id_by_link_and_user link, user
+  end
+
+  private
+  def self.get_id_by_link_and_user(link, user)
+    id = 0
+    arr = link.split("-")
+    tt = nil
+    arr[0..arr.count-1].each do |one|
+      tt = Standard.where(:parent_id => tt, :number => one, :user_id => user.id).first
+      id = tt.id
+    end
+    id
+  end
+
+  def check_content
+    if self.content.eql? "<br />\r\n" || self.content.blank?
+      self.content = ""
+    end
+  end
+
+  def destroy_children
+    if self.has_children?
+      self.children.each do |one|
+        one.destroy
+      end
+    end
+  end
+
+
+end

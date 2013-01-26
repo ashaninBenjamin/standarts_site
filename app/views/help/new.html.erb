@@ -1,0 +1,19 @@
+<h2>Создание новой справки</h2>
+
+<%= form_for :new, :url => url_for(:controller => 'help') do |f| %>
+    <div class="field">
+      <%= f.label "Номер" %>
+      <%= f.text_field :number %>
+    </div>
+    <div class="field">
+      <%= f.label "Наименование" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label "Содержание" %>
+      <%= f.cktext_area :content, :toolbar => "My" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Создать", :class => "btn" %>
+    </div>
+<% end %>

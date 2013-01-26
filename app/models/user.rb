@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
 
+  def super_admin?
+    (self.role.name.eql?("super")) ? true : false
+  end
+
   private
   def encrypt_password
     self.salt = make_salt if new_record?

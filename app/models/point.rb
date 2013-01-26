@@ -9,7 +9,15 @@ class Point < ActiveRecord::Base
   validates :content, :presence => true
   validates :code, :presence => true
   validates :block_id, :presence => true
-  #default_scope :order => 'code'
+  #default_scope sort_by{|elt| elt.number.split("-").map(&:to_i).inject(&:+)}
+
+  def self.sort_it(it)
+    it.sort_by{|a| a.number.split('.').map &:to_i }
+  end
+
+  def self.get_template
+    where(:block_id => Block.find_all_by_user_id(User.find_by_roles_id(Role.find_by_name("super"))))
+  end
 
   def level
     temp = self

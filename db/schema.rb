@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104105520) do
+ActiveRecord::Schema.define(:version => 20130126204048) do
 
   create_table "blocks", :force => true do |t|
     t.integer "number"
@@ -37,9 +37,10 @@ ActiveRecord::Schema.define(:version => 20130104105520) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
-  create_table "contents", :force => true do |t|
-    t.text    "txt"
-    t.integer "user_id"
+  create_table "helps", :force => true do |t|
+    t.string  "name"
+    t.text    "content"
+    t.integer "number"
   end
 
   create_table "points", :force => true do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130104105520) do
 
   create_table "roles", :force => true do |t|
     t.string "name"
+    t.string "description"
   end
 
   create_table "sessions", :force => true do |t|
@@ -63,6 +65,16 @@ ActiveRecord::Schema.define(:version => 20130104105520) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "standards", :force => true do |t|
+    t.integer "number"
+    t.string  "name"
+    t.text    "content"
+    t.integer "parent_id"
+    t.integer "user_id"
+    t.string  "show_number"
+    t.string  "turn_on"
+  end
 
   create_table "user_infos", :force => true do |t|
     t.string "surname"

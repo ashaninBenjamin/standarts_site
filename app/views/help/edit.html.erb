@@ -1,0 +1,19 @@
+<h2>Редактирование справки</h2>
+
+<%= form_for :edit, :url => { :action => :update }, :method => :put do |f| %>
+    <div class="field">
+      <%= f.label "Номер" %>
+      <%= f.text_field :number %>
+    </div>
+    <div class="field">
+      <%= f.label "Наименование" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label "Содержание" %>
+      <%= f.cktext_area :content, :toolbar => "My" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Редактировать", :class => "btn" %>
+    </div>
+<% end %>

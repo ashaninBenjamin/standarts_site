@@ -1,5 +1,4 @@
 <h1>Редактировать пользователя</h1>
-
 <%= form_for @user, :url => { :action => :update, :id => @user.id } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
@@ -14,6 +13,24 @@
       <%= f.label :password_confirmation, "Подтверждение пароля" %><br />
       <%= f.password_field :password_confirmation %>
     </div>
+    <%= fields_for @user_info do |ff| %>
+        <div class="field">
+          <%= ff.label "Фамилия" %><br />
+          <%= ff.text_field :surname %>
+        </div>
+        <div class="field">
+          <%= ff.label "Имя" %><br />
+          <%= ff.text_field :name %>
+        </div>
+        <div class="field">
+          <%= ff.label "Отчество" %><br />
+          <%= ff.text_field :patronymic %>
+        </div>
+        <div class="field">
+          <%= ff.label "Эл.почта" %><br />
+          <%= ff.text_field :mail %>
+        </div>
+    <% end %>
     <div class="actions">
       <%= f.submit "Обновить" %>
     </div>

@@ -1,0 +1,20 @@
+<h2><%= @it.number_with_name %></h2>
+<%= @it.content %>
+
+<% content_for :left do %>
+    <%= link_to "Все справки", help_index_path %>
+    <ul class="list-style-type-none">
+      <% @all.each do |one| %>
+          <li><%= link_to one.number_with_name, help_path(one) %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+<% if current_user.super_admin? %>
+    <% content_for :submenu do %>
+        <li><%= link_to "Новый справка", new_help_path %></li>
+        <li><%= link_to "Редактировать справку", edit_help_path(@it) %></li>
+        <li><%= link_to "Удалить справку", @it, :method => :delete, :confirm => "Вы уверены, что хотите удалить эту справку?",
+                        :title => "Удалить #{@it.name}" %></li>
+    <% end %>
+<% end %>

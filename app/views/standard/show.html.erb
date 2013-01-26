@@ -1,0 +1,26 @@
+<%= content_tag :h2, (@it.code_with_name) %>
+<%= content_tag :div, :class => "blockAllContent", :id => "block_content" + @it.id.to_s, :style => "display: block;" do %>
+    <%= content_tag :div, :class => "blockContent", :id => "content" + @it.id.to_s do %>
+        <%= @it.content.html_safe %>
+    <% end %>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Новый раздел", new_standard_path %></li>
+    <li><%= link_to "Редактировать раздел", edit_standard_path(@it.link) %></li>
+    <li><%= link_to "Удалить раздел", @it.link, :method => :delete, :confirm => "Вы уверены, что хотите удалить этот раздел?",
+                    :title => "Удалить #{@it.name}" %></li>
+<% end %>
+
+<% content_for :left do %>
+    <%= link_to "К списку всех разделов", standard_index_path %><br>
+    <%= (link_to "К родительскому разделу", standard_path(@it.parent.link)) if @it.has_parent? %>
+    <% if @it.has_children? %>
+        <div class="children">
+          Дочерние разделы:
+          <% @it.children.each do |one| %>
+              <%= link_to one.code_with_name, standard_path(one.link) %>
+          <% end %>
+        </div>
+    <% end %>
+<% end %>

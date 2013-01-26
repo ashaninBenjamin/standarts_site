@@ -1,0 +1,15 @@
+<h2>Стандарты</h2>
+<% if @all.count > 0 %>
+    <ul class="standard-list">
+      <% @all.each do |one| %>
+          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)), :style => "margin-left:#{one.level * 20}px;"  %>
+      <% end %>
+    </ul>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Новый раздел", new_standard_path %></li>
+<% end %>
+<% content_for :left do %>
+
+<% end %>
