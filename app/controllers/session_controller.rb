@@ -2,25 +2,24 @@
 class SessionController < ApplicationController
   def new
       if signed_in?
-        redirect_to block_index_path
+        redirect_to standard_index_path
       end
   end
 
   def create
     user = User.authenticate(params[:session][:login],
                              params[:session][:password])
-    @user = user
     if user.nil?
-      flash.now[:error] = "Invalid login/password combination."
+      flash.now[:error] = "Неверная пара логин/пароль"
       render 'new'
     else
       sign_in user
-      redirect_back_or block_index_path
+      redirect_back_or standard_index_path
     end
   end
 
   def destroy
     sign_out
-    redirect_to signin_path
+    redirect_to login_path
   end
 end

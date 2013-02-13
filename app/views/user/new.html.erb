@@ -2,36 +2,18 @@
 <%= form_for @user, :url => url_for(:controller => 'user') do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
-      <%= f.label :login, "Логин" %><br />
+      <%= f.label :login, "Логин" %>
       <%= f.text_field :login %>
     </div>
     <div class="field">
-      <%= f.label :password, "Пароль" %><br />
+      <%= f.label :password, "Пароль" %>
       <%= f.password_field :password %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation, "Подтверждение пароля" %><br />
+      <%= f.label :password_confirmation, "Подтверждение пароля" %>
       <%= f.password_field :password_confirmation %>
     </div>
-    <%= fields_for @user_info do |ff| %>
-        <div class="field">
-          <%= ff.label "Фамилия" %><br />
-          <%= ff.text_field :surname %>
-        </div>
-        <div class="field">
-          <%= ff.label "Имя" %><br />
-          <%= ff.text_field :name %>
-        </div>
-        <div class="field">
-          <%= ff.label "Отчество" %><br />
-          <%= ff.text_field :patronymic %>
-        </div>
-        <div class="field">
-          <%= ff.label "Электронная почта" %><br />
-          <%= ff.text_field :mail %>
-        </div>
-    <% end %>
     <div class="actions">
-      <%= f.submit "Зарегистрироваться" %>
+      <%= f.submit "Зарегистрировать", :class => "btn btn-success" %>
     </div>
 <% end %>

@@ -12,8 +12,35 @@ class Standard < ActiveRecord::Base
   before_update :check_content
   before_destroy :destroy_children
 
+  def self.find_all_by_super_admin
+    find_all_by_user_id(User.super_admin)
+  end
+
   def self.sort_it(it)
-    it.sort_by{|a| a.code.split('.').map &:to_i }
+    it.sort_by { |a| a.code.split('.').map &:to_i }
+  end
+
+  def self.find_numbers(obj)
+    if (obj.class != User)
+      if (!find(obj).has_children?)
+        return [1]
+      end
+      all = where(:parent_id => obj).order("number DESC")
+      last_number = all.first.number + 1
+      array = (1..last_number).to_a
+      all.each do |one|
+        array.delete(one.number)
+      end
+      return array
+    else
+      all = where(:user_id => obj, :parent_id => nil).order("number DESC")
+      last_number = all.first.number + 1
+      array = (1..last_number).to_a
+      all.each do |one|
+        array.delete(one.number)
+      end
+      return array
+    end
   end
 
   def self.find_all_with_user(user)
@@ -64,7 +91,6 @@ class Standard < ActiveRecord::Base
     find get_id_by_link_and_user link, user
   end
 
-  private
   def self.get_id_by_link_and_user(link, user)
     id = 0
     arr = link.split("-")
@@ -76,6 +102,7 @@ class Standard < ActiveRecord::Base
     id
   end
 
+  private
   def check_content
     if self.content.eql? "<br />\r\n" || self.content.blank?
       self.content = ""

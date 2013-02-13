@@ -1,0 +1,7 @@
+<% if @arr.count == 1 %>
+<%= label_tag :label, "Номер:" %>
+<%= label_tag :number, @arr.first %>
+<% else %>
+    <%= label_tag :label, "Номер:" %>
+    <%= select_tag :number, options_for_select(@arr) %>
+<% end %>

@@ -1,0 +1,18 @@
+<h2>Добавление информации о компании</h2>
+<%= form_for :new, :url => url_for(:controller => 'company', :user_id => @user_id), :html => { :multipart => true } do |f| %>
+    <div class="field">
+      <%= f.label "ОПФ" %>
+      <%= f.text_field :opf %>
+    </div>
+    <div class="field">
+      <%= f.label "Наименование" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label "Логотип компании" %>
+      <%= f.file_field :logo, :accept => 'image/jpeg,image/gif,image/png' %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Добавить", :class => "btn btn-success" %>
+    </div>
+<% end %>

@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126204048) do
-
-  create_table "blocks", :force => true do |t|
-    t.integer "number"
-    t.text    "name"
-    t.text    "content"
-    t.text    "is_show"
-    t.integer "user_id"
-  end
+ActiveRecord::Schema.define(:version => 20130212044249) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -37,18 +29,21 @@ ActiveRecord::Schema.define(:version => 20130126204048) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "opf"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "helps", :force => true do |t|
     t.string  "name"
     t.text    "content"
     t.integer "number"
-  end
-
-  create_table "points", :force => true do |t|
-    t.integer "parent_id"
-    t.integer "block_id"
-    t.string  "name"
-    t.string  "code"
-    t.text    "content"
   end
 
   create_table "roles", :force => true do |t|
@@ -77,10 +72,14 @@ ActiveRecord::Schema.define(:version => 20130126204048) do
   end
 
   create_table "user_infos", :force => true do |t|
-    t.string "surname"
-    t.string "name"
-    t.string "patronymic"
-    t.string "mail"
+    t.string   "surname"
+    t.string   "name"
+    t.string   "patronymic"
+    t.string   "mail"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -91,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20130126204048) do
     t.datetime "updated_at",   :null => false
     t.string   "salt"
     t.string   "en_password"
+    t.integer  "company_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

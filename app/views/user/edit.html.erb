@@ -1,37 +1,26 @@
-<h1>Редактировать пользователя</h1>
+<h2>Редактировать логин и пароль</h2>
 <%= form_for @user, :url => { :action => :update, :id => @user.id } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
-      <%= f.label "Логин" %><br />
+      <%= f.label "Логин" %>
       <%= f.text_field :login %>
     </div>
     <div class="field">
-      <%= f.label "Пароль" %><br />
+      <%= f.label "Пароль" %>
       <%= f.password_field :password %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation, "Подтверждение пароля" %><br />
+      <%= f.label :password_confirmation, "Подтверждение пароля" %>
       <%= f.password_field :password_confirmation %>
     </div>
-    <%= fields_for @user_info do |ff| %>
-        <div class="field">
-          <%= ff.label "Фамилия" %><br />
-          <%= ff.text_field :surname %>
-        </div>
-        <div class="field">
-          <%= ff.label "Имя" %><br />
-          <%= ff.text_field :name %>
-        </div>
-        <div class="field">
-          <%= ff.label "Отчество" %><br />
-          <%= ff.text_field :patronymic %>
-        </div>
-        <div class="field">
-          <%= ff.label "Эл.почта" %><br />
-          <%= ff.text_field :mail %>
-        </div>
-    <% end %>
     <div class="actions">
-      <%= f.submit "Обновить" %>
+      <%= f.submit "Обновить", :class => "btn" %>
     </div>
+<% end %>
+<%= link_to "Удалить учётную запись", {:action => :destroy}, :method => :delete, :class => "btn btn-danger", :confirm => "Вы уверены, что хотите удалить свою учётную запись?" if (!current_user.role.name.eql?("super"))  %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Логин и пароль", edit_user_path(@user) %></li>
+    <li><%= link_to "Информация о пользователе", edit_user_info_path(@user.user_info) %></li>
+    <li><%= link_to "Информация о компании", edit_company_path(@user.company) %></li>
 <% end %>

@@ -80,14 +80,14 @@ a:hover
 #header
 {
     padding: 1.5em 1.5em 0em 0.5em;
-    height: 8em;
-    width: 15em;
     float: left;
     position: relative;
     /*background: #AF0A0A url('a4.gif') top right no-repeat;*/
 }
 
 #header img {
+    width: 250px;
+    /*height: 100px;*/
 }
 
 /* Menu */

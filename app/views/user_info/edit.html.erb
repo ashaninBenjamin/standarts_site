@@ -1,0 +1,34 @@
+<h2>Редактирование информации о пользователе</h2>
+<%= form_for :edit, :url => { :action => :update }, :method => :put, :html => { :multipart => true } do |f| %>
+    <div class="field">
+      <%= f.label "Фамилия" %>
+      <%= f.text_field :surname %>
+    </div>
+    <div class="field">
+      <%= f.label "Имя" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label "Отчество" %>
+      <%= f.text_field :patronymic %>
+    </div>
+    <div class="field">
+      <%= f.label "Электронная почта" %>
+      <%= f.text_field :mail %>
+    </div>
+    <div class="field">
+      <%= f.label "Фотография профиля" %>
+      <%= image_tag @edit.avatar.url(:medium) %><br>
+      <%= f.file_field :avatar, :accept => 'image/jpeg,image/gif,image/png' %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Обновить", :class => "btn" %>
+    </div>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Логин и пароль", edit_user_path(@user) %></li>
+    <li><%= link_to "Информация о пользователе", edit_user_info_path(@edit) %></li>
+    <li><%= link_to "Информация о компании", edit_company_path(@user.company) %></li>
+<% end %>

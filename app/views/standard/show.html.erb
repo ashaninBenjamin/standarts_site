@@ -15,10 +15,10 @@
 <% content_for :left do %>
     <%= link_to "К списку всех разделов", standard_index_path %><br>
     <%= (link_to "К родительскому разделу", standard_path(@it.parent.link)) if @it.has_parent? %>
-    <% if @it.has_children? %>
+    <% if @children %>
         <div class="children">
           Дочерние разделы:
-          <% @it.children.each do |one| %>
+          <% @children.each do |one| %>
               <%= link_to one.code_with_name, standard_path(one.link) %>
           <% end %>
         </div>

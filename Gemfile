@@ -23,6 +23,7 @@ end
 gem "ckeditor"
 gem "paperclip"
 gem 'jquery-rails'
+gem "deep_cloneable", "~> 1.4.0"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

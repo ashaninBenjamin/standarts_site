@@ -1,21 +1,23 @@
+<div id="header">
+  <%= link_to (image_tag current_user.company.logo.url), current_user.company %>
+</div>
 <div id="menu">
   <ul>
     <li>
-      <div class="ul-image"><%= image_tag("task.jpg", :size=>"40x40") %></div>
+      <div class="ul-image"><%= link_to image_tag("task.jpg", :size=>"40x40"), standard_index_path %></div>
       <div><%= link_to "Стандарты", standard_index_path %></div>
     </li>
     <li>
-      <div class="ul-image"><%= image_tag("help.jpg", :size=>"40x40") %></div>
+      <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), help_index_path %></div>
       <div><%= link_to "Помощь", help_index_path %></div>
     </li>
   </ul>
 
   <div class="bar-user">
     <div class="first-line">
-      <%= image_tag("ava.jpg", :size => "40x40") %>
-      <%= current_user.user_info.surname %>
-      <%= current_user.user_info.name %>&nbsp; &nbsp;&nbsp;
-      <%= link_to image_tag("logout-icon.png", :size => "30x30", :title => "Выйти"), signout_path %>
+      <%= image_tag current_user.user_info.avatar.url(:thumb) %>
+      <%= link_to current_user.user_info.fi, current_user.user_info %>&nbsp; &nbsp;&nbsp;
+      <%= link_to image_tag("logout-icon.png", :size => "30x30", :title => "Выйти"), logout_path %>
     </div>
     <div class="second-line"> <%= link_to "Настройка", edit_user_path(current_user) %> </div>
   </div>

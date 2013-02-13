@@ -1,15 +1,15 @@
 <h1>Авторизация</h1>
 <%= form_for :session, :url => signin_post_url do |f| %>
     <div class="field">
-      <%= f.label "Ваш логин" %><br />
+      <%= f.label "Ваш логин" %>
       <%= f.text_field :login %>
     </div>
     <div class="field">
-      <%= f.label "Ваш пароль" %><br />
+      <%= f.label "Ваш пароль" %>
       <%= f.password_field :password %>
     </div>
     <div class="actions">
-      <%= f.submit "Войти" %>
+      <%= f.submit "Войти", :class => "btn btn-success" %>
     </div>
 <% end %>
 

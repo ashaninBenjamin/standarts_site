@@ -6,10 +6,8 @@
 </head>
 <body>
 <div id="outer">
-  <div id="header">
-    <%= image_tag("logo.gif") %>
-  </div>
-  <%= render "layouts/header" %>
+
+  <%= render "layouts/header" if signed_in? %>
   <div id="content">
     <div id="primaryContentContainer">
       <div id="primaryContent">
@@ -21,9 +19,11 @@
         <%= debug(params) if !Rails.env.development? %>
       </div>
     </div>
-    <div id="secondaryContent">
-        <%= render "layouts/left_column" %>
-    </div>
+    <% if signed_in? %>
+        <div id="secondaryContent">
+          <%= render "layouts/left_column" %>
+        </div>
+    <% end %>
     <div class="clear"></div>
   </div>
   <%= render "layouts/footer" %>
