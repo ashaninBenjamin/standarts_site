@@ -1,10 +1,15 @@
 <h2>Стандарты</h2>
-<% if @all.count > 0 %>
+<% if !@all.blank? %>
     <ul class="standard-list">
       <% @all.each do |one| %>
-          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)), :style => "margin-left:#{one.level * 20}px;"  %>
+          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)), :style => "margin-left:#{one.level * 20}px;" %>
       <% end %>
     </ul>
+<% else %>
+    Стандартов ещё нет. <%= link_to "создать?", new_standard_path %>
+    <% if !current_user.super_admin? %>
+        Или <%= link_to "принять шаблон", helper_take_pattern_path %>
+    <% end %>
 <% end %>
 
 <% content_for :submenu do %>
