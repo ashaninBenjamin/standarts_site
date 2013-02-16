@@ -1,7 +1,7 @@
 #coding: utf-8
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :login, :password, :roles_id, :user_info_id, :password_confirmation
+  attr_accessible :login, :password, :roles_id, :user_info_id, :company_id, :password_confirmation
 
   belongs_to :role, :primary_key => "id", :foreign_key => "roles_id"
   belongs_to :user_info, :primary_key => "id", :foreign_key => "user_info_id"
