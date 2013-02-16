@@ -43,7 +43,7 @@ class UserController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy_with_all
+    User.find(params[:id]).destroy
     flash[:success] = "Пользователь удалён"
     redirect_to logout_path
   end

@@ -278,6 +278,14 @@ ru:
         logo: Логотип компании
         logo_file_size: Размера изображения логотипа
         logo_content_type: Тип изображения логотипа
+      standard:
+        name: Название
+        content: Содержание
+        parent_id: Принадлежит разделу
+      help:
+        number: Номер
+        name: Название
+        content: Содержание
     errors:
       models:
         user:

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
             :length => {:within => 1..20}
 
   before_save :encrypt_password
+  before_destroy :destroy_with_all
 
   def has_password?(submitted_password)
     en_password == encrypt(submitted_password)
@@ -38,14 +39,13 @@ class User < ActiveRecord::Base
     self.find_by_roles_id(Role.super_role)
   end
 
+  private
   def destroy_with_all
     user_info.destroy if user_info
     company.destroy if company
     Standard.find_all_by_user_id(self).each {|one| one.destroy}
-    destroy
   end
 
-  private
   def encrypt_password
     self.salt = make_salt if new_record?
     self.en_password = encrypt(password) if !password.blank?

@@ -14,13 +14,15 @@ class StandardController < ApplicationController
 
   def create
     new = Standard.new(params[:new])
+    @new = new
+    @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
+    @arr = Standard.find_numbers(current_user)
     new.number = params[:number]
     new.user_id = current_user.id
     if new.save
       flash[:success] = "Успешно добавлен раздел"
       redirect_to standard_path(new.link)
     else
-      flash[:error] = "Не все нужные поля были заполнены"
       render "new"
     end
   end
@@ -33,11 +35,13 @@ class StandardController < ApplicationController
 
   def update
     upd = Standard.find_by_link(params[:id], current_user)
-    if upd.update_attributes(params[:edit])
+    @edit = upd
+    @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
+    @arr = (Standard.find_numbers(@edit.has_parent? ? @edit.parent_id : current_user) << @edit.number).sort
+    if upd.update_attributes(params[:standard])
       flash[:success] = "Раздел успешно обновлён"
       redirect_to standard_path(upd.link)
     else
-      flash[:error] = "Что-то пошло не так"
       render "edit"
     end
   end

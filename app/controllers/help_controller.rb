@@ -10,11 +10,11 @@ class HelpController < ApplicationController
 
   def create
     new = Help.new(params[:new])
+    @new = new
     if new.save
-      flash[:success] = "Успешно добавлен раздел"
+      flash[:success] = "Справка успешно добавлена"
       redirect_to help_path(new)
     else
-      flash[:error] = "Что-то пошло не так"
       render "new"
     end
   end
@@ -30,11 +30,11 @@ class HelpController < ApplicationController
 
   def update
     upd = Help.find params[:id]
-    if upd.update_attributes(params[:edit])
+    @edit = upd
+    if upd.update_attributes(params[:help])
       flash[:success] = "Справка успешно обновлёна"
       redirect_to help_path(upd)
     else
-      flash[:error] = "Что-то пошло не так"
       render "edit"
     end
   end
