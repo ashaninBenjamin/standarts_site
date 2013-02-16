@@ -1,23 +1,24 @@
 <h2>Редактирование информации о пользователе</h2>
-<%= form_for :edit, :url => { :action => :update }, :method => :put, :html => { :multipart => true } do |f| %>
+<%= form_for @edit, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
+    <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
-      <%= f.label "Фамилия" %>
+      <%= f.label :surname %>
       <%= f.text_field :surname %>
     </div>
     <div class="field">
-      <%= f.label "Имя" %>
+      <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label "Отчество" %>
+      <%= f.label :patronymic %>
       <%= f.text_field :patronymic %>
     </div>
     <div class="field">
-      <%= f.label "Электронная почта" %>
+      <%= f.label :mail %>
       <%= f.text_field :mail %>
     </div>
     <div class="field">
-      <%= f.label "Фотография профиля" %>
+      <%= f.label :avatar %>
       <%= image_tag @edit.avatar.url(:medium) %><br>
       <%= f.file_field :avatar, :accept => 'image/jpeg,image/gif,image/png' %>
     </div>

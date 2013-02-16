@@ -2,11 +2,11 @@
 <%= form_for @user, :url => url_for(:controller => 'user') do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
-      <%= f.label :login, "Логин" %>
+      <%= f.label :login %>
       <%= f.text_field :login %>
     </div>
     <div class="field">
-      <%= f.label :password, "Пароль" %>
+      <%= f.label :password %>
       <%= f.password_field :password %>
     </div>
     <div class="field">

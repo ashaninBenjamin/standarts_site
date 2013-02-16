@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :company, :primary_key => "id", :foreign_key => "company_id"
 
   validates :login, :presence => true,
-            :length => {:within => 3..15, :message=>"Длина логина должна быть от 3х символов до 15"}
+            :length => {:within => 3..15}
   validates :password, :presence => true,
             :confirmation => :password == :password_confirmation,
             :length => {:within => 1..20}

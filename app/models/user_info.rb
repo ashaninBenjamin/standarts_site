@@ -6,6 +6,9 @@ class UserInfo < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 5.megabytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg', 'image/gif']
 
+  validates :surname, :name, :mail, :presence => true
+  validates :mail, :email => true
+
   def fi
     "#{surname} #{name}"
   end

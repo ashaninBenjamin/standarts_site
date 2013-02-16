@@ -2,15 +2,15 @@
 <%= form_for @user, :url => { :action => :update, :id => @user.id } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
-      <%= f.label "Логин" %>
+      <%= f.label :login %>
       <%= f.text_field :login %>
     </div>
     <div class="field">
-      <%= f.label "Пароль" %>
+      <%= f.label :password %>
       <%= f.password_field :password %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation, "Подтверждение пароля" %>
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
     </div>
     <div class="actions">

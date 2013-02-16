@@ -86,8 +86,8 @@ a:hover
 }
 
 #header img {
-    width: 250px;
-    /*height: 100px;*/
+    /*width: 250px;*/
+    height: 90px;
 }
 
 /* Menu */

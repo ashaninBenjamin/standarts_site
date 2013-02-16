@@ -14,7 +14,8 @@ class SessionController < ApplicationController
       render 'new'
     else
       sign_in user
-      redirect_back_or standard_index_path
+      #redirect_back_or standard_index_path
+      redirect_to standard_index_path
     end
   end
 

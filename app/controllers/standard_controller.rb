@@ -69,7 +69,7 @@ class StandardController < ApplicationController
   def take_pattern
     #удаление всего до этого
     to_delete = Standard.find_all_by_user_id(current_user)
-    to_delete.each { |one| one.destroy  }
+    to_delete.each { |one| one.destroy }
     #запись нового
     dict = Hash.new
     pattern = Standard.find_all_by_super_admin

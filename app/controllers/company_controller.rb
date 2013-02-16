@@ -10,7 +10,8 @@ class CompanyController < ApplicationController
   end
 
   def create
-    new = Company.new(params[:new])
+    new = Company.new(params[:company])
+    @new = new
     if new.save
       flash[:success] = "Успешно добавлена информация о компании. Регистрация прошла успешно!"
       user = User.find(params[:user_id])
@@ -18,7 +19,6 @@ class CompanyController < ApplicationController
       sign_in user
       redirect_to standard_index_path
     else
-      flash[:error] = "Ошибка"
       render "new"
     end
   end
@@ -30,11 +30,12 @@ class CompanyController < ApplicationController
 
   def update
     upd = Company.find(params[:id])
-    if upd.update_attributes(params[:edit])
+    @edit = upd
+    @user = User.find_by_company_id(@edit)
+    if upd.update_attributes(params[:company])
       flash[:success] = "Обновление прошло успешно"
       redirect_to edit_company_path(upd)
     else
-      flash[:error] = "Что-то пошло не так"
       render "edit"
     end
   end

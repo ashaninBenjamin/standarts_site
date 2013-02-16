@@ -10,7 +10,8 @@ class UserInfoController < ApplicationController
   end
 
   def create
-    new = UserInfo.new(params[:new])
+    new = UserInfo.new(params[:user_info])
+    @new = new
     if new.save
       flash[:success] = "Успешно добавлена информация о пользователе"
       if (!params[:user_id].blank?)
@@ -21,7 +22,6 @@ class UserInfoController < ApplicationController
         redirect_to new_company_path
       end
     else
-      flash[:error] = "Ошибка"
       render "new"
     end
   end
@@ -33,11 +33,12 @@ class UserInfoController < ApplicationController
 
   def update
     upd = UserInfo.find(params[:id])
-    if upd.update_attributes(params[:edit])
+    @edit = upd
+    @user = User.find_by_user_info_id(@edit)
+    if upd.update_attributes(params[:user_info])
       flash[:success] = "Обновление прошло успешно"
-      redirect_to edit_user_info_path(upd)
+      redirect_to edit_user_info_path(upd.id)
     else
-      flash[:error] = "Что-то пошло не так"
       render "edit"
     end
   end

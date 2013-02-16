@@ -33,13 +33,13 @@ class UserController < ApplicationController
 
   def update
     user = User.find(params[:id])
+    @user = user
     if user.update_attributes params[:user]
       flash[:success] = "Изменения вступили в силу"
       redirect_to edit_user_path(user)
     else
       render 'edit'
     end
-    User.all.de
   end
 
   def destroy

@@ -5,4 +5,6 @@ class Company < ActiveRecord::Base
   #validates_attachment_presence :logo
   validates_attachment_size :logo, :less_than => 2.megabytes
   validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png', 'image/jpg', 'image/gif']
+
+  validates :opf, :name, :presence => true
 end
