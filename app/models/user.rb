@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def super_admin?
-    (self.role.name.eql?("super")) ? true : false
+    (role.name.eql?("super")) ? true : false
   end
 
   def self.super_admin

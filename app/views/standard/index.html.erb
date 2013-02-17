@@ -6,9 +6,9 @@
       <% end %>
     </ul>
 <% else %>
-    Стандартов ещё нет. <%= link_to "создать?", new_standard_path %>
+    Стандартов ещё нет, <%= link_to "создать?", new_standard_path %>
     <% if !current_user.super_admin? %>
-        Или <%= link_to "принять шаблон", helper_take_pattern_path %>
+        Или <%= link_to "принять шаблон?", helper_take_pattern_path %>
     <% end %>
 <% end %>
 

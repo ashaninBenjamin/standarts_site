@@ -33,6 +33,9 @@ class Standard < ActiveRecord::Base
       return array
     else
       all = where(:user_id => obj, :parent_id => nil).order("number DESC")
+      if all.blank?
+        return [1]
+      end
       last_number = all.first.number + 1
       array = (1..last_number).to_a
       all.each do |one|
