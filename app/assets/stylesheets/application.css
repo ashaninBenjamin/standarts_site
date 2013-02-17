@@ -88,6 +88,9 @@ a:hover
 #header img {
     /*width: 250px;*/
     height: 90px;
+    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 0 8px rgba(0, 0, 0, 0.90);
+    -moz-box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 0 8px rgba(0, 0, 0, 0.90);
+    box-shadow: 0 2px 2px rgba(0,0,0,.075), 0 0 12px rgba(0, 0, 0, 0.90);
 }
 
 /* Menu */

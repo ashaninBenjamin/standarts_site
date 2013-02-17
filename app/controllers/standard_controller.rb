@@ -13,7 +13,7 @@ class StandardController < ApplicationController
   end
 
   def create
-    new = Standard.new(params[:new])
+    new = Standard.new(params[:standard])
     @new = new
     @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
     @arr = Standard.find_numbers(current_user)

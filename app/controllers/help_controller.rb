@@ -9,7 +9,7 @@ class HelpController < ApplicationController
   end
 
   def create
-    new = Help.new(params[:new])
+    new = Help.new(params[:help])
     @new = new
     if new.save
       flash[:success] = "Справка успешно добавлена"
