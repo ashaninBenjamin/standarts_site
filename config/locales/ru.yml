@@ -282,6 +282,7 @@ ru:
         name: Название
         content: Содержание
         parent_id: Принадлежит разделу
+        number: Номер
       help:
         number: Номер
         name: Название

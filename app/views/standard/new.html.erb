@@ -10,7 +10,8 @@
       <%= f.label :parent_id %>
       <%= f.select(:parent_id, @select.collect {|p| [ p.for_select, p.id ] }, {:include_blank => 'Не принадлежит'}) %>
     </div>
-    <div id="number"><%= render :partial => "standard/number_selection" %>
+    <div id="number">
+      <%= render :partial => "standard/number_selection", :locals => {:obj => @new } %>
     </div>
     <div class="field">
       <%= f.label :content %>
@@ -23,4 +24,5 @@
 
 <% content_for :left do %>
 <%= link_to "К списку всех разделов", standard_index_path %>
+    "<%= params[:standard] %>"
 <% end %>

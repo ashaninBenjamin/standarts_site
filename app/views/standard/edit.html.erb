@@ -11,7 +11,7 @@
       <%= f.select(:parent_id, @select.collect {|p| [ p.for_select, p.id ] }, {:include_blank => 'Не принадлежит'}) %>
     </div>
     <div id="number">
-      <%= render :partial => "standard/number_selection" %>
+      <%= render :partial => "standard/number_selection", :locals => {:obj => @edit } %>
     </div>
     <div class="field">
       <%= f.label "Содержание" %>

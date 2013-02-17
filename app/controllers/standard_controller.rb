@@ -17,7 +17,7 @@ class StandardController < ApplicationController
     @new = new
     @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
     @arr = Standard.find_numbers(current_user)
-    new.number = params[:number]
+    #new.number = params[:number]
     new.user_id = current_user.id
     if new.save
       flash[:success] = "Успешно добавлен раздел"
@@ -67,7 +67,7 @@ class StandardController < ApplicationController
         @arr = (@arr << Standard.find(params[:native_id]).number).sort
       end
     end
-    render :partial => "standard/number_selection"
+    render :partial => "standard/number_selection", :locals => {:obj => Standard.new }
   end
 
   def take_pattern

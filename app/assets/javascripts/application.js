@@ -57,27 +57,13 @@ $(document).ready(function () {
 });
 
 
-$('#new_parent_id').live("change", function () {
+$('#standard_parent_id').live("change", function () {
+    var urlstr = '/helper/number_selection?value=' + $("#standard_parent_id option:selected").val()
+    if ($("#native_id").text() != "")
+        urlstr = '/helper/number_selection?value=' + $("#standard_parent_id option:selected").val() +
+            "&native_id=" + $("#native_id").text();
     $.ajax({
-        url:'/helper/number_selection?value=' + $("#new_parent_id option:selected").val(),
-        type:'get',
-        dataType:'html',
-        processData:false,
-        success:function (data) {
-            $("#number").html(data)
-        },
-        error:function () {
-            alert("fatal error!")
-        }
-    })
-});
-
-var old = null;
-
-$('#edit_parent_id').live("change", function () {
-    $.ajax({
-        url:'/helper/number_selection?value=' + $("#edit_parent_id option:selected").val() +
-        "&native_id=" + $("#native_id").text(),
+        url: urlstr,
         type:'get',
         dataType:'html',
         processData:false,
