@@ -1,5 +1,7 @@
 #coding: utf-8
 class HelpController < ApplicationController
+  before_filter :authenticate
+
   def index
     @all = Help.all
   end
@@ -43,5 +45,10 @@ class HelpController < ApplicationController
     Help.find(params[:id]).destroy
     flash[:notice] = "Справка успешно удалёна"
     redirect_to help_index_path
+  end
+
+  private
+  def authenticate
+    deny_access unless signed_in?
   end
 end
