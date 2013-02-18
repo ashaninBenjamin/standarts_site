@@ -281,7 +281,7 @@ ru:
       standard:
         name: Название
         content: Содержание
-        parent_id: Принадлежит разделу
+        parent_id: Родительский раздел
         number: Номер
       help:
         number: Номер

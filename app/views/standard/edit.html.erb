@@ -3,18 +3,18 @@
 <%= form_for @edit, :url => { :action => :update, :id => @edit.link } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
-      <%= f.label "Название" %>
+      <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label "Принадлежит разделу" %>
+      <%= f.label :parent_id %>
       <%= f.select(:parent_id, @select.collect {|p| [ p.for_select, p.id ] }, {:include_blank => 'Не принадлежит'}) %>
     </div>
     <div id="number">
       <%= render :partial => "standard/number_selection", :locals => {:obj => @edit } %>
     </div>
     <div class="field">
-      <%= f.label "Содержание" %>
+      <%= f.label :content %>
       <%= f.cktext_area :content, :toolbar => "My" %>
     </div>
     <div class="actions">

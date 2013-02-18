@@ -1,8 +1,14 @@
 <%= content_tag :h2, (@it.code_with_name) %>
-<%= content_tag :div, :class => "blockAllContent", :id => "block_content" + @it.id.to_s, :style => "display: block;" do %>
-    <%= content_tag :div, :class => "blockContent", :id => "content" + @it.id.to_s do %>
-        <%= @it.content.html_safe %>
-    <% end %>
+<%= content_tag :div, :class => "standardContent" do %>
+    <%= @it.content.html_safe %>
+<% end %>
+<% if @children %>
+    Дочерние разделы:
+    <ul class="standard-list">
+      <% @children.each do |one| %>
+          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)) %>
+      <% end %>
+    </ul>
 <% end %>
 
 <% content_for :submenu do %>
@@ -16,11 +22,12 @@
     <%= link_to "К списку всех разделов", standard_index_path %><br>
     <%= (link_to "К родительскому разделу", standard_path(@it.parent.link)) if @it.has_parent? %>
     <% if @children %>
-        <div class="children">
-          Дочерние разделы:
+        <br><br>
+        Дочерние разделы:
+        <ul class="standard-list">
           <% @children.each do |one| %>
-              <%= link_to one.code_with_name, standard_path(one.link) %>
+              <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)) %>
           <% end %>
-        </div>
+        </ul>
     <% end %>
 <% end %>

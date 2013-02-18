@@ -7,6 +7,7 @@ class Standard < ActiveRecord::Base
   belongs_to :user, :primary_key => 'id', :foreign_key => 'user_id'
 
   validates :name, :number, :presence => true
+  validates :parent_id, :confirmation => :parent_id != :id
 
   before_update :check_content
   before_destroy :destroy_children

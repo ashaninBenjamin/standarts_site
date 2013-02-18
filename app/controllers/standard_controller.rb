@@ -17,7 +17,6 @@ class StandardController < ApplicationController
     @new = new
     @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
     @arr = Standard.find_numbers(current_user)
-    #new.number = params[:number]
     new.user_id = current_user.id
     if new.save
       flash[:success] = "Успешно добавлен раздел"
@@ -30,6 +29,7 @@ class StandardController < ApplicationController
   def edit
     @edit = Standard.find_by_link(params[:id], current_user)
     @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
+    @select.delete(@edit)
     @arr = (Standard.find_numbers(@edit.has_parent? ? @edit.parent_id : current_user) << @edit.number).sort
   end
 
@@ -37,6 +37,7 @@ class StandardController < ApplicationController
     upd = Standard.find_by_link(params[:id], current_user)
     @edit = upd
     @select = Standard.sort_it(Standard.find_all_by_user_id(current_user.id))
+    @select.delete(@edit)
     @arr = (Standard.find_numbers(@edit.has_parent? ? @edit.parent_id : current_user) << @edit.number).sort
     if upd.update_attributes(params[:standard])
       flash[:success] = "Раздел успешно обновлён"
