@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   belongs_to :company, :primary_key => "id", :foreign_key => "company_id"
 
   validates :login, :presence => true,
-            :length => {:within => 3..15}
+            :length => {:within => 3..15},
+            :format => {:with => /\A[a-zA-Z0-9]+\z/},
+            :uniqueness => true
   validates :password, :presence => true,
             :confirmation => :password == :password_confirmation,
             :length => {:within => 1..20}

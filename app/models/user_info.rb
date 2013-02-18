@@ -7,7 +7,7 @@ class UserInfo < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg', 'image/gif']
 
   validates :surname, :name, :mail, :presence => true
-  validates :mail, :email => true
+  validates :mail, :email => true, :uniqueness => true
 
   def fi
     "#{surname} #{name}"

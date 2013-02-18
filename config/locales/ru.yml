@@ -293,6 +293,7 @@ ru:
           attributes:
             login:
               blank: не может быть пустым
+              invalid: может содержать только цифры и латинские символы
         user_info:
           attributes:
             surname:
