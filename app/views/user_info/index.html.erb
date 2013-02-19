@@ -4,24 +4,28 @@
 <% else %>
     <table class="table table-bordered">
       <tr>
-        <td>Аватар</td>
+        <td style="width: 10%;">Аватар</td>
         <td>Пользователь</td>
+        <td>Компания</td>
         <td>Когда создан</td>
         <td>Действия</td>
       </tr>
       <% @all.each do |one| %>
         <tr>
           <td>
-            <%= image_tag one.avatar.url(:medium), :style => "" %>
+            <%= image_tag one.avatar.url(:thumb) %>
           </td>
           <td>
             <%= link_to one.fi, one %>
           </td>
           <td>
+            <%= link_to one.company.opf_and_name, one.company %>
+          </td>
+          <td>
             <%= (one.created_at.blank?) ? "Нет данных" : one.created_at.getlocal.strftime("%d.%m.%Y %T") %>
           </td>
           <td>
-            <%= link_to "Удалить", {:action => :destroy, :id => one}, :method => :delete, :class => "btn btn-danger" %>
+            <%= link_to "Удалить", {:controller => :user, :action => :destroy, :id => one.user}, :method => :delete, :class => "btn btn-danger" %>
           </td>
         </tr>
       <% end %>

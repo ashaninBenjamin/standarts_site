@@ -1,7 +1,8 @@
 #coding: utf-8
 class UserInfoController < ApplicationController
-  before_filter :authenticate
-  before_filter :have_access, :only => [:index, :new]
+  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :have_access, :only => [:index]
+  before_filter :correct_user, :only => [:edit, :update]
 
   def index
     @all = UserInfo.all
@@ -61,5 +62,10 @@ class UserInfoController < ApplicationController
 
   def have_access
     redirect_to root_path unless current_user.super_admin?
+  end
+
+  def correct_user
+    @user = User.find_by_user_info_id(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
   end
 end

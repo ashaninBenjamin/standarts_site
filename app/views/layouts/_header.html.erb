@@ -13,6 +13,10 @@
     </li>
     <% if current_user.super_admin? %>
         <li>
+          <div class="ul-image"><%= link_to image_tag("company-ico.jpg", :size=>"40x40"), company_index_path %></div>
+          <div><%= link_to "Компании", company_index_path %></div>
+        </li>
+        <li>
             <div class="ul-image"><%= link_to image_tag("users-ico.png", :size=>"40x40"), user_info_index_path %></div>
             <div><%= link_to "Пользователи", user_info_index_path %></div>
         </li>

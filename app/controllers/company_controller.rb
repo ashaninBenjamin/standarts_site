@@ -1,5 +1,9 @@
 #coding: utf-8
 class CompanyController < ApplicationController
+  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :have_access, :only => [:index]
+  before_filter :correct_user, :only => [:edit, :update]
+
   def index
     @all = Company.all
   end
@@ -45,5 +49,19 @@ class CompanyController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+  def have_access
+    redirect_to root_path unless current_user.super_admin?
+  end
+
+  def correct_user
+    @user = User.find_by_company_id(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
   end
 end
