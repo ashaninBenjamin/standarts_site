@@ -11,8 +11,8 @@
       </tr>
       <% @all.each do |one| %>
           <tr>
-            <td>
-              <%= image_tag one.logo.url(:thumb) %>
+            <td style="text-align: center;">
+              <%= image_tag one.logo.url(:medium), :style => "width:100px" %>
             </td>
             <td>
               <%= link_to one.opf_and_name, one %>
