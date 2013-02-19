@@ -11,6 +11,12 @@
       <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), help_index_path %></div>
       <div><%= link_to "Помощь", help_index_path %></div>
     </li>
+    <% if current_user.super_admin? %>
+        <li>
+            <div class="ul-image"><%= link_to image_tag("users-ico.png", :size=>"40x40"), user_info_index_path %></div>
+            <div><%= link_to "Пользователи", user_info_index_path %></div>
+        </li>
+    <% end %>
   </ul>
 
   <div class="bar-user">

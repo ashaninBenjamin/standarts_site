@@ -1,2 +1,26 @@
-<h1>UserInfo#index</h1>
-<p>Find me in app/views/user_info/index.html.erb</p>
+<h2>Пользователи системы</h2>
+<% if @all.blank? %>
+    <em>Пользователей нет</em>
+<% else %>
+    <table class="table table-bordered">
+      <tr>
+        <td>Аватар</td>
+        <td>Пользователь</td>
+        <td>Действия</td>
+      </tr>
+      <% @all.each do |one| %>
+        <tr>
+          <td>
+            <%= image_tag one.avatar.url(:medium), :style => "" %>
+          </td>
+          <td>
+            <%= link_to one.fi, one %>
+          </td>
+          <td>
+            <%= link_to "Удалить", {:action => :destroy, :id => one}, :method => :delete, :class => "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+<% end %>
+
