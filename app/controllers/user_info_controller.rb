@@ -1,5 +1,8 @@
 #coding: utf-8
 class UserInfoController < ApplicationController
+  before_filter :authenticate
+  before_filter :have_access, :only => [:index, :new]
+
   def index
     @all = UserInfo.all
   end
@@ -49,5 +52,14 @@ class UserInfoController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+  def have_access
+    redirect_to root_path unless current_user.super_admin?
   end
 end

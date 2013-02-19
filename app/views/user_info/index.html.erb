@@ -6,6 +6,7 @@
       <tr>
         <td>Аватар</td>
         <td>Пользователь</td>
+        <td>Когда создан</td>
         <td>Действия</td>
       </tr>
       <% @all.each do |one| %>
@@ -15,6 +16,9 @@
           </td>
           <td>
             <%= link_to one.fi, one %>
+          </td>
+          <td>
+            <%= (one.created_at.blank?) ? "Нет данных" : one.created_at.getlocal.strftime("%d.%m.%Y %T") %>
           </td>
           <td>
             <%= link_to "Удалить", {:action => :destroy, :id => one}, :method => :delete, :class => "btn btn-danger" %>
