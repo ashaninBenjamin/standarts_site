@@ -6,4 +6,4 @@
 Отчество: <%= @user_info.patronymic %><br><br>
 Эл. почта: <%= @user_info.mail %><br><br>
 
-<%= link_to "Редактировать", edit_user_info_path(@user_info), :class => "btn btn-success" %>
+<%= (link_to "Редактировать", edit_user_info_path(@user_info), :class => "btn btn-success") if current_user?(@user_info.user) %>

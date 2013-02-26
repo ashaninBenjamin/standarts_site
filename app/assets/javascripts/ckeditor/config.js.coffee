@@ -12,7 +12,7 @@ CKEDITOR.editorConfig = (config) ->
 
   config.toolbar_My =
     [
-      { name: 'document', items : [ 'Source','-','NewPage','Preview', 'Maximize','-','Templates' ] },
+      { name: 'document', items : [ 'Source','-','Preview', 'Maximize','-','Templates' ] },
       { name: 'clipboard', items : [ 'Undo','Redo', '-', 'Cut','Copy','Paste','PasteText','PasteFromWord' ] },
       { name: 'editing', items : [ 'Find','Replace'] },
       { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript' ] },

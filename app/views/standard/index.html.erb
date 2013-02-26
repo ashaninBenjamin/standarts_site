@@ -13,7 +13,7 @@
 <% end %>
 
 <% content_for :submenu do %>
-    <li><%= link_to "Новый раздел", new_standard_path %></li>
+    <li><%= link_to "Новый стандарт", new_standard_path %></li>
     <% if !current_user.super_admin? %>
         <li><%= link_to "Принять шаблон", helper_take_pattern_path, :confirm => "Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?" %></li>
     <% end %>

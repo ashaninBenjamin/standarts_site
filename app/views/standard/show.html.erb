@@ -12,15 +12,15 @@
 <% end %>
 
 <% content_for :submenu do %>
-    <li><%= link_to "Новый раздел", new_standard_path %></li>
-    <li><%= link_to "Редактировать раздел", edit_standard_path(@it.link) %></li>
-    <li><%= link_to "Удалить раздел", @it.link, :method => :delete, :confirm => "Вы уверены, что хотите удалить этот раздел?",
+    <li><%= link_to "Новый стандарт", new_standard_path %></li>
+    <li><%= link_to "Редактировать стандарт", edit_standard_path(@it.link) %></li>
+    <li><%= link_to "Удалить стандарт", @it.link, :method => :delete, :confirm => "Вы уверены, что хотите удалить этот стандарт?",
                     :title => "Удалить #{@it.name}" %></li>
 <% end %>
 
 <% content_for :left do %>
-    <%= link_to "К списку всех разделов", standard_index_path %><br>
-    <%= (link_to "К родительскому разделу", standard_path(@it.parent.link)) if @it.has_parent? %>
+    <%= link_to "К списку всех стандартов", standard_index_path %><br>
+    <%= (link_to "К родительскому стандартов", standard_path(@it.parent.link)) if @it.has_parent? %>
     <% if @children %>
         <br><br>
         Дочерние разделы:
