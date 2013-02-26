@@ -3,7 +3,7 @@
     <%= @it.content.html_safe %>
 <% end %>
 <% if @children %>
-    Дочерние разделы:
+    Дочерние стандарты:
     <ul class="standard-list">
       <% @children.each do |one| %>
           <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)) %>
@@ -23,7 +23,7 @@
     <%= (link_to "К родительскому стандартов", standard_path(@it.parent.link)) if @it.has_parent? %>
     <% if @children %>
         <br><br>
-        Дочерние разделы:
+        Дочерние стандарты:
         <ul class="standard-list">
           <% @children.each do |one| %>
               <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)) %>
