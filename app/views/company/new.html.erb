@@ -1,4 +1,5 @@
 <h2>Добавление информации о компании</h2>
+<p style="color: red;">Пожалуйста, закончите регистрацию</p>
 <%= form_for @new, :url => url_for(:controller => 'company', :user_id => @user_id), :html => { :multipart => true } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">

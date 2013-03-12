@@ -37,8 +37,8 @@ module SessionHelper
     user == current_user
   end
 
-  def current_user_admin?
-    current_user.roles_id == 1
+  def current_user_super_admin?
+    current_user.super_admin?
   end
 
   private

@@ -11,23 +11,24 @@
         <td>Действия</td>
       </tr>
       <% @all.each do |one| %>
-        <tr>
-          <td style="text-align: center;">
-            <%= image_tag one.avatar.url(:thumb) %>
-          </td>
-          <td>
-            <%= link_to one.fi, one %>
-          </td>
-          <td>
-            <%= link_to one.company.opf_and_name, one.company %>
-          </td>
-          <td>
-            <%= (one.created_at.blank?) ? "Нет данных" : one.created_at.getlocal.strftime("%d.%m.%Y %T") %>
-          </td>
-          <td>
-            <%= link_to "Удалить", {:controller => :user, :action => :destroy, :id => one.user}, :method => :delete, :class => "btn btn-danger" %>
-          </td>
-        </tr>
+          <tr>
+            <td style="text-align: center;">
+              <%= image_tag one.avatar.url(:thumb) %>
+            </td>
+            <td>
+              <%= link_to one.fi, one %>
+            </td>
+            <td>
+              <%= (one.company) ? (link_to one.company.opf_and_name, one.company) : "Данные повреждены" %>
+            </td>
+            <td>
+              <%= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных" %>
+            </td>
+            <td>
+              <%= link_to "Удалить", (one.user) ? {:controller => :user, :action => :destroy, :id => one.user}
+              : {:controller => :user_info, :action => :destroy, :id => one}, :method => :delete, :class => "btn btn-danger" %>
+            </td>
+          </tr>
       <% end %>
     </table>
 <% end %>

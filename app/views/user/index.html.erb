@@ -3,8 +3,9 @@
 <ul class="users">
   <% @users.each do |user| %>
       <li>
-        <%= link_to user.user_info.name, user %>
-        <% if current_user_admin? %>
+        <%= link_to user.login, user %>
+        <%= " | Повреждённый или незаконченный аккаунт" if user.has_fail_info? %>
+        <% if current_user_super_admin? %>
             | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
                           :title => "Delete #{user.login}" %>
         <% end %>

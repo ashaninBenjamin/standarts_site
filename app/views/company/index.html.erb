@@ -18,10 +18,10 @@
               <%= link_to one.opf_and_name, one %>
             </td>
             <td>
-              <%= link_to one.user_info.fi, one.user_info %>
+              <%= (one.user_info) ? (link_to one.user_info.fi, one.user_info) : "Данные повреждены" %>
             </td>
             <td>
-              <%= (one.created_at.blank?) ? "Нет данных" : one.created_at.getlocal.strftime("%d.%m.%Y %T") %>
+              <%= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных" %>
             </td>
           </tr>
       <% end %>

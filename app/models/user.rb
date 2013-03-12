@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     en_password == encrypt(submitted_password)
   end
 
+  def has_fail_info?
+    !((user_info) && (company))
+  end
+
   def self.authenticate(login, submitted_password)
     user = self.find_by_login(login)
     return nil  if user.nil?
