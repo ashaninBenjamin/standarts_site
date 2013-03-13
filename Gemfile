@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
 #gem 'will_paginate-rails3'
 
 # Gems used only for assets and not required
