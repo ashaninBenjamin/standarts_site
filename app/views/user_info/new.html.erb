@@ -1,5 +1,5 @@
 <h2>Создание информации о пользователе</h2>
-<p style="color: red;">Пожалуйста, закончите регистрацию</p>
+<p><text style="color: red;">Пожалуйста, завершите регистрацию.</text> Шаг 2/3</p>
 <%= form_for @new, :url => url_for(:controller => 'user_info', :user_id => @user_id), :html => { :multipart => true } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
