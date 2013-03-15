@@ -164,9 +164,9 @@ ru:
     select:
       prompt: ! 'Выберите: '
     submit:
-      create: Создать %{model}
-      submit: Сохранить %{model}
-      update: Сохранить %{model}
+      create: Создать
+      submit: Сохранить
+      update: Обновить
   number:
     currency:
       format:
@@ -286,6 +286,9 @@ ru:
       help:
         number: Номер
         name: Название
+        content: Содержание
+      news:
+        title: Заголовок
         content: Содержание
     errors:
       models:

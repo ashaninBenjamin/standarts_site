@@ -1,5 +1,16 @@
 RoR::Application.configure do
 
+  # For paperclip working through AWS
+  config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+          :bucket => ENV['AWS_BUCKET'],
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      }
+  }
+
+  # For ckeditor working on Heroku
   config.assets.precompile += ['ckeditor/*']
   # Settings specified here will take precedence over those in config/application.rb
 

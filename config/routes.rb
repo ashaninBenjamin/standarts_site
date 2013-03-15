@@ -8,6 +8,7 @@ RoR::Application.routes.draw do
   resources :user_info
   resources :company
   resources :help
+  resources :news
 
   match "helper/number_selection" => "standard#number_selection"
   match "helper/take_pattern" => "standard#take_pattern"

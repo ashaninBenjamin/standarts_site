@@ -11,7 +11,11 @@
       <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), help_index_path %></div>
       <div><%= link_to "Помощь", help_index_path %></div>
     </li>
-    <% if current_user.super_admin? %>
+    <li>
+      <div class="ul-image"><%= link_to image_tag("news-ico.jpg", :size=>"40x40"), news_index_path %></div>
+      <div><%= link_to "Новости", news_index_path %></div>
+    </li>
+    <% if current_user_super_admin? %>
         <li>
           <div class="ul-image"><%= link_to image_tag("company-ico.jpg", :size=>"40x40"), company_index_path %></div>
           <div><%= link_to "Компании", company_index_path %></div>

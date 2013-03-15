@@ -24,6 +24,7 @@ end
 
 gem "ckeditor"
 gem "paperclip"
+gem 'aws-sdk'
 gem 'jquery-rails'
 gem 'email_validator'
 

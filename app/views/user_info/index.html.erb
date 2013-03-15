@@ -25,8 +25,7 @@
               <%= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных" %>
             </td>
             <td>
-              <%= link_to "Удалить", (one.user) ? {:controller => :user, :action => :destroy, :id => one.user}
-              : {:controller => :user_info, :action => :destroy, :id => one}, :method => :delete, :class => "btn btn-danger" %>
+              <%= link_to "Удалить", (one.user) ? one.user : one, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>
