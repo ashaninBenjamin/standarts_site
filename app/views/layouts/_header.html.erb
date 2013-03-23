@@ -4,12 +4,16 @@
 <div id="menu">
   <ul>
     <li>
-      <div class="ul-image"><%= link_to image_tag("task.jpg", :size=>"40x40"), standard_index_path %></div>
-      <div><%= link_to "Стандарты", standard_index_path %></div>
+      <div class="ul-image"><%= link_to image_tag("task.jpg", :size=>"40x40"), standards_path %></div>
+      <div><%= link_to "Стандарты", standards_path %></div>
     </li>
     <li>
-      <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), help_index_path %></div>
-      <div><%= link_to "Помощь", help_index_path %></div>
+      <div class="ul-image"><%= link_to image_tag("drafts-ico.png", :size=>"40x40"), drafts_path %></div>
+      <div><%= link_to "Черновики", drafts_path %></div>
+    </li>
+    <li>
+      <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), helps_path %></div>
+      <div><%= link_to "Помощь", helps_path %></div>
     </li>
     <li>
       <div class="ul-image"><%= link_to image_tag("news-ico.jpg", :size=>"40x40"), news_index_path %></div>
@@ -17,12 +21,8 @@
     </li>
     <% if current_user_super_admin? %>
         <li>
-          <div class="ul-image"><%= link_to image_tag("company-ico.jpg", :size=>"40x40"), company_index_path %></div>
-          <div><%= link_to "Компании", company_index_path %></div>
-        </li>
-        <li>
-            <div class="ul-image"><%= link_to image_tag("users-ico.png", :size=>"40x40"), user_info_index_path %></div>
-            <div><%= link_to "Пользователи", user_info_index_path %></div>
+            <div class="ul-image"><%= link_to image_tag("admin_ico.png", :size=>"40x40"), users_path %></div>
+            <div><%= link_to "Админка", users_path %></div>
         </li>
     <% end %>
   </ul>

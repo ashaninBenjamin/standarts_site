@@ -1,0 +1,14 @@
+<%= form_for(@draft) do |f| %>
+  <%= render 'layouts/error_message', :obj => f.object %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.cktext_area :content, :toolbar => "My" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn" %>
+  </div>
+<% end %>

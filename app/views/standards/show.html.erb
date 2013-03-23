@@ -1,0 +1,33 @@
+<%= content_tag :h2, (@it.code_with_name) %>
+<%= content_tag :div, :class => "standardContent" do %>
+    <%= @it.content.html_safe %>
+<% end %>
+<% if @children %>
+    Дочерние стандарты:
+    <ul class="standard-list">
+      <% @children.each do |one| %>
+          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)) %>
+      <% end %>
+    </ul>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Новый стандарт", new_standard_path %></li>
+    <li><%= link_to "Редактировать стандарт", edit_standard_path(@it.link) %></li>
+    <li><%= link_to "Удалить стандарт", @it.link, :method => :delete, :confirm => "Вы уверены, что хотите удалить этот стандарт?",
+                    :title => "Удалить #{@it.name}" %></li>
+<% end %>
+
+<% content_for :left do %>
+    <%= link_to "К списку всех стандартов", standards_path %><br>
+    <%= (link_to "К родительскому стандартов", standard_path(@it.parent.link)) if @it.has_parent? %>
+    <% if @children %>
+        <br><br>
+        Дочерние стандарты:
+        <ul class="standard-list">
+          <% @children.each do |one| %>
+              <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)) %>
+          <% end %>
+        </ul>
+    <% end %>
+<% end %>

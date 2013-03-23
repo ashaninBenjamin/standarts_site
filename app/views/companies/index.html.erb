@@ -1,0 +1,31 @@
+<h2>Компании системы</h2>
+<% if @all.blank? %>
+    <em>Пользователей нет</em>
+<% else %>
+    <table class="table table-bordered">
+      <tr>
+        <td>Логотип</td>
+        <td>Компания</td>
+        <td>Пользователь</td>
+        <td>Когда создан</td>
+      </tr>
+      <% @all.each do |one| %>
+          <tr>
+            <td style="text-align: center;">
+              <%= image_tag one.logo.url(:medium), :style => "width:100px" %>
+            </td>
+            <td>
+              <%= link_to one.opf_and_name, one %>
+            </td>
+            <td>
+              <%= (one.user_info) ? (link_to one.user_info.fi, one.user_info) : "Данные повреждены" %>
+            </td>
+            <td>
+              <%= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных" %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+<% end %>
+
+<% render "layouts/admin_left_column" %>

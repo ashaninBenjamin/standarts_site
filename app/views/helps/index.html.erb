@@ -1,0 +1,15 @@
+<h2>Помощь</h2>
+<% if @all.count > 0 %>
+    <ul class="list-style-type-none">
+      <% @all.each do |one| %>
+          <li><%= link_to one.number_with_name, one %></li>
+      <% end %>
+    </ul>
+<% else %>
+    <i>Нет ещё ни одной справки.</i> <%= (link_to "Создать новую", new_help_path) if current_user_super_admin? %>
+<% end %>
+<% if current_user.super_admin? %>
+    <% content_for :submenu do %>
+        <li><%= link_to "Новая справка", new_help_path %></li>
+    <% end %>
+<% end %>

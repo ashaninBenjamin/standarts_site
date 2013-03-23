@@ -5,6 +5,7 @@ class Help < ActiveRecord::Base
 
   validates :number, :name, :content, :presence => true
   validates :number, :numericality => {:only_integer => true}
+  validates :number, :uniqueness => true
 
   def number_with_name
     "#{number}. #{name}"

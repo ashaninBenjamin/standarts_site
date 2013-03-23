@@ -1,0 +1,7 @@
+<h2>Редактирование справки</h2>
+<%= render 'form' %>
+
+<% content_for :left do %>
+    <%= link_to "Назад к справке", help_path(@help) %><br>
+    <%= link_to "К списку всех справок", helps_path %>
+<% end %>

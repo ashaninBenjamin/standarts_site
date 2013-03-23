@@ -1,12 +1,13 @@
 #coding: utf-8
 class NewsController < ApplicationController
+  before_filter :authenticate
   # GET /news
   # GET /news.json
   def index
     @news = News.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # show.html.erb
       format.json { render json: @news }
     end
   end
@@ -45,7 +46,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to news_index_path, success: 'Новость была успешно добавлена' }
+        format.html { redirect_to news_index_path, flash: { success: 'Новость была успешно добавлена' } }
         format.json { render json: @news, status: :created, location: @news }
       else
         format.html { render action: "new" }
@@ -61,7 +62,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.update_attributes(params[:news])
-        format.html { redirect_to @news, success: 'Новость была успешно обновлена' }
+        format.html { redirect_to @news, flash: { success: 'Новость была успешно обновлена' } }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,5 +81,10 @@ class NewsController < ApplicationController
       format.html { redirect_to news_index_url, notice: "Новость была успешно удалена" }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def authenticate
+    deny_access unless signed_in?
   end
 end

@@ -1,0 +1,14 @@
+<%= content_tag :h2, @draft.name %>
+<%= content_tag :div, @draft.content.html_safe, :class => "standardContent" %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Новый черновик", new_draft_path %></li>
+    <li><%= link_to "Редактировать черновик", edit_draft_path(@draft) %></li>
+    <li><%= link_to "Удалить черновик", @draft, method: :delete, data: {confirm: "Вы уверены, что хотите удалить этот черновик?"},
+                    :title => "Удалить #{@draft.name}" %></li>
+    <li><%= link_to "Сохранить черновик", save_draft_path(@draft) %></li>
+<% end %>
+
+<% content_for :left do %>
+    <%= link_to "К списку всех черновиков", drafts_path %><br>
+<% end %>

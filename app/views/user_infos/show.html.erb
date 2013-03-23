@@ -1,0 +1,15 @@
+<h2>Информация о пользователе</h2>
+
+<%= image_tag @user_info.avatar.url(:medium) %><br><br>
+Фамилия: <%= @user_info.surname %><br><br>
+Имя: <%= @user_info.name %><br><br>
+Отчество: <%= @user_info.patronymic %><br><br>
+Эл. почта: <%= @user_info.mail %><br><br>
+
+<%= (link_to "Редактировать", edit_user_info_path(@user_info), :class => "btn btn-success") if current_user?(@user_info.user) %>
+<% if current_user_super_admin? %>
+    <% content_for :left do %>
+        <%= link_to "Назад к информации о пользователях", user_infos_path %><br><br>
+    <% end %>
+    <% render "layouts/admin_left_column" %>
+<% end %>

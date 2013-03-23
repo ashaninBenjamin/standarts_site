@@ -4,7 +4,7 @@ class Standard < ActiveRecord::Base
 
   has_many :children, :class_name => "Standard", :foreign_key => "parent_id"
   belongs_to :parent, :class_name => "Standard"
-  belongs_to :user, :primary_key => 'id', :foreign_key => 'user_id'
+  belongs_to :user
 
   validates :name, :number, :presence => true
   validates :parent_id, :confirmation => :parent_id != :id
@@ -51,7 +51,7 @@ class Standard < ActiveRecord::Base
   end
 
   def for_select
-    ("-" * level) + code + " " + name
+    ("-" * level) + "#{code} #{name}"
   end
 
   def level
@@ -79,7 +79,7 @@ class Standard < ActiveRecord::Base
   end
 
   def code_with_name
-    code + ". " + name
+    "#{code}. #{name}"
   end
 
   def has_parent?

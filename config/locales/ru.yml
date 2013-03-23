@@ -290,6 +290,9 @@ ru:
       news:
         title: Заголовок
         content: Содержание
+      draft:
+        name: Название
+        content: Содержание
     errors:
       models:
         user:

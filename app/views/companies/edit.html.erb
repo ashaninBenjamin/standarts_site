@@ -1,0 +1,26 @@
+<h2>Редактирование информации о компании</h2>
+<%= form_for @company, :html => { :multipart => true } do |f| %>
+    <%= render 'layouts/error_message', :obj => f.object %>
+    <div class="field">
+      <%= f.label :opf %>
+      <%= f.text_field :opf %>
+    </div>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :logo %>
+      <%= image_tag @company.logo.url(:medium) %><br>
+      <%= f.file_field :logo, :accept => 'image/jpeg,image/gif,image/png' %>
+    </div>
+    <div class="actions">
+      <%= f.submit :class => "btn" %>
+    </div>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Логин и пароль", edit_user_path(@company.user) %></li>
+    <li><%= link_to "Информация о пользователе", edit_user_info_path(@company.user_info) %></li>
+    <li><%= link_to "Информация о компании", edit_company_path(@company) %></li>
+<% end %>

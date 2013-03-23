@@ -1,6 +1,0 @@
-<h2>Информация о компании</h2>
-
-ОПФ: <%= @company.opf %><br><br>
-Название: <%= @company.name %><br><br>
-
-<%= (link_to "Редактировать", edit_company_path(@company), :class => "btn btn-success") if current_user?(@company.user) %>
