@@ -22,7 +22,7 @@
               <%= (one.company) ? (link_to one.company.opf_and_name, one.company) : "Данные повреждены" %>
             </td>
             <td>
-              <%= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных" %>
+              <%= (one.created_at) ? one.created_at.strftime("%d.%m.%Y %T") : "Нет данных" %>
             </td>
             <td>
               <%= link_to "Удалить", (one.user) ? one.user : one, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>

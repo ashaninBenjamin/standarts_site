@@ -3,6 +3,7 @@ class SessionHistoriesController < ApplicationController
   before_filter :authenticate, :have_access
 
   def index
+    Time.zone = "Moscow"
     @all = SessionHistory.scoped
   end
 

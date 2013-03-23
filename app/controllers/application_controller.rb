@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
   private
   def update_session_history
     if signed_in?
-      @history = SessionHistory.find_by_ip(request.remote_ip)
+      @history = SessionHistory.find_by_user_and_ip(current_user, request.remote_ip)
       if @history.blank?
         SessionHistory.create(user_id: current_user.id, page: request.fullpath, ip: request.remote_ip)
       else
-        @history.update_attributes(user_id: current_user.id, page: request.fullpath)
+        @history.update_attribute(:page, request.fullpath) unless request.fullpath.eql?("/logout")
       end
     end
   end
