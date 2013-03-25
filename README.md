@@ -1,3 +1,3 @@
 Standards site
 ==============
-Web system for studing staff by firm's standards and rules.
+Web system for staff training firm's standards and rules.
