@@ -22,6 +22,15 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'tconsole'
+  gem 'factory_girl'
+end
+
 gem "ckeditor"
 gem "paperclip"
 gem 'aws-sdk'

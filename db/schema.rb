@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212044249) do
+ActiveRecord::Schema.define(:version => 20130323083804) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -40,16 +40,41 @@ ActiveRecord::Schema.define(:version => 20130212044249) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "drafts", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "helps", :force => true do |t|
     t.string  "name"
     t.text    "content"
     t.integer "number"
   end
 
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string "name"
     t.string "description"
   end
+
+  create_table "session_histories", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "page"
+    t.string   "ip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "session_histories", ["ip"], :name => "index_session_histories_on_ip"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -80,17 +105,19 @@ ActiveRecord::Schema.define(:version => 20130212044249) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "login"
+    t.string   "en_password"
+    t.string   "salt"
     t.integer  "user_info_id"
     t.integer  "roles_id"
+    t.integer  "company_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "salt"
-    t.string   "en_password"
-    t.integer  "company_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
