@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
     if @company.save
       @user.update_attribute(:company_id, @company.id)
       sign_in @user
-      redirect_to standard_index_path, flash: { success: "Успешно добавлена информация о компании. Регистрация прошла успешно!" }
+      redirect_to standards_path, flash: { success: "Успешно добавлена информация о компании. Регистрация прошла успешно!" }
     else
       render "new"
     end

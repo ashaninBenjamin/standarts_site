@@ -4,7 +4,7 @@ class HelpsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :new, :create, :destroy]
 
   def index
-    @all = Help.scoped
+    @helps = Help.all
   end
 
   def new
@@ -21,8 +21,8 @@ class HelpsController < ApplicationController
   end
 
   def show
-    @it = Help.find(params[:id])
-    @all = Help.scoped
+    @help = Help.find(params[:id])
+    @helps = Help.scoped
   end
 
   def edit

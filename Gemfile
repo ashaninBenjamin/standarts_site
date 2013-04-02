@@ -22,11 +22,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'factory_girl_rails'
-end
+gem 'factory_girl_rails'
 
 group :test do
+  gem 'simplecov', require: false
+  gem 'coveralls', require: false
   gem 'tconsole'
   gem 'factory_girl'
 end

@@ -1,6 +1,11 @@
+require 'coveralls'
+Coveralls.wear!('rails')
+require 'simplecov'
+SimpleCov.start('rails') if ENV["COVERAGE"]
+require 'rails/test_help'
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
@@ -9,5 +14,6 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   #fixtures :all
   include FactoryGirl::Syntax::Methods
+  include SessionHelper
   # Add more helper methods to be used by all tests here...
 end
