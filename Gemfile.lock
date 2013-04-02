@@ -37,6 +37,8 @@ GEM
       uuidtools (~> 2.1)
     builder (3.0.4)
     chattyproc (1.0.0)
+    ci_reporter (1.8.4)
+      builder (>= 2.1.2)
     ckeditor (3.7.3)
       mime-types
       orm_adapter
@@ -172,6 +174,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  ci_reporter
   ckeditor
   coffee-rails (~> 3.2.1)
   coveralls
