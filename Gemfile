@@ -29,6 +29,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'tconsole'
   gem 'factory_girl'
+  gem 'ci_reporter'
 end
 
 gem "ckeditor"
