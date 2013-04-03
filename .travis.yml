@@ -1,5 +1,6 @@
 language: ruby
 script:
-  - RAILS_ENV=test bundle exec rake db:create db:migrate test
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
+  - RAILS_ENV=test tconsole all
 rvm:
   - 1.9.3
