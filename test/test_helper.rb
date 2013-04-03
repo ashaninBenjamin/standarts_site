@@ -1,5 +1,7 @@
-require 'coveralls'
-Coveralls.wear!('rails')
+if ENV["TRAVIS"]
+  require 'coveralls'
+  Coveralls.wear!
+end
 require 'simplecov'
 SimpleCov.start('rails') if ENV["COVERAGE"]
 require 'rails/test_help'

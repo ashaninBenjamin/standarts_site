@@ -1,4 +1,5 @@
+language: ruby
 script:
-  - RAILS_ENV=test bundle exec rake ci:test
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
 rvm:
   - 1.9.3
