@@ -4,8 +4,8 @@ class CompaniesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     sign_in @user
-    @company = create :company
-    @params = {id: @company.id, user_id: @user}
+    @company = @user.company
+    @params = {id: @company.id}
   end
 
   test "should get index" do
@@ -25,19 +25,20 @@ class CompaniesControllerTest < ActionController::TestCase
 
   test "should post create" do
     @params[:company] = attributes_for(:company)
+    @params[:user_id] = @user
     post :create, @params
     assert_response :redirect
   end
 
   test "should get edit" do
     get :edit, @params
-    assert_response :redirect
+    assert_response :success
   end
 
   test "should put update" do
     @params[:company] = attributes_for(:company)
     put :update, @params
-    assert_response :redirect
+    assert_response :success
   end
 
 end

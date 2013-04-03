@@ -27,6 +27,7 @@ class DraftsControllerTest < ActionController::TestCase
     @params[:draft] = attributes_for(:draft)
     post :create, @params
     assert_response :redirect
+
   end
 
   test "should get edit" do
@@ -42,6 +43,11 @@ class DraftsControllerTest < ActionController::TestCase
 
   test "should delete destroy" do
     delete :destroy, @params
+    assert_response :redirect
+  end
+
+  test "should get save" do
+    get :save, @params
     assert_response :redirect
   end
 end

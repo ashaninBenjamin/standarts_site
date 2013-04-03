@@ -22,14 +22,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'factory_girl_rails'
-
 group :test do
   gem 'simplecov', require: false
   gem 'coveralls', require: false
   gem 'tconsole'
   gem 'factory_girl'
-  gem 'ci_reporter'
 end
 
 gem "ckeditor"

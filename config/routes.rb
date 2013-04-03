@@ -17,7 +17,6 @@ RoR::Application.routes.draw do
 
   match "helper/number_selection" => "standards#number_selection"
   match "helper/take_pattern" => "standards#take_pattern"
-  match "pdf/:id" => "standards#pdf", as: :pdf
 
   root to: 'session#new'
 

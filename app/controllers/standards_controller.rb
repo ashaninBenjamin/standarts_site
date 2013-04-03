@@ -44,8 +44,8 @@ class StandardsController < ApplicationController
   end
 
   def show
-    @it = Standard.find_by_link(params[:id], current_user)
-    @children = @it.children if @it.has_children?
+    @standard = Standard.find_by_link(params[:id], current_user)
+    @children = @standard.children
     if @children
       @children = Standard.sort_it(@children)
     end
@@ -58,7 +58,7 @@ class StandardsController < ApplicationController
 
   def number_selection
     @arr = params[:value].blank? ? Standard.find_numbers(current_user) : Standard.find_numbers(params[:value])
-    if (!params[:native_id].blank?)
+    if (params[:native_id])
       if (params[:value].to_i.eql?(Standard.find(params[:native_id]).parent_id))
         @arr = (@arr << Standard.find(params[:native_id]).number).sort
       end
@@ -87,15 +87,6 @@ class StandardsController < ApplicationController
       end
     end
     redirect_to standards_path, flash: { success: "Шаблон принят" }
-  end
-
-  def pdf
-    arr = params[:id].split('-')
-    @all = Standard.where(user_id: current_user.id, id: arr)
-    respond_to do |format|
-      format.html {redirect_to standards_path }
-      format.pdf
-    end
   end
 
   private

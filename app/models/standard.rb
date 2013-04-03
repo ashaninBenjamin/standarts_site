@@ -57,7 +57,7 @@ class Standard < ActiveRecord::Base
   def level
     temp = self
     level = 0
-    while !temp.parent.nil?
+    while temp.parent
       level += 1
       temp = temp.parent
     end
@@ -67,7 +67,7 @@ class Standard < ActiveRecord::Base
   def code
     ret = self.number.to_s
     temp = self
-    while !temp.parent.nil?
+    while temp.parent
       temp = temp.parent
       ret = temp.number.to_s + "." + ret
     end
@@ -113,11 +113,7 @@ class Standard < ActiveRecord::Base
   end
 
   def destroy_children
-    if self.has_children?
-      self.children.each do |one|
-        one.destroy
-      end
-    end
+    self.children.each { |one| one.destroy } if self.has_children?
   end
 
 

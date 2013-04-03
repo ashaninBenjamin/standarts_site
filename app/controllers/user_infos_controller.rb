@@ -19,7 +19,7 @@ class UserInfosController < ApplicationController
     @user = User.find(params[:user_id])
     if @user_info.save
       @user.update_attribute(:user_info_id, @user_info.id)
-      redirect_to new_user_company_path(@user), flash: { success: "Успешно добавлена информация о пользователе" }
+      redirect_to new_user_company_path(@user), flash: {success: "Успешно добавлена информация о пользователе"}
     else
       render "new"
     end
@@ -32,10 +32,9 @@ class UserInfosController < ApplicationController
   def update
     @user_info = UserInfo.find(params[:id])
     if @user_info.update_attributes(params[:user_info])
-      redirect_to edit_user_info_path(@user_info), flash: { success: "Обновление прошло успешно" }
-    else
-      render "edit"
+      flash[:success] = "Обновление прошло успешно"
     end
+    render "edit"
   end
 
   def show

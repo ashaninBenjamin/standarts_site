@@ -44,4 +44,14 @@ class StandardsControllerTest < ActionController::TestCase
     delete :destroy, @params
     assert_response :redirect
   end
+
+  test "should get number_secetion" do
+    get :number_selection
+    assert_response :success
+  end
+
+  test "should take_pattern" do
+    get :take_pattern
+    assert_response :redirect
+  end
 end

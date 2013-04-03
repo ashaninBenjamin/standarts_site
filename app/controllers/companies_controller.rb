@@ -31,12 +31,10 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    @user = User.find_by_company_id(@company)
     if @company.update_attributes(params[:company])
-      redirect_to edit_company_path(@company), flash: { success: "Обновление прошло успешно" }
-    else
-      render "edit"
+      flash[:success] = "Обновление прошло успешно"
     end
+    render "edit"
   end
 
   def show

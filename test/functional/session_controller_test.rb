@@ -10,9 +10,20 @@ class SessionControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should redirect new" do
+    sign_in @user
+    get :new
+    assert_response :redirect
+  end
+
   test "should post create" do
     get :create, {session: {login:@user.login, password: @user.password}}
     assert_response :redirect
+  end
+
+  test "should stop create" do
+    get :create, {session: {login:"log", password:"123"}}
+    assert_response :success
   end
 
   test "should get destroy" do
