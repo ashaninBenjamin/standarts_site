@@ -1,20 +1,18 @@
-if ENV["COVERAGE"]
-  require 'simplecov'
-  SimpleCov.start('rails') do
-    add_filter "/annotate/"
-    add_filter "app/models/ckeditor/"
-  end
+require 'simplecov'
+SimpleCov.start('rails') do
+  add_filter "/annotate/"
+  add_filter "app/models/ckeditor/"
+end
+
+if ENV["TRAVIS"]
+  require 'coveralls'
+  Coveralls.wear! 'rails'
 end
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 FactoryGirl.find_definitions
-
-if ENV["TRAVIS"]
-  require 'coveralls'
-  Coveralls.wear! 'rails'
-end
 
 
 class ActiveSupport::TestCase

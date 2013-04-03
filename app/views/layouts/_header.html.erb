@@ -19,7 +19,7 @@
       <div class="ul-image"><%= link_to image_tag("news-ico.jpg", :size=>"40x40"), news_index_path %></div>
       <div><%= link_to "Новости", news_index_path %></div>
     </li>
-    <% if current_user_super_admin? %>
+    <% if current_user.super_admin? %>
         <li>
             <div class="ul-image"><%= link_to image_tag("admin_ico.png", :size=>"40x40"), users_path %></div>
             <div><%= link_to "Админка", users_path %></div>

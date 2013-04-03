@@ -50,7 +50,7 @@ class CompaniesController < ApplicationController
   end
 
   def have_access
-    redirect_to root_path unless current_user_super_admin?
+    redirect_to root_path unless current_user.super_admin?
   end
 
   def correct_user

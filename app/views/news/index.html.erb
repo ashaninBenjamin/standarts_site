@@ -16,7 +16,7 @@
     Нет новостей. <%= (link_to "Создать?", new_news_path) if current_user_super_admin? %>
 <% end %>
 
-<% if current_user_super_admin? %>
+<% if current_user.super_admin? %>
     <% content_for :submenu do %>
         <li><%= link_to "Добавить новость", new_news_path %></li>
     <% end %>

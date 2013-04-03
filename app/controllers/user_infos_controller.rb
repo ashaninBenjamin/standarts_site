@@ -1,8 +1,8 @@
 #coding: utf-8
 class UserInfosController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
   before_filter :have_access, :only => [:index]
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update, :destroy]
 
   def index
     Time.zone = "Moscow"

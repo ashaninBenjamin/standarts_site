@@ -5,7 +5,7 @@
 
 <%= (link_to "Редактировать", edit_company_path(@company), :class => "btn btn-success") if current_user?(@company.user) %>
 
-<% if current_user_super_admin? %>
+<% if current_user.super_admin? %>
     <% content_for :left do %>
         <%= link_to "Назад к списку компаний", companies_path %><br><br>
     <% end %>

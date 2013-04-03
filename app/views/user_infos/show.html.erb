@@ -7,7 +7,7 @@
 Эл. почта: <%= @user_info.mail %><br><br>
 
 <%= (link_to "Редактировать", edit_user_info_path(@user_info), :class => "btn btn-success") if current_user?(@user_info.user) %>
-<% if current_user_super_admin? %>
+<% if current_user.super_admin? %>
     <% content_for :left do %>
         <%= link_to "Назад к информации о пользователях", user_infos_path %><br><br>
     <% end %>

@@ -10,7 +10,7 @@
     </ul>
 <% end %>
 
-<% if current_user_super_admin? %>
+<% if current_user.super_admin? %>
     <% content_for :submenu do %>
         <li><%= link_to "Новый справка", new_help_path %></li>
         <li><%= link_to "Редактировать справку", edit_help_path(@help) %></li>

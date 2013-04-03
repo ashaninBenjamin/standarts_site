@@ -49,6 +49,6 @@ class HelpsController < ApplicationController
   end
 
   def correct_user
-    redirect_to helps_path unless current_user_super_admin?
+    redirect_to helps_path unless current_user.super_admin?
   end
 end
