@@ -2,15 +2,16 @@
 class Standard < ActiveRecord::Base
   attr_accessible :content, :name, :number, :parent_id, :user_id
 
-  has_many :children, :class_name => "Standard", :foreign_key => "parent_id"
-  belongs_to :parent, :class_name => "Standard"
+  has_many :children, class_name: "Standard", foreign_key: "parent_id", dependent: :destroy
+  belongs_to :parent, class_name: "Standard"
   belongs_to :user
 
-  validates :name, :number, :presence => true
-  validates :parent_id, :confirmation => :parent_id != :id
+  validates :name, presence: true
+  validates :number, presence: true
+  validates :user, presence: true
+  validates_associated :parent
 
   before_update :check_content
-  before_destroy :destroy_children
 
   def self.find_all_by_super_admin
     find_all_by_user_id(User.super_admin)
@@ -111,10 +112,4 @@ class Standard < ActiveRecord::Base
       self.content = ""
     end
   end
-
-  def destroy_children
-    self.children.each { |one| one.destroy } if self.has_children?
-  end
-
-
 end

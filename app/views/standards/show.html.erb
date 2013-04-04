@@ -2,7 +2,7 @@
 <%= content_tag :div, :class => "standardContent" do %>
     <%= @standard.content.html_safe %>
 <% end %>
-<% if @children %>
+<% if @children.any? %>
     Дочерние стандарты:
     <ul class="standard-list">
       <% @children.each do |one| %>
@@ -21,7 +21,7 @@
 <% content_for :left do %>
     <%= link_to "К списку всех стандартов", standards_path %><br>
     <%= (link_to "К родительскому стандартов", standard_path(@standard.parent.link)) if @standard.has_parent? %>
-    <% if @children %>
+    <% if @children.any? %>
         <br><br>
         Дочерние стандарты:
         <ul class="standard-list">

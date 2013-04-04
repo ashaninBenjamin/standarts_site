@@ -2,7 +2,7 @@ require 'simplecov'
 SimpleCov.start('rails') do
   add_filter "/annotate/"
   add_filter "app/models/ckeditor/"
-end
+end if ENV['COVERAGE']
 
 if ENV["TRAVIS"]
   require 'coveralls'

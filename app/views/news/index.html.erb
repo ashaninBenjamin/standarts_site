@@ -1,5 +1,5 @@
 <p class="h" style="margin-bottom: 20px;">Новости</p>
-<% if !@news.blank? %>
+<% if @news.any? %>
     <table class="table">
       <% @news.each do |one| %>
           <tr>
@@ -13,7 +13,7 @@
       <% end %>
     </table>
 <% else %>
-    Нет новостей. <%= (link_to "Создать?", new_news_path) if current_user_super_admin? %>
+    Нет новостей. <%= (link_to "Создать?", new_news_path) if current_user.super_admin? %>
 <% end %>
 
 <% if current_user.super_admin? %>

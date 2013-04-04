@@ -51,6 +51,6 @@ class UsersController < ApplicationController
   #Проверка на не того же пользователя или супер администратора
   def correct_user
     @user = User.find(params[:id])
-    redirect_to root_path unless (current_user?(@user) || current_user_super_admin?)
+    redirect_to root_path unless (current_user?(@user) || current_user.super_admin?)
   end
 end

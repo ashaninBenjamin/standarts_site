@@ -13,10 +13,9 @@ class StandardsController < ApplicationController
   end
 
   def create
-    @standard = Standard.new(params[:standard])
+    @standard = current_user.standards.build(params[:standard])
     @select = Standard.find_all_with_user(current_user.id)
     @arr = Standard.find_numbers(current_user)
-    @standard.user = current_user
     if @standard.save
       redirect_to standard_path(@standard.link), flash: { success: "Успешно добавлен раздел" }
     else

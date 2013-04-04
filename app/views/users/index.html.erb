@@ -9,8 +9,8 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= link_to user.login, user %></td>
-      <td><%= link_to user.user_info.fi, user.user_info %></td>
-      <td><%= link_to user.company.opf_and_name, user.company %></td>
+      <td><%= user.user_info ? (link_to user.user_info.fi, user.user_info) : "Данные повреждены" %></td>
+      <td><%= user.company ? (link_to user.company.opf_and_name, user.company) : "Данные повреждены" %></td>
       <td><%= (link_to "Удалить", user, method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger") unless user.super_admin? %></td>
     </tr>
   <% end %>

@@ -4,20 +4,21 @@ class User < ActiveRecord::Base
   attr_accessible :login, :password, :roles_id, :user_info_id, :company_id, :password_confirmation
 
   belongs_to :role
-  belongs_to :user_info, dependent: :destroy
-  belongs_to :company, dependent: :destroy
+  belongs_to :user_info
+  belongs_to :company
 
-  has_many :standards, dependent: :delete_all
-  has_many :drafts, dependent: :delete_all
-  has_many :session_histories, dependent: :delete_all
+  has_many :standards, dependent: :destroy
+  has_many :drafts, dependent: :destroy
+  has_many :session_histories, dependent: :destroy
 
-  validates :login, :presence => true,
-            :length => {:within => 3..15},
-            :format => {:with => /\A[a-zA-Z0-9]+\z/},
-            :uniqueness => true
-  validates :password, :presence => true,
-            :confirmation => :password == :password_confirmation,
-            :length => {:within => 1..20}
+  validates :login, presence: true,
+            length: {within: 3..15},
+            format: {:with => /\A[a-zA-Z0-9]+\z/},
+            uniqueness: true
+  validates :password, presence: true,
+            confirmation: true,
+            length: {within: 1..20}
+  validates :password_confirmation, presence: true
 
   before_save :encrypt_password
 

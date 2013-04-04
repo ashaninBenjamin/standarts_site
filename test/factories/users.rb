@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :user do
     login "admin"
     password "123"
+    password_confirmation "123"
     association :user_info
     association :company
     association :role

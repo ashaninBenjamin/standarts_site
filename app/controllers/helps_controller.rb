@@ -4,7 +4,7 @@ class HelpsController < ApplicationController
   before_filter :correct_user, only: [:edit, :update, :new, :create, :destroy]
 
   def index
-    @helps = Help.all
+    @helps = Help.scoped
   end
 
   def new

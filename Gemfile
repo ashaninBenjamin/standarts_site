@@ -6,9 +6,7 @@ gem 'thin'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
 gem 'pg'
-#gem 'will_paginate-rails3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,9 +29,12 @@ end
 
 gem "ckeditor"
 gem "paperclip"
-gem 'aws-sdk'
 gem 'jquery-rails'
 gem 'email_validator'
+
+group :production do
+  gem 'aws-sdk'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -3,9 +3,11 @@ class Help < ActiveRecord::Base
 
   default_scope order(:number)
 
-  validates :number, :name, :content, :presence => true
-  validates :number, :numericality => {:only_integer => true}
-  validates :number, :uniqueness => true
+  validates :number, presence: true,
+            numericality: {only_integer: true},
+            uniqueness: true
+  validates :name, presence: true
+  validates :content, presence: true
 
   def number_with_name
     "#{number}. #{name}"

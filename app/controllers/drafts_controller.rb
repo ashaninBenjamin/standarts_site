@@ -43,8 +43,7 @@ class DraftsController < ApplicationController
   # POST /dafts
   # POST /dafts.json
   def create
-    @draft = Draft.new(params[:draft])
-    @draft.user = current_user
+    @draft = current_user.drafts.build(params[:draft])
 
     respond_to do |format|
       if @draft.save
@@ -87,9 +86,7 @@ class DraftsController < ApplicationController
 
   def save
     draft = Draft.find(params[:id])
-
-    new_standard = Standard.new(name: draft.name, content: draft.content, user_id: draft.user_id,
-                                number: Standard.find_numbers(current_user).first)
+    new_standard = current_user.standards.build(name: draft.name, content: draft.content, number: Standard.find_numbers(current_user).first)
     if new_standard.save
       draft.destroy
       redirect_to standard_path(new_standard.link), flash: { success: "Черновик успешно сохранен" }

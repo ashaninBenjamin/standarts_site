@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require ckeditor/ckeditor
-// require ckeditor/config
+//= require ckeditor/config
 //= require_tree .
 
 slideDiv = function (obj) {
@@ -49,7 +49,7 @@ $(document).ready(function () {
     }, 1200).slideToggle();
 });
 
-$('#standard_parent_id').live("change", function () {
+$(document).on("change", "#standard_parent_id", function () {
     var urlstr = '/helper/number_selection?value=' + $("#standard_parent_id option:selected").val()
     if ($("#native_id").text() != "")
         urlstr = '/helper/number_selection?value=' + $("#standard_parent_id option:selected").val() +

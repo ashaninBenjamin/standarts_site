@@ -25,11 +25,11 @@ class UserInfosController < ApplicationController
   end
 
   def edit
-    @user_info = UserInfo.find(params[:id])
+    @user_info = current_user.user_info
   end
 
   def update
-    @user_info = UserInfo.find(params[:id])
+    @user_info = current_user.user_info
     if @user_info.update_attributes(params[:user_info])
       flash[:success] = "Обновление прошло успешно"
     end
