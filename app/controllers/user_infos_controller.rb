@@ -5,7 +5,6 @@ class UserInfosController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update, :destroy]
 
   def index
-    Time.zone = "Moscow"
     @all = UserInfo.scoped
   end
 

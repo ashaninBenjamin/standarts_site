@@ -1,5 +1,8 @@
 RoR::Application.routes.draw do
-  resources :standards, :helps, :news
+  resources :standards do
+     get "take_pattern", on: :collection
+  end
+  resources :helps, :news
   resources :session_histories, only: [:index, :destroy]
   resources :drafts do
     member do
@@ -16,7 +19,6 @@ RoR::Application.routes.draw do
   match '/logout', :to => 'session#destroy'
 
   match "helper/number_selection" => "standards#number_selection"
-  match "helper/take_pattern" => "standards#take_pattern"
 
   root to: 'session#new'
 

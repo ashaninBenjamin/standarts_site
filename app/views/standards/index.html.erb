@@ -8,7 +8,7 @@
 <% else %>
     Стандартов ещё нет, <%= link_to "создать?", new_standard_path %>
     <% if !current_user.super_admin? %>
-        Или <%= link_to "принять шаблон?", helper_take_pattern_path %>
+        Или <%= link_to "принять шаблон?", take_pattern_standards_path %>
     <% end %>
 <% end %>
 
@@ -16,7 +16,7 @@
     <li><%= link_to "Новый стандарт", new_standard_path %></li>
 
     <% if !current_user.super_admin? %>
-        <li><%= link_to "Принять шаблон", helper_take_pattern_path, data: {confirm: "Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?"} %></li>
+        <li><%= link_to "Принять шаблон", take_pattern_standards_path, data: {confirm: "Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?"} %></li>
     <% end %>
 <% end %>
 <% content_for :left do %>

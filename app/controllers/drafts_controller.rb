@@ -5,7 +5,7 @@ class DraftsController < ApplicationController
   # GET /dafts
   # GET /dafts.json
   def index
-    @drafts = Draft.find_all_by_user_id(current_user.id)
+    @drafts = current_user.drafts
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +44,7 @@ class DraftsController < ApplicationController
   # POST /dafts.json
   def create
     @draft = Draft.new(params[:draft])
-    @draft.user_id = current_user.id
+    @draft.user = current_user
 
     respond_to do |format|
       if @draft.save

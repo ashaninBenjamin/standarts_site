@@ -26,11 +26,11 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:id])
+    @company = current_user.company
   end
 
   def update
-    @company = Company.find(params[:id])
+    @company = current_user.company
     if @company.update_attributes(params[:company])
       flash[:success] = "Обновление прошло успешно"
     end

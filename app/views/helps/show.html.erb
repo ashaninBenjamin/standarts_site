@@ -1,5 +1,5 @@
 <h2><%= @help.number_with_name %></h2>
-<%= @help.content %>
+<%= @help.content.html_safe %>
 
 <% content_for :left do %>
     <%= link_to "Все справки", helps_path %>

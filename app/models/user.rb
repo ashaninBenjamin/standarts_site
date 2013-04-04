@@ -3,9 +3,13 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :login, :password, :roles_id, :user_info_id, :company_id, :password_confirmation
 
-  belongs_to :role, :primary_key => "id", :foreign_key => "roles_id"
-  belongs_to :user_info, :primary_key => "id", :foreign_key => "user_info_id"
-  belongs_to :company, :primary_key => "id", :foreign_key => "company_id"
+  belongs_to :role
+  belongs_to :user_info, dependent: :destroy
+  belongs_to :company, dependent: :destroy
+
+  has_many :standards, dependent: :delete_all
+  has_many :drafts, dependent: :delete_all
+  has_many :session_histories, dependent: :delete_all
 
   validates :login, :presence => true,
             :length => {:within => 3..15},
@@ -16,7 +20,6 @@ class User < ActiveRecord::Base
             :length => {:within => 1..20}
 
   before_save :encrypt_password
-  before_destroy :destroy_with_all
 
   def has_password?(submitted_password)
     en_password == encrypt(submitted_password)
@@ -42,16 +45,10 @@ class User < ActiveRecord::Base
   end
 
   def self.super_admin
-    self.find_by_roles_id(Role.super_role)
+    self.find_by_role_id(Role.super_role)
   end
 
   private
-  def destroy_with_all
-    user_info.destroy if user_info
-    company.destroy if company
-    Standard.find_all_by_user_id(self).each {|one| one.destroy}
-  end
-
   def encrypt_password
     self.salt = make_salt if new_record?
     self.en_password = encrypt(password) if !password.blank?

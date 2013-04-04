@@ -3,9 +3,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionHelper
 
-  I18n.default_locale = :ru
-  I18n.locale = :ru
-
   private
   def update_session_history
     if signed_in?
