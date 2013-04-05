@@ -32,16 +32,11 @@ group :test do
 end
 
 gem "ckeditor"
-gem "paperclip"
 gem "fog", "~> 1.3.1"
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'jquery-rails'
 gem 'email_validator'
-
-group :production do
-  gem 'aws-sdk'
-end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,27 +1,5 @@
 RoR::Application.configure do
 
-  # For paperclip working through AWS
-  config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_credentials => {
-          :bucket => ENV['S3_BUCKET_NAME'],
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-      }
-  }
-
-  CarrierWave.configure do |config|
-    config.fog_credentials = {
-        :provider               => 'AWS',                        # required
-        :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],                        # required
-        :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],                        # required
-        :region                 => 'eu-west-2'                  # optional, defaults to 'us-east-1'
-    }
-    config.fog_directory  = ENV['S3_BUCKET_NAME'] + "2"                     # required
-    config.fog_public     = false                                   # optional, defaults to true
-    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
-  end
-
   # For ckeditor working on Heroku
   config.assets.precompile += ['ckeditor/*']
   # Settings specified here will take precedence over those in config/application.rb
