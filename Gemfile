@@ -33,6 +33,9 @@ end
 
 gem "ckeditor"
 gem "paperclip"
+gem "fog", "~> 1.3.1"
+gem 'mini_magick'
+gem 'carrierwave'
 gem 'jquery-rails'
 gem 'email_validator'
 

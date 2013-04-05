@@ -13,6 +13,7 @@
     <div class="field">
       <%= f.label :logo %>
       <%= f.file_field :logo, :accept => 'image/jpeg,image/gif,image/png' %>
+      <%= f.hidden_field :logo_cache %>
     </div>
     <div class="actions">
       <%= f.submit :class => "btn btn-success" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403141631) do
+ActiveRecord::Schema.define(:version => 20130405094750) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -32,12 +32,9 @@ ActiveRecord::Schema.define(:version => 20130403141631) do
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "opf"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "logo"
   end
 
   create_table "drafts", :force => true do |t|
@@ -101,12 +98,9 @@ ActiveRecord::Schema.define(:version => 20130403141631) do
     t.string   "name"
     t.string   "patronymic"
     t.string   "mail"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "avatar"
   end
 
   create_table "users", :force => true do |t|

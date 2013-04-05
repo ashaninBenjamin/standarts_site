@@ -11,9 +11,17 @@
     </div>
     <div class="field">
       <%= f.label :logo %>
-      <%= image_tag @company.logo.url(:medium) %><br>
+      <%= image_tag @company.logo.medium.url %><br>
       <%= f.file_field :logo, :accept => 'image/jpeg,image/gif,image/png' %>
+      <%= f.hidden_field :logo_cache %>
     </div>
+    <% if @company.logo? %>
+        <div class="field">
+          <label>
+            <%= f.check_box :remove_logo %> Удалить фотографию
+          </label>
+        </div>
+    <% end %>
     <div class="actions">
       <%= f.submit :class => "btn" %>
     </div>
