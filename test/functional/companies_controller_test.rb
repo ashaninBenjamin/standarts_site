@@ -33,7 +33,7 @@ class CompaniesControllerTest < ActionController::TestCase
   test "should put update" do
     @params[:company] = attributes_for(:company)
     put :update, @params
-    assert_response :success
+    assert_response :redirect
   end
 
 end

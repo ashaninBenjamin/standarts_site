@@ -33,7 +33,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should put update" do
     @params[:user] = attributes_for(:user)
     put :update, @params
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should delete destroy" do

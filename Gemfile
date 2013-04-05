@@ -24,7 +24,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'coveralls', require: false
   gem 'tconsole'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 gem "ckeditor"

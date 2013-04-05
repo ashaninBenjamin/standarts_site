@@ -28,9 +28,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      flash[:success] = "Изменения вступили в силу"
+      redirect_to edit_user_path, flash: {success: "Изменения вступили в силу"}
+    else
+      render 'edit'
     end
-    render 'edit'
   end
 
   def destroy

@@ -24,9 +24,10 @@ class UserInfosController < ApplicationController
   def update
     @user_info = current_user.user_info
     if @user_info.update_attributes(params[:user_info])
-      flash[:success] = "Обновление прошло успешно"
+      redirect_to edit_user_user_info_path, flash: {success: "Обновление прошло успешно"}
+    else
+      render "edit"
     end
-    render "edit"
   end
 
   def show

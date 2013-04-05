@@ -1,5 +1,5 @@
 <h2>Редактировать логин и пароль</h2>
-<%= form_for @user, :url => { :action => :update, :id => @user.id } do |f| %>
+<%= form_for @user, url: {action: :update} do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :login %>
