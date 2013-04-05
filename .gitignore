@@ -19,3 +19,6 @@
 /doc
 /vendor
 /app/temp
+/public/assets
+/public/uploads
+/public/system
