@@ -5,5 +5,6 @@ FactoryGirl.define do
     surname
     name
     mail
+    #avatar { fixture_file_upload('test.png', 'image/png', :true) }
   end
 end

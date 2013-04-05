@@ -25,3 +25,8 @@ class ActiveSupport::TestCase
   include SessionHelper
   # Add more helper methods to be used by all tests here...
 end
+
+def fixture_file_upload(path, mime_type = nil, binary = false)
+  fixture_path = ActionController::TestCase.fixture_path
+  Rack::Test::UploadedFile.new("#{fixture_path}#{path}", mime_type, binary)
+end
