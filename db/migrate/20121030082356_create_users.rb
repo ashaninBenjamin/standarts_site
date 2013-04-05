@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :en_password
       t.string :salt
       t.integer :user_info_id
-      t.integer :roles_id
+      t.integer :role_id
       t.integer :company_id
       t.timestamps
     end

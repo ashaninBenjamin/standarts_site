@@ -5,7 +5,7 @@ class CreateUserInfos < ActiveRecord::Migration
       t.string :name
       t.string :patronymic
       t.string :mail
-      t.attachment :avatar
+      t.string :avatar
 
       t.timestamps
     end
