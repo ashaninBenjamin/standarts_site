@@ -6,4 +6,5 @@
 Отчество: <%= @user_info.patronymic %><br><br>
 Эл. почта: <%= @user_info.mail %><br><br>
 
-<%= link_to "Редактировать", edit_user_user_info_path, :class => "btn btn-success" %>
+<% render "layouts/admin_left_column" %>
+

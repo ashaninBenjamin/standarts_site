@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HelpsControllerTest < ActionController::TestCase
   def setup
-    user = create :user
+    user = create :super_user
     sign_in user
     @help = create :help
     @params = {id: @help.id}

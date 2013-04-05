@@ -2,7 +2,7 @@ class Company < ActiveRecord::Base
   attr_accessible :logo, :name, :opf
   has_attached_file :logo, :styles => { :large => "300x300>", :medium => "200x200>" }
 
-  has_one :user, dependent: :destroy
+  has_one :user
   has_one :user_info, :through => :user
 
   #validates_attachment_presence :logo

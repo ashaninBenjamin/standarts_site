@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class SessionHistoriesControllerTest < ActionController::TestCase
+class Admin::SessionHistoriesControllerTest < ActionController::TestCase
   def setup
-    user = create :user
+    user = create :super_user
     sign_in user
     @session_history = create :session_history, user: user
     @params = {id: @session_history.id}

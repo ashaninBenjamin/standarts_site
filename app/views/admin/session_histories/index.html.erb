@@ -12,11 +12,11 @@
       </tr>
       <% @all.each do |one| %>
           <tr>
-            <td><%= link_to one.user.login, one.user %></td>
+            <td><%= link_to one.user.login, admin_user_path(one.user) %></td>
             <td><%= one.page %></td>
             <td><%= one.ip %></td>
             <td><%= (one.updated_at) ? one.updated_at.strftime("%T %d.%m.%Y ") : "Нет данных" %></td>
-            <td><%= link_to "Удалить", one, method: :delete, class: "btn btn-danger" %></td>
+            <td><%= link_to "Удалить", admin_session_history_path(one), method: :delete, class: "btn btn-danger" %></td>
           </tr>
       <% end %>
     </table>

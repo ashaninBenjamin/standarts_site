@@ -1,18 +1,22 @@
 RoR::Application.routes.draw do
   resources :standards do
-     get "take_pattern", on: :collection
+    get "take_pattern", on: :collection
   end
   resources :helps, :news
-  resources :session_histories, only: [:index, :destroy]
   resources :drafts do
     member do
       get "save"
     end
   end
-  resources :users do
-    resources :user_infos, :companies, only: [:new, :create]
+  resource :user do
+    resource :user_info, :company, except: [:destroy]
   end
-  resources :user_infos, :companies, except: [:new, :create]
+
+  namespace :admin do
+    resources :users, only: [:index, :show, :destroy]
+    resources :user_infos, :companies, only: [:index, :show, :destroy]
+    resources :session_histories, only: [:index, :destroy]
+  end
 
   post "/login", :to => 'session#create', as: :signin_post
   match '/login', :to => 'session#new'

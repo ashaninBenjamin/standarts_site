@@ -1,5 +1,5 @@
 <h2>Редактирование информации о компании</h2>
-<%= form_for @company, :html => { :multipart => true } do |f| %>
+<%= form_for @company, :html => { :multipart => true }, url: {action: :update} do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :opf %>
@@ -20,7 +20,7 @@
 <% end %>
 
 <% content_for :submenu do %>
-    <li><%= link_to "Логин и пароль", edit_user_path(@company.user) %></li>
-    <li><%= link_to "Информация о пользователе", edit_user_info_path(@company.user_info) %></li>
-    <li><%= link_to "Информация о компании", edit_company_path(@company) %></li>
+    <li><%= link_to "Логин и пароль", edit_user_path %></li>
+    <li><%= link_to "Информация о пользователе", edit_user_user_info_path %></li>
+    <li><%= link_to "Информация о компании", edit_user_company_path %></li>
 <% end %>

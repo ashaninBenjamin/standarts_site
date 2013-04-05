@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   attr_accessible :login, :password, :roles_id, :user_info_id, :company_id, :password_confirmation
 
   belongs_to :role
-  belongs_to :user_info
-  belongs_to :company
+  belongs_to :user_info, dependent: :destroy
+  belongs_to :company, dependent: :destroy
 
   has_many :standards, dependent: :destroy
   has_many :drafts, dependent: :destroy

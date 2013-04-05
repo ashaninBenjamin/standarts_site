@@ -17,10 +17,10 @@
       <%= f.submit "Обновить", :class => "btn" %>
     </div>
 <% end %>
-<%= link_to "Удалить учётную запись", {:action => :destroy}, :method => :delete, :class => "btn btn-danger", :confirm => "Вы уверены, что хотите удалить свою учётную запись?" if (!current_user.role.name.eql?("super"))  %>
+<%= link_to "Удалить учётную запись", {:action => :destroy}, :method => :delete, :class => "btn btn-danger", :confirm => "Вы уверены, что хотите удалить свою учётную запись?"  %>
 
 <% content_for :submenu do %>
-    <li><%= link_to "Логин и пароль", edit_user_path(@user) %></li>
-    <li><%= link_to "Информация о пользователе", edit_user_info_path(@user.user_info) %></li>
-    <li><%= link_to "Информация о компании", edit_company_path(@user.company) %></li>
+    <li><%= link_to "Логин и пароль", edit_user_path %></li>
+    <li><%= link_to "Информация о пользователе", edit_user_user_info_path %></li>
+    <li><%= link_to "Информация о компании", edit_user_company_path %></li>
 <% end %>

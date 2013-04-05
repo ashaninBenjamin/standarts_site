@@ -8,30 +8,25 @@ class CompaniesControllerTest < ActionController::TestCase
     @params = {id: @company.id}
   end
 
-  test "should get index" do
-    get :index, user: :user
-    assert_response :success
-  end
-
   test "should get show" do
-    get :show, @params
+    get :show
     assert_response :success
   end
 
   test "should get new" do
-    get :new, user_id: @user
+    get :new
     assert_response :success
   end
 
   test "should post create" do
     @params[:company] = attributes_for(:company)
-    @params[:user_id] = @user
+    set_temp_user @user
     post :create, @params
     assert_response :redirect
   end
 
   test "should get edit" do
-    get :edit, @params
+    get :edit
     assert_response :success
   end
 

@@ -1,5 +1,5 @@
 <div id="header">
-  <%= link_to (image_tag current_user.company.logo.url), current_user.company %>
+  <%= link_to (image_tag current_user.company.logo.url), user_company_path %>
 </div>
 <div id="menu">
   <ul>
@@ -21,8 +21,8 @@
     </li>
     <% if current_user.super_admin? %>
         <li>
-            <div class="ul-image"><%= link_to image_tag("admin_ico.png", :size=>"40x40"), users_path %></div>
-            <div><%= link_to "Админка", users_path %></div>
+            <div class="ul-image"><%= link_to image_tag("admin_ico.png", :size=>"40x40"), admin_users_path %></div>
+            <div><%= link_to "Админка", admin_users_path %></div>
         </li>
     <% end %>
   </ul>
@@ -30,9 +30,9 @@
   <div class="bar-user">
     <div class="first-line">
       <%= image_tag current_user.user_info.avatar.url(:thumb) %>
-      <%= link_to current_user.user_info.fi, current_user.user_info %>&nbsp; &nbsp;&nbsp;
+      <%= link_to current_user.user_info.fi, user_user_info_path %>&nbsp; &nbsp;&nbsp;
       <%= link_to image_tag("logout-icon.png", :size => "30x30", :title => "Выйти"), logout_path %>
     </div>
-    <div class="second-line"> <%= link_to "Настройка", edit_user_path(current_user) %> </div>
+    <div class="second-line"> <%= link_to "Настройка", edit_user_path %> </div>
   </div>
 </div>

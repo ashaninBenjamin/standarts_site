@@ -6,6 +6,18 @@ module SessionHelper
     self.current_user = user
   end
 
+  def set_temp_user(user)
+    cookies.signed[:temp] = [user.id, user.salt]
+  end
+
+  def get_temp_user
+    User.authenticate_with_salt(*temp_info)
+  end
+
+  def clear_temp_user
+    cookies.delete(:temp)
+  end
+
   def current_user=(user)
     @current_user = user
   end
@@ -45,6 +57,10 @@ module SessionHelper
 
   def remember_token
     cookies.signed[:remember_token] || [nil, nil]
+  end
+
+  def temp_info
+    cookies.signed[:temp] || [nil, nil]
   end
 
   def store_location

@@ -4,9 +4,4 @@
 <p><%= @user.user_info.patronymic %></p>
 <p><%= @user.user_info.mail %></p>
 
-<%= (link_to "Редактировать", edit_user_path(@user), class: "btn btn-success") if current_user?(@user) %>
-
-<% content_for :left do %>
-    <%= link_to "Назад к списку учётных записей", users_path %><br><br>
-<% end %>
-<% render "layouts/admin_left_column" %>
+<%= link_to "Редактировать", edit_user_path(@user), class: "btn btn-success" %>

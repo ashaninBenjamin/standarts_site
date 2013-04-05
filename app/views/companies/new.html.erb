@@ -1,6 +1,6 @@
 <h2>Добавление информации о компании</h2>
 <p><text style="color: red;">Пожалуйста, завершите регистрацию.</text> Шаг 3/3</p>
-<%= form_for [@user, @company], :html => { :multipart => true } do |f| %>
+<%= form_for @company, url: {action: :create}, :html => { :multipart => true } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :opf %>

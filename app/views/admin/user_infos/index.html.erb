@@ -16,16 +16,16 @@
               <%= image_tag one.avatar.url(:thumb) %>
             </td>
             <td>
-              <%= link_to one.fi, one %>
+              <%= link_to one.fi, admin_user_info_path(one) %>
             </td>
             <td>
-              <%= (one.company) ? (link_to one.company.opf_and_name, one.company) : "Данные повреждены" %>
+              <%= (one.company) ? (link_to one.company.opf_and_name, admin_company_path(one.company)) : "Данные повреждены" %>
             </td>
             <td>
               <%= (one.created_at) ? one.created_at.strftime("%d.%m.%Y %T") : "Нет данных" %>
             </td>
             <td>
-              <%= link_to "Удалить", (one.user) ? one.user : one, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>
+              <%= link_to "Удалить", (one.user) ? admin_user_path(one.user) : admin_user_info_path(one), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>
             </td>
           </tr>
       <% end %>

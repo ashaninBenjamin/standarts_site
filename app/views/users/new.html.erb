@@ -1,5 +1,5 @@
 <h1>Регистрация</h1>
-<%= form_for @user do |f| %>
+<%= form_for @user, url: {action: :create} do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :login %>

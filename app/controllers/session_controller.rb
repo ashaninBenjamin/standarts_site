@@ -13,7 +13,8 @@ class SessionController < ApplicationController
       flash.now[:error] = "Неверная пара логин/пароль"
       render 'new'
     elsif user.has_fail_info?
-      redirect_to (!user.user_info) ? new_user_user_info_path(user) : new_user_company_path(user), flash: {error: "Пройдите регистрацию до конца!"}
+      set_temp_user user
+      redirect_to (!user.user_info) ? new_user_user_info_path : new_user_company_path, flash: {error: "Пройдите регистрацию до конца!"}
     else
       sign_in user
       redirect_to standards_path

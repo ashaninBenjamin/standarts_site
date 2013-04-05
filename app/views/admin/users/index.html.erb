@@ -1,0 +1,19 @@
+<h1>Все учётные записи</h1>
+<table class="table table-bordered">
+  <tr>
+    <td>Логин</td>
+    <td>Пользователь</td>
+    <td>Компания</td>
+    <td>Действия</td>
+  </tr>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.login, admin_user_path(user) %></td>
+        <td><%= user.user_info ? (link_to user.user_info.fi, admin_user_info_path(user.user_info)) : "Данные повреждены" %></td>
+        <td><%= user.company ? (link_to user.company.opf_and_name, admin_company_path(user.company)) : "Данные повреждены" %></td>
+        <td><%= (link_to "Удалить", admin_user_path(user), method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger") unless user.super_admin? %></td>
+      </tr>
+  <% end %>
+</table>
+
+<% render "layouts/admin_left_column" %>

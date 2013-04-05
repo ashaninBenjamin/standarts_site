@@ -1,5 +1,5 @@
 #coding: utf-8
-class SessionHistoriesController < ApplicationController
+class Admin::SessionHistoriesController < ApplicationController
   before_filter :authenticate, :have_access
 
   def index
@@ -8,7 +8,7 @@ class SessionHistoriesController < ApplicationController
 
   def destroy
     SessionHistory.find(params[:id]).destroy
-    redirect_to session_histories_path, :notice => "Запись удалена"
+    redirect_to admin_session_histories_path, :notice => "Запись удалена"
   end
 
   private
