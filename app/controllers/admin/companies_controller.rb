@@ -5,7 +5,7 @@ class Admin::CompaniesController < ApplicationController
   # GET /admin/companies
   # GET /admin/companies.json
   def index
-    @all = Company.all
+    @all = Company.scoped
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,6 +33,7 @@ class Admin::CompaniesController < ApplicationController
   def correct_user
     redirect_to root_path unless current_user.super_admin?
   end
+
   def authenticate
     deny_access unless signed_in?
   end

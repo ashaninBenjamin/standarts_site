@@ -1,0 +1,6 @@
+<h2>Создание новой справки</h2>
+<%= render 'form', url: admin_helps_path %>
+
+<% content_for :left do %>
+    <%= link_to "Назад к списку всех справок", admin_helps_path %>
+<% end %>

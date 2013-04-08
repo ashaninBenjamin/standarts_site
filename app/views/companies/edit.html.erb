@@ -1,5 +1,5 @@
 <h2>Редактирование информации о компании</h2>
-<%= form_for @company, :html => { :multipart => true }, url: {action: :update} do |f| %>
+<%= form_for @company, url: user_company_path, html: { multipart: true } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :opf %>

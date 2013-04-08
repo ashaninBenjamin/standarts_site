@@ -3,18 +3,18 @@ class StandardsController < ApplicationController
   before_filter :authenticate
 
   def index
-    @all = Standard.find_all_with_user(current_user)
+    @all = Standard.sort_it current_user.standards
   end
 
   def new
     @standard = Standard.new
-    @select = Standard.find_all_with_user(current_user.id)
+    @select = Standard.sort_it current_user.standards
     @arr = Standard.find_numbers(current_user)
   end
 
   def create
     @standard = current_user.standards.build(params[:standard])
-    @select = Standard.find_all_with_user(current_user.id)
+    @select = Standard.sort_it current_user.standards
     @arr = Standard.find_numbers(current_user)
     if @standard.save
       redirect_to standard_path(@standard.link), flash: { success: "Успешно добавлен раздел" }
@@ -24,17 +24,17 @@ class StandardsController < ApplicationController
   end
 
   def edit
-    @standard = Standard.find_by_link(params[:id], current_user)
-    @select = Standard.find_all_with_user(current_user.id)
+    @standard = current_user.standards.find_by_link(params[:id])
+    @select = Standard.sort_it current_user.standards
     @select.delete(@standard)
-    @arr = (Standard.find_numbers(@standard.has_parent? ? @standard.parent_id : current_user) << @standard.number).sort
+    @arr = (Standard.find_numbers(@standard.parent ? @standard.parent_id : current_user) << @standard.number).sort
   end
 
   def update
-    @standard = Standard.find_by_link(params[:id], current_user)
-    @select = Standard.find_all_with_user(current_user.id)
+    @standard = current_user.standards.find_by_link(params[:id])
+    @select = Standard.sort_it current_user.standards
     @select.delete(@standard)
-    @arr = (Standard.find_numbers(@standard.has_parent? ? @standard.parent_id : current_user) << @standard.number).sort
+    @arr = (Standard.find_numbers(@standard.parent ? @standard.parent_id : current_user) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
       redirect_to standard_path(@standard.link), flash: { success: "Раздел успешно обновлён" }
     else
@@ -43,15 +43,12 @@ class StandardsController < ApplicationController
   end
 
   def show
-    @standard = Standard.find_by_link(params[:id], current_user)
-    @children = @standard.children
-    if @children
-      @children = Standard.sort_it(@children)
-    end
+    @standard = current_user.standards.find_by_link(params[:id])
+    @children = Standard.sort_it @standard.children
   end
 
   def destroy
-    Standard.find_by_link(params[:id], current_user).destroy
+    current_user.standards.find_by_link(params[:id]).destroy
     redirect_to standards_path, notice: "Раздел успешно удалён"
   end
 
@@ -67,11 +64,11 @@ class StandardsController < ApplicationController
 
   def take_pattern
     #удаление всего до этого
-    to_delete = Standard.find_all_by_user_id(current_user)
+    to_delete = current_user.standards
     to_delete.each { |one| one.destroy }
     #запись нового
     dict = Hash.new
-    pattern = Standard.find_all_by_super_admin
+    pattern = Standard.all_by_super_admin
     pattern.each do |one|
       new = one.dup
       new.user_id = current_user.id
@@ -79,9 +76,9 @@ class StandardsController < ApplicationController
       dict[one.id] = new.id
     end
     #сопоставление всех родительских айдишек
-    own = Standard.find_all_by_user_id(current_user)
+    own = current_user.standards
     own.each do |one|
-      if (!one.parent_id.blank?)
+      if one.parent_id
         one.update_attribute(:parent_id, dict[one.parent_id])
       end
     end

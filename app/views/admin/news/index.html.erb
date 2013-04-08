@@ -4,8 +4,10 @@
       <% @news.each do |one| %>
           <tr>
             <td>
-              <text class="title"><%= link_to one.title, one %></text> &nbsp;
+              <text class="title"><%= link_to one.title, admin_news_path(one) %></text>
+              &nbsp;
               <em><%= (l one.created_at.getlocal, format: "%d %B в %R") if one.created_at %></em>
+
               <p style="margin-bottom: 12px;"></p>
               <%= one.content.html_safe %>
             </td>
@@ -13,5 +15,9 @@
       <% end %>
     </table>
 <% else %>
-    Ещё нет новостей.
+    Нет новостей. <%= link_to "Создать?", new_admin_news_path %>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Добавить новость", new_admin_news_path %></li>
 <% end %>

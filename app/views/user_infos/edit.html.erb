@@ -1,5 +1,5 @@
 <h2>Редактирование информации о пользователе</h2>
-<%= form_for @user_info, :html => {:multipart => true}, url: {action: :update} do |f| %>
+<%= form_for @user_info, url: user_user_info_path, html: {multipart: true} do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :surname %>
@@ -19,7 +19,7 @@
     </div>
     <div class="field">
       <%= f.label :avatar %>
-      <%= image_tag @user_info.avatar.medium.url %>
+      <%= image_tag(@user_info.avatar.medium.url, id: "photo") %>
       <br>
       <%= f.file_field :avatar, :accept => 'image/jpeg,image/gif,image/png' %>
       <%= f.hidden_field :avatar_cache %>

@@ -20,7 +20,7 @@
 
 <% content_for :left do %>
     <%= link_to "К списку всех стандартов", standards_path %><br>
-    <%= (link_to "К родительскому стандартов", standard_path(@standard.parent.link)) if @standard.has_parent? %>
+    <%= (link_to "К родительскому стандартов", standard_path(@standard.parent.link)) if @standard.parent %>
     <% if @children.any? %>
         <br><br>
         Дочерние стандарты:

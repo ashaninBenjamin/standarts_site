@@ -24,6 +24,9 @@ class StandardsControllerTest < ActionController::TestCase
   end
 
   test "should post create" do
+    post :create
+    assert_response :success
+
     @params[:standard] = attributes_for(:standard)
     post :create, @params
     assert_response :redirect

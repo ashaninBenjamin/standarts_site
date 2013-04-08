@@ -1,5 +1,5 @@
 <h2>Редактировать логин и пароль</h2>
-<%= form_for @user, url: {action: :update} do |f| %>
+<%= form_for @user, url: user_path do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
     <div class="field">
       <%= f.label :login %>
@@ -14,10 +14,10 @@
       <%= f.password_field :password_confirmation %>
     </div>
     <div class="actions">
-      <%= f.submit "Обновить", :class => "btn" %>
+      <%= f.submit :class => "btn" %>
     </div>
 <% end %>
-<%= link_to "Удалить учётную запись", {:action => :destroy}, :method => :delete, :class => "btn btn-danger", :confirm => "Вы уверены, что хотите удалить свою учётную запись?"  %>
+<%= (link_to "Удалить учётную запись", user_path, method: :delete, class: "btn btn-danger", confirm: "Вы уверены, что хотите удалить свою учётную запись?") if !current_user.super_admin? %>
 
 <% content_for :submenu do %>
     <li><%= link_to "Логин и пароль", edit_user_path %></li>

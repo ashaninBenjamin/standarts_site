@@ -3,6 +3,7 @@ require 'test_helper'
 class SessionControllerTest < ActionController::TestCase
   def setup
     @user = create :user
+    @params = {}
   end
 
   test "should get new" do
@@ -17,7 +18,8 @@ class SessionControllerTest < ActionController::TestCase
   end
 
   test "should post create" do
-    get :create, {session: {login:@user.login, password: @user.password}}
+    @params[:session] = attributes_for(:user)
+    get :create, @params
     assert_response :redirect
   end
 

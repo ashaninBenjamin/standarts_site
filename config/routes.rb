@@ -2,7 +2,7 @@ RoR::Application.routes.draw do
   resources :standards do
     get "take_pattern", on: :collection
   end
-  resources :helps, :news
+  resources :helps, :news, only: [:index, :show]
   resources :drafts do
     member do
       get "save"
@@ -16,6 +16,8 @@ RoR::Application.routes.draw do
     resources :users, only: [:index, :show, :destroy]
     resources :user_infos, :companies, only: [:index, :show, :destroy]
     resources :session_histories, only: [:index, :destroy]
+    resources :helps
+    resources :news
   end
 
   post "/login", :to => 'session#create', as: :signin_post

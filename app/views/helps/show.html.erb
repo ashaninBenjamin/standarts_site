@@ -9,12 +9,3 @@
       <% end %>
     </ul>
 <% end %>
-
-<% if current_user.super_admin? %>
-    <% content_for :submenu do %>
-        <li><%= link_to "Новый справка", new_help_path %></li>
-        <li><%= link_to "Редактировать справку", edit_help_path(@help) %></li>
-        <li><%= link_to "Удалить справку", @help, :method => :delete, :confirm => "Вы уверены, что хотите удалить эту справку?",
-                        :title => "Удалить #{@help.name}" %></li>
-    <% end %>
-<% end %>

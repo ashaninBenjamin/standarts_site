@@ -12,12 +12,12 @@
       <div><%= link_to "Черновики", drafts_path %></div>
     </li>
     <li>
-      <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), helps_path %></div>
-      <div><%= link_to "Помощь", helps_path %></div>
+      <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), current_user.super_admin? ? admin_helps_path : helps_path  %></div>
+      <div><%= link_to "Помощь", current_user.super_admin? ? admin_helps_path : helps_path %></div>
     </li>
     <li>
-      <div class="ul-image"><%= link_to image_tag("news-ico.jpg", :size=>"40x40"), news_index_path %></div>
-      <div><%= link_to "Новости", news_index_path %></div>
+      <div class="ul-image"><%= link_to image_tag("news-ico.jpg", :size=>"40x40"), current_user.super_admin? ? admin_news_index_path : news_index_path %></div>
+      <div><%= link_to "Новости", current_user.super_admin? ? admin_news_index_path : news_index_path %></div>
     </li>
     <% if current_user.super_admin? %>
         <li>

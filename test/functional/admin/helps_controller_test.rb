@@ -1,11 +1,11 @@
 require 'test_helper'
 
-class DraftsControllerTest < ActionController::TestCase
+class Admin::HelpsControllerTest < ActionController::TestCase
   def setup
-    user = create :user
+    user = create :super_user
     sign_in user
-    @draft = create :draft, user: user
-    @params = {id: @draft.id}
+    @help = create :help
+    @params = {id: @help.id}
   end
 
   test "should get index" do
@@ -24,12 +24,9 @@ class DraftsControllerTest < ActionController::TestCase
   end
 
   test "should post create" do
-    post :create
-    assert_response :success
-
-    @params[:draft] = attributes_for(:draft)
+    @params[:help] = attributes_for(:help)
     post :create, @params
-    assert_response :redirect
+    assert_response :success
   end
 
   test "should get edit" do
@@ -38,18 +35,13 @@ class DraftsControllerTest < ActionController::TestCase
   end
 
   test "should put update" do
-    @params[:draft] = attributes_for(:draft)
+    @params[:help] = attributes_for(:help)
     put :update, @params
     assert_response :redirect
   end
 
   test "should delete destroy" do
     delete :destroy, @params
-    assert_response :redirect
-  end
-
-  test "should get save" do
-    get :save, @params
     assert_response :redirect
   end
 end

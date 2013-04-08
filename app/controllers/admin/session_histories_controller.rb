@@ -3,7 +3,7 @@ class Admin::SessionHistoriesController < ApplicationController
   before_filter :authenticate, :have_access
 
   def index
-    @all = SessionHistory.scoped
+    @all = SessionHistory.sorted
   end
 
   def destroy

@@ -13,9 +13,7 @@ class Standard < ActiveRecord::Base
 
   before_update :check_content
 
-  def self.find_all_by_super_admin
-    find_all_by_user_id(User.super_admin)
-  end
+  scope :all_by_super_admin, scoped_by_user_id(User.super_admin)
 
   def self.sort_it(it)
     it.sort_by { |a| a.code.split('.').map &:to_i }
@@ -23,7 +21,7 @@ class Standard < ActiveRecord::Base
 
   def self.find_numbers(obj)
     if (obj.class != User)
-      if (!find(obj).has_children?)
+      if (!find(obj).children.any?)
         return [1]
       end
       all = where(:parent_id => obj).order("number DESC")
@@ -83,27 +81,16 @@ class Standard < ActiveRecord::Base
     "#{code}. #{name}"
   end
 
-  def has_parent?
-    (parent.nil?) ? false : true
+  def self.find_by_link(link)
+    id = get_id_by_link link
+    id ? find(id) : nil
   end
 
-  def has_children?
-    (children.empty?) ? false : true
-  end
-
-  def self.find_by_link(link, user)
-    find get_id_by_link_and_user link, user
-  end
-
-  def self.get_id_by_link_and_user(link, user)
-    id = 0
-    arr = link.split("-")
-    tt = nil
-    arr[0..arr.count-1].each do |one|
-      tt = Standard.where(:parent_id => tt, :number => one, :user_id => user.id).first
-      id = tt.id
+  def self.get_id_by_link(link)
+    all.each do |one|
+      return one.id if one.link == link
     end
-    id
+    nil
   end
 
   private

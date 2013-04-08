@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HelpsControllerTest < ActionController::TestCase
   def setup
-    user = create :super_user
+    user = create :user
     sign_in user
     @help = create :help
     @params = {id: @help.id}
@@ -18,30 +18,4 @@ class HelpsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should post create" do
-    @params[:help] = attributes_for(:help)
-    post :create, @params
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, @params
-    assert_response :success
-  end
-
-  test "should put update" do
-    @params[:help] = attributes_for(:help)
-    put :update, @params
-    assert_response :redirect
-  end
-
-  test "should delete destroy" do
-    delete :destroy, @params
-    assert_response :redirect
-  end
 end

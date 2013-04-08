@@ -1,12 +1,5 @@
 <h2><%= @news.title %></h2>
-<%= @news.content.html_safe if @news.content %>
-<% if current_user.super_admin? %>
-    <% content_for :submenu do %>
-        <li><%= link_to "Добавить ещё новость", new_news_path %></li>
-        <li><%= link_to "Редактировать новость", edit_news_path(@news) %></li>
-        <li><%= link_to "Удалить новость", @news, method: :delete, data: {confirm: "Вы уверены?"} %></li>
-    <% end %>
-<% end %>
+<%= @news.content.html_safe %>
 
 <% content_for :left do %>
     <%= link_to "Назад", news_index_path %>

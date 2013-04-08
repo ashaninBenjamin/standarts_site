@@ -1,0 +1,7 @@
+<h2>Добавление новости</h2>
+
+<%= render 'form', url: admin_news_index_path %>
+
+<% content_for :left do %>
+    <%= link_to "Назад", admin_news_index_path %>
+<% end %>
