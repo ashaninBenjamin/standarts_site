@@ -4,12 +4,12 @@ class HelpsController < ApplicationController
   before_filter :correct_user
 
   def index
-    @helps = Help.scoped
+    @helps = Help.sorted
   end
 
   def show
     @help = Help.find(params[:id])
-    @helps = Help.scoped
+    @helps = Help.sorted
   end
 
   private

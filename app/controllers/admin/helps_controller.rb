@@ -5,7 +5,7 @@ class Admin::HelpsController < ApplicationController
   # GET /admin/helps
   # GET /admin/helps.json
   def index
-    @helps = Help.scoped
+    @helps = Help.sorted
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +17,7 @@ class Admin::HelpsController < ApplicationController
   # GET /admin/helps/1.json
   def show
     @help = Help.find(params[:id])
-    @helps = Help.scoped
+    @helps = Help.sorted
 
     respond_to do |format|
       format.html # show.html.erb

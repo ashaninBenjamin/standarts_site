@@ -21,7 +21,7 @@ class Standard < ActiveRecord::Base
 
   def self.find_numbers(obj)
     if (obj.class != User)
-      if (!find(obj).children.any?)
+      if (find(obj).children.blank?)
         return [1]
       end
       all = where(:parent_id => obj).order("number DESC")
@@ -68,7 +68,7 @@ class Standard < ActiveRecord::Base
     temp = self
     while temp.parent
       temp = temp.parent
-      ret = temp.number.to_s + "." + ret
+      ret = "#{temp.number.to_s}.#{ret}"
     end
     ret
   end

@@ -34,7 +34,7 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     chattyproc (1.0.0)
-    ckeditor (4.0.3)
+    ckeditor (4.0.4)
       mime-types
       orm_adapter
     coffee-rails (3.2.2)
@@ -156,7 +156,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
-    uglifier (1.3.0)
+    uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
 
