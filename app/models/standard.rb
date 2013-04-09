@@ -2,8 +2,6 @@
 class Standard < ActiveRecord::Base
   attr_accessible :content, :name, :number, :parent_id, :user_id
 
-  #has_many :children, class_name: "Standard", foreign_key: "parent_id", dependent: :destroy
-  #belongs_to :parent, class_name: "Standard"
   has_ancestry
   belongs_to :user
 
@@ -12,7 +10,7 @@ class Standard < ActiveRecord::Base
   validates :user, presence: true
   validates_associated :parent
 
-  #before_update :check_content
+  before_update :check_content
 
   scope :all_by_super_admin, scoped_by_user_id(User.super_admin)
 
