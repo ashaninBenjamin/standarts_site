@@ -264,20 +264,16 @@ ru:
         login: Логин
         password: Пароль
         password_confirmation: Подтверждение пароля
-      user_info:
+      profile:
         surname: Фамилия
         name: Имя
         patronymic: Отчество
         mail: Электронная почта
         avatar: Фотография профиля
-        avatar_file_size: Размера изображения
-        avatar_content_type: Тип изображения
       company:
         opf: ОПФ
         name: Наименование
         logo: Логотип компании
-        logo_file_size: Размера изображения логотипа
-        logo_content_type: Тип изображения логотипа
       standard:
         name: Название
         content: Содержание

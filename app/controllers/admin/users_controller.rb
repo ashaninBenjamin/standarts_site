@@ -1,7 +1,6 @@
 #coding: utf-8
-class Admin::UsersController < ApplicationController
-  before_filter :correct_user
-  before_filter :authenticate
+class Admin::UsersController < Admin::ApplicationController
+
   # GET /admin/users
   # GET /admin/users.json
   def index
@@ -36,11 +35,4 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  private
-  def correct_user
-    redirect_to root_path unless current_user.super_admin?
-  end
-  def authenticate
-    deny_access unless signed_in?
-  end
 end

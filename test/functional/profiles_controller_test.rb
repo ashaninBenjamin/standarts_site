@@ -1,10 +1,11 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class ProfilesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
+    @profile = create :profile
     sign_in @user
-    @params = {id: @user.id}
+    @params = {id: @profile.id}
   end
 
   test "should get show" do
@@ -18,7 +19,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should post create" do
-    @params[:user] = attributes_for(:super_user)
+    @params[:profile] = attributes_for(:profile)
     post :create, @params
     assert_response :redirect
   end
@@ -29,16 +30,11 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should put update" do
-    @params[:user] = attributes_for(:user)
+    @params[:profile] = attributes_for(:profile)
     put :update, @params
     assert_response :redirect
-    user = User.find(@params[:id])
-    assert user
+    profile = Profile.find(@params[:id])
+    assert profile
   end
 
-  test "should delete destroy" do
-    delete :destroy
-    assert_response :redirect
-    assert !User.exists?(@user)
-  end
 end

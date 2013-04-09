@@ -1,5 +1,5 @@
 <h2>Компании системы</h2>
-<% if @all.blank? %>
+<% if @companies.blank? %>
     <em>Пользователей нет</em>
 <% else %>
     <table class="table table-bordered">
@@ -10,7 +10,7 @@
         <td>Когда создан</td>
         <td>Действия</td>
       </tr>
-      <% @all.each do |one| %>
+      <% @companies.each do |one| %>
           <tr>
             <td style="text-align: center;">
               <%= image_tag one.logo.url(:medium), :style => "width:100px" %>
@@ -19,7 +19,7 @@
               <%= link_to one.opf_and_name, admin_company_path(one) %>
             </td>
             <td>
-              <%= (one.user_info) ? (link_to one.user_info.fi, admin_user_info_path(one.user_info)) : "Данные повреждены" %>
+              <%= (one.profile) ? (link_to one.profile.fi, admin_profile_path(one.profile)) : "Данные повреждены" %>
             </td>
             <td>
               <%= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных" %>

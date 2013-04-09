@@ -7,7 +7,7 @@
 <body>
 <div id="outer">
 
-  <%= render "layouts/header" if signed_in? %>
+  <%= render "layouts/header" if signed_in? && current_user.correct? %>
   <div id="content">
     <div id="primaryContentContainer">
       <div id="primaryContent">

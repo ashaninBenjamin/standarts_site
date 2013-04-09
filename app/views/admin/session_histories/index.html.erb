@@ -1,5 +1,5 @@
 <h2>История сессий пользователями</h2>
-<% if @all.blank? %>
+<% if @session_histories.blank? %>
     <em>Нет информации</em>
 <% else %>
     <table class="table table-bordered">
@@ -10,7 +10,7 @@
         <td>Время</td>
         <td>Действия</td>
       </tr>
-      <% @all.each do |one| %>
+      <% @session_histories.each do |one| %>
           <tr>
             <td><%= link_to one.user.login, admin_user_path(one.user) %></td>
             <td><%= one.page %></td>

@@ -1,7 +1,7 @@
 # coding: utf-8
 class SessionController < ApplicationController
   def new
-    if signed_in?
+    if signed_in? && current_user.correct?
       redirect_to standards_path
     end
   end
@@ -12,9 +12,6 @@ class SessionController < ApplicationController
     if user.nil?
       flash.now[:error] = "Неверная пара логин/пароль"
       render 'new'
-    elsif user.has_fail_info?
-      set_temp_user user
-      redirect_to (!user.user_info) ? new_user_user_info_path : new_user_company_path, flash: {error: "Пройдите регистрацию до конца!"}
     else
       sign_in user
       redirect_to standards_path

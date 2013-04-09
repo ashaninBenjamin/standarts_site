@@ -1,10 +1,11 @@
 require 'test_helper'
 
-class Admin::UsersControllerTest < ActionController::TestCase
+class Admin::ProfilesControllerTest < ActionController::TestCase
   def setup
     @user = create :super_user
+    @profile = @user.profile
     sign_in @user
-    @params = {id: @user.id}
+    @params = {id: @profile.id}
   end
 
   test "should get index" do
@@ -20,6 +21,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "should delete destroy" do
     delete :destroy, @params
     assert_response :redirect
-    assert !User.exists?(@user)
+    assert !Profile.exists?(@profile)
   end
 end

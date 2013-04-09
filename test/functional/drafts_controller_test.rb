@@ -41,6 +41,8 @@ class DraftsControllerTest < ActionController::TestCase
     @params[:draft] = attributes_for(:draft)
     put :update, @params
     assert_response :redirect
+    draft = Draft.find(@params[:id])
+    assert draft
   end
 
   test "should delete destroy" do
@@ -51,5 +53,6 @@ class DraftsControllerTest < ActionController::TestCase
   test "should get save" do
     get :save, @params
     assert_response :redirect
+    assert !Draft.exists?(@draft)
   end
 end

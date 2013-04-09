@@ -16,5 +16,6 @@ class Admin::SessionHistoriesControllerTest < ActionController::TestCase
   test "should delete destroy" do
     delete :destroy, @params
     assert_response :redirect
+    assert !SessionHistory.exists?(@session_history)
   end
 end

@@ -20,7 +20,6 @@ class CompaniesControllerTest < ActionController::TestCase
 
   test "should post create" do
     @params[:company] = attributes_for(:company)
-    set_temp_user @user
     post :create, @params
     assert_response :redirect
   end
@@ -34,6 +33,8 @@ class CompaniesControllerTest < ActionController::TestCase
     @params[:company] = attributes_for(:company)
     put :update, @params
     assert_response :redirect
+    company = Company.find(@params[:id])
+    assert company
   end
 
 end

@@ -3,19 +3,19 @@ class StandardsController < ApplicationController
   before_filter :authenticate
 
   def index
-    @all = Standard.sort_it current_user.standards
+    @standards = Standard.sort_it current_user.standards
   end
 
   def new
     @standard = Standard.new
     @select = Standard.sort_it current_user.standards
-    @arr = Standard.find_numbers(current_user)
+    @arr = current_user.standards.root_numbers
   end
 
   def create
     @standard = current_user.standards.build(params[:standard])
     @select = Standard.sort_it current_user.standards
-    @arr = Standard.find_numbers(current_user)
+    @arr = current_user.standards.root_numbers
     if @standard.save
       redirect_to standard_path(@standard.link), flash: { success: "Успешно добавлен раздел" }
     else
@@ -27,14 +27,14 @@ class StandardsController < ApplicationController
     @standard = current_user.standards.find_by_link(params[:id])
     @select = Standard.sort_it current_user.standards
     @select.delete(@standard)
-    @arr = (Standard.find_numbers(@standard.parent ? @standard.parent_id : current_user) << @standard.number).sort
+    @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
   end
 
   def update
     @standard = current_user.standards.find_by_link(params[:id])
     @select = Standard.sort_it current_user.standards
     @select.delete(@standard)
-    @arr = (Standard.find_numbers(@standard.parent ? @standard.parent_id : current_user) << @standard.number).sort
+    @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
       redirect_to standard_path(@standard.link), flash: { success: "Раздел успешно обновлён" }
     else
@@ -48,12 +48,13 @@ class StandardsController < ApplicationController
   end
 
   def destroy
-    current_user.standards.find_by_link(params[:id]).destroy
+    standard = current_user.standards.find_by_link(params[:id])
+    standard.destroy
     redirect_to standards_path, notice: "Раздел успешно удалён"
   end
 
   def number_selection
-    @arr = params[:value].blank? ? Standard.find_numbers(current_user) : Standard.find_numbers(params[:value])
+    @arr = params[:value].blank? ? current_user.standards.root_numbers : Standard.find(params[:value]).node_numbers
     if (params[:native_id])
       if (params[:value].to_i.eql?(Standard.find(params[:native_id]).parent_id))
         @arr = (@arr << Standard.find(params[:native_id]).number).sort

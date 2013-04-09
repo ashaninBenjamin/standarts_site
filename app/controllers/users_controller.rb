@@ -1,17 +1,17 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :destroy]
+  before_filter :authenticate, :only => [:show, :edit, :update, :destroy]
 
   def new
-    @user = User.new
+    @user = UserType.new
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = UserType.new(params[:user])
     @user.role = Role.admin_role
     if @user.save
-      set_temp_user @user
-      redirect_to new_user_user_info_path, flash: {success: "Учётная запись зарегистрирована"}
+      sign_in @user
+      redirect_to new_user_profile_path, flash: {success: "Учётная запись зарегистрирована"}
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = UserType.find(current_user)
     if @user.update_attributes(params[:user])
       redirect_to edit_user_path, flash: {success: "Изменения вступили в силу"}
     else

@@ -6,18 +6,6 @@ module SessionHelper
     self.current_user = user
   end
 
-  def set_temp_user(user)
-    cookies.signed[:temp] = [user.id, user.salt]
-  end
-
-  def get_temp_user
-    User.authenticate_with_salt(*temp_info)
-  end
-
-  def clear_temp_user
-    cookies.delete(:temp)
-  end
-
   def current_user=(user)
     @current_user = user
   end
@@ -27,7 +15,7 @@ module SessionHelper
   end
 
   def signed_in?
-    !current_user.nil?
+    !current_user.nil? && current_user.correct?
   end
 
   def sign_out
@@ -37,7 +25,11 @@ module SessionHelper
 
   def deny_access
     store_location
-    redirect_to login_path, :notice => "Пожалуйста, авторизируйтесь"
+    if current_user.nil?
+      redirect_to login_path, :notice => "Пожалуйста, авторизируйтесь"
+    elsif !current_user.correct?
+      redirect_to (current_user.profile) ? new_user_company_path : new_user_profile_path, flash: {error: "Пройдите регистрацию до конца!"}
+    end
   end
 
   def redirect_back_or(default)

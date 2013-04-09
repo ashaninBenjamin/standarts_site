@@ -7,16 +7,15 @@ class StandardTest < ActiveSupport::TestCase
     @children = create :standard, user: @user, parent: @standard
   end
 
-  test "find_numbers_by_user" do
-    assert (Standard.find_numbers(@user) == [2])
+  test "find_root_numbers" do
+    assert (@user.standards.root_numbers == [2])
   end
 
-  test "find_numbers_by_parent" do
-    assert (Standard.find_numbers(@standard) == [2])
+  test "find_standard_node_numbers" do
+    assert (@standard.node_numbers == [2])
   end
 
-  test "find_number_by_children" do
-    assert (Standard.find_numbers(@children) == [1])
+  test "find_child_node_numbers" do
+    assert (@children.node_numbers == [1])
   end
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405094750) do
+ActiveRecord::Schema.define(:version => 20130408110709) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(:version => 20130405094750) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "elements", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "ancestry"
+  end
+
+  add_index "elements", ["ancestry"], :name => "index_elements_on_ancestry"
+
   create_table "helps", :force => true do |t|
     t.string  "name"
     t.text    "content"
@@ -56,6 +65,16 @@ ActiveRecord::Schema.define(:version => 20130405094750) do
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "surname"
+    t.string   "name"
+    t.string   "patronymic"
+    t.string   "mail"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "avatar"
   end
 
   create_table "roles", :force => true do |t|
@@ -87,31 +106,23 @@ ActiveRecord::Schema.define(:version => 20130405094750) do
     t.integer "number"
     t.string  "name"
     t.text    "content"
-    t.integer "parent_id"
     t.integer "user_id"
     t.string  "show_number"
     t.string  "turn_on"
+    t.string  "ancestry"
   end
 
-  create_table "user_infos", :force => true do |t|
-    t.string   "surname"
-    t.string   "name"
-    t.string   "patronymic"
-    t.string   "mail"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "avatar"
-  end
+  add_index "standards", ["ancestry"], :name => "index_standards_on_ancestry"
 
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "en_password"
     t.string   "salt"
-    t.integer  "user_info_id"
+    t.integer  "profile_id"
     t.integer  "role_id"
     t.integer  "company_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

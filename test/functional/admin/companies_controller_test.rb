@@ -21,5 +21,6 @@ class Admin::CompaniesControllerTest < ActionController::TestCase
   test "should delete destroy" do
     delete :destroy, @params
     assert_response :redirect
+    assert !Company.exists?(@company)
   end
 end

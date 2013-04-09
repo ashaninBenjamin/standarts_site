@@ -20,16 +20,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'factory_girl_rails'
-end
-
 group :test do
   gem 'simplecov', require: false
   gem 'coveralls', require: false
   gem 'tconsole'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
+
+gem 'ancestry'
 
 gem "ckeditor"
 gem "fog", "~> 1.3.1"

@@ -1,18 +1,15 @@
 #coding: utf-8
 class CompaniesController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:edit, :update, :show]
 
   def new
     @company = Company.new
   end
 
   def create
-    @company = Company.new(params[:company])
-    user = get_temp_user
+    @company = current_user.build_company(params[:company])
     if @company.save
-      user.update_attribute(:company_id, @company.id)
-      sign_in user
-      clear_temp_user
+      current_user.save
       redirect_to standards_path, flash: {success: "Успешно добавлена информация о компании. Регистрация прошла успешно!"}
     else
       render "new"
@@ -34,9 +31,6 @@ class CompaniesController < ApplicationController
 
   def show
     @company = current_user.company
-  end
-
-  def destroy
   end
 
   private

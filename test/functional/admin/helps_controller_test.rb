@@ -38,10 +38,13 @@ class Admin::HelpsControllerTest < ActionController::TestCase
     @params[:help] = attributes_for(:help)
     put :update, @params
     assert_response :redirect
+    help = Help.find(@params[:id])
+    assert help
   end
 
   test "should delete destroy" do
     delete :destroy, @params
     assert_response :redirect
+    assert !Help.exists?(@help)
   end
 end

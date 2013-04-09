@@ -41,11 +41,14 @@ class StandardsControllerTest < ActionController::TestCase
     @params[:standard] = attributes_for(:standard)
     put :update, @params
     assert_response :redirect
+    standard = Standard.find_by_link(@params[:id])
+    assert standard
   end
 
   test "should delete destroy" do
     delete :destroy, @params
     assert_response :redirect
+    assert !Standard.exists?(@standard)
   end
 
   test "should get number_secetion" do

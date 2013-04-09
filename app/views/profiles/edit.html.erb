@@ -1,0 +1,43 @@
+<h2>Редактирование информации о пользователе</h2>
+<%= form_for @profile, url: user_profile_path, html: {multipart: true} do |f| %>
+    <%= render 'layouts/error_message', :obj => f.object %>
+    <div class="field">
+      <%= f.label :surname %>
+      <%= f.text_field :surname %>
+    </div>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :patronymic %>
+      <%= f.text_field :patronymic %>
+    </div>
+    <div class="field">
+      <%= f.label :mail %>
+      <%= f.text_field :mail %>
+    </div>
+    <div class="field">
+      <%= f.label :avatar %>
+      <%= image_tag(@profile.avatar.medium.url, id: "photo") %>
+      <br>
+      <%= f.file_field :avatar, :accept => 'image/jpeg,image/gif,image/png' %>
+      <%= f.hidden_field :avatar_cache %>
+    </div>
+    <% if @profile.avatar? %>
+        <div class="field">
+          <label>
+            <%= f.check_box :remove_avatar %> Удалить фотографию
+          </label>
+        </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit :class => "btn" %>
+    </div>
+<% end %>
+
+<% content_for :submenu do %>
+    <li><%= link_to "Логин и пароль", edit_user_path %></li>
+    <li><%= link_to "Информация о пользователе", edit_user_profile_path %></li>
+    <li><%= link_to "Информация о компании", edit_user_company_path %></li>
+<% end %>

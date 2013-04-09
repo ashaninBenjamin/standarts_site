@@ -4,7 +4,7 @@ class Company < ActiveRecord::Base
   mount_uploader :logo, LogoUploader
 
   has_one :user
-  has_one :user_info, :through => :user
+  has_one :profile, :through => :user
 
   validates :opf, presence: true
   validates :name, presence: true

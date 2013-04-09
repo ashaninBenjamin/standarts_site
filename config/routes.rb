@@ -9,12 +9,12 @@ RoR::Application.routes.draw do
     end
   end
   resource :user do
-    resource :user_info, :company, except: [:destroy]
+    resource :profile, :company, only: [:show, :new, :create, :edit, :update]
   end
 
   namespace :admin do
     resources :users, only: [:index, :show, :destroy]
-    resources :user_infos, :companies, only: [:index, :show, :destroy]
+    resources :profiles, :companies, only: [:index, :show, :destroy]
     resources :session_histories, only: [:index, :destroy]
     resources :helps
     resources :news

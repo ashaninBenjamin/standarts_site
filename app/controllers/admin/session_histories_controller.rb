@@ -1,9 +1,8 @@
 #coding: utf-8
-class Admin::SessionHistoriesController < ApplicationController
-  before_filter :authenticate, :have_access
+class Admin::SessionHistoriesController < Admin::ApplicationController
 
   def index
-    @all = SessionHistory.sorted
+    @session_histories = SessionHistory.sorted
   end
 
   def destroy
@@ -11,12 +10,4 @@ class Admin::SessionHistoriesController < ApplicationController
     redirect_to admin_session_histories_path, :notice => "Запись удалена"
   end
 
-  private
-  def authenticate
-    deny_access unless signed_in?
-  end
-
-  def have_access
-    redirect_to root_path unless current_user.super_admin?
-  end
 end

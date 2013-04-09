@@ -1,8 +1,8 @@
 <h2>Стандарты</h2>
-<% if @all.any? %>
+<% if @standards.any? %>
     <ul class="standard-list">
-      <% @all.each do |one| %>
-          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)), :style => "margin-left:#{one.level * 20}px;" %>
+      <% @standards.each do |one| %>
+          <%= content_tag :li, (link_to one.code_with_name, standard_path(one.link)), :style => "margin-left:#{one.depth * 20}px;" %>
       <% end %>
     </ul>
 <% else %>
