@@ -44,7 +44,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $(".error, .alert, .notice, .success, .info").delay(1500).animate({
+    $("div.error, div.alert, div.notice, div.success, div.info").delay(1500).animate({
         opacity:0.15
     }, 1200).slideToggle();
 });

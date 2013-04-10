@@ -1,30 +1,15 @@
 <h2>Редактирование информации о компании</h2>
-<%= form_for @company, url: user_company_path, html: { multipart: true } do |f| %>
+<%= simple_form_for @company, url: user_company_path, html: {multipart: true} do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
-    <div class="field">
-      <%= f.label :opf %>
-      <%= f.text_field :opf %>
-    </div>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :logo %>
-      <%= image_tag @company.logo.medium.url %><br>
-      <%= f.file_field :logo, :accept => 'image/jpeg,image/gif,image/png' %>
-      <%= f.hidden_field :logo_cache %>
-    </div>
-    <% if @company.logo? %>
-        <div class="field">
-          <label>
-            <%= f.check_box :remove_logo %> Удалить фотографию
-          </label>
-        </div>
+    <%= f.input :opf %>
+    <%= f.input :name %>
+    <%= f.input :logo do %>
+        <%= image_tag @company.logo.medium.url %><br>
+        <%= f.input_field :logo %>
     <% end %>
-    <div class="actions">
-      <%= f.submit :class => "btn" %>
-    </div>
+    <%= f.input :logo_cache, as: :hidden %>
+    <%= f.input :remove_logo, as: :boolean, label: "Удалить фотографию" if @company.logo? %><br>
+    <%= f.submit class: "btn" %>
 <% end %>
 
 <% content_for :submenu do %>

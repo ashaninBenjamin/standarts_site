@@ -1,0 +1,12 @@
+%h2 Создание нового раздела
+= simple_form_for @standard do |f|
+  = render 'layouts/error_message', :obj => f.object
+  = f.input :name
+  = f.input :parent_id, collection: @select.collect {|p| [ p.for_select, p.id ] }, include_blank: 'Не принадлежит'
+  #number
+    = render :partial => "standards/number_selection", :locals => {:obj => @standard }
+  = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
+  %br/
+  = f.submit class: "btn"
+- content_for :left do
+  = link_to "К списку всех стандартов", standards_path

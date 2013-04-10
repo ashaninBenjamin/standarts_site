@@ -27,8 +27,9 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+gem 'haml-rails'
 gem 'ancestry'
-
+gem 'simple_form'
 gem "ckeditor"
 gem "fog", "~> 1.3.1"
 gem 'mini_magick'

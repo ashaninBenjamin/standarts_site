@@ -11,10 +11,17 @@
  *= require_self
  *= require_tree .
 */
-.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
-.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
-.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
-.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+div.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+div.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
+div.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+div.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+
+span.error { padding-left: 10px; }
+
+div#native_id {
+    position: absolute;
+    visibility: hidden;
+}
 
 .main-menu {
     display: inline-block;

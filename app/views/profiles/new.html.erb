@@ -1,30 +1,13 @@
 <h2>Создание информации о пользователе</h2>
 <p><text style="color: red;">Пожалуйста, завершите регистрацию.</text> Шаг 2/3</p>
-<%= form_for @profile, url: user_profile_path, :html => { :multipart => true } do |f| %>
+<%= simple_form_for @profile, url: user_profile_path, :html => { :multipart => true } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
-    <div class="field">
-      <%= f.label :surname %>
-      <%= f.text_field :surname %>
-    </div>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :patronymic %>
-      <%= f.text_field :patronymic %>
-    </div>
-    <div class="field">
-      <%= f.label :mail %>
-      <%= f.text_field :mail %>
-    </div>
-    <div class="field">
-      <%= f.label :avatar %>
-      <%= f.file_field :avatar, :accept => 'image/jpeg,image/gif,image/png' %>
-      <%= f.hidden_field :avatar_cache %>
-    </div>
-    <div class="actions">
-      <%= f.submit :class => "btn btn-success" %>
-    </div>
+    <%= f.input :surname %>
+    <%= f.input :name %>
+    <%= f.input :patronymic %>
+    <%= f.input :mail, as: :email %>
+    <%= f.input :avatar %>
+    <%= f.input :avatar_cache, as: :hidden %>
+    <%= f.submit class: "btn" %>
 <% end %>
 

@@ -1,16 +1,8 @@
 <h1>Авторизация</h1>
-<%= form_for :session, :url => signin_post_url do |f| %>
-    <div class="field">
-      <%= f.label "Ваш логин" %>
-      <%= f.text_field :login %>
-    </div>
-    <div class="field">
-      <%= f.label "Ваш пароль" %>
-      <%= f.password_field :password %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Войти", :class => "btn btn-success" %>
-    </div>
+<%= simple_form_for :session, :url => signin_post_url do |f| %>
+    <%= f.input :login, label: "Логин" %>
+    <%= f.input :password, label: "Пароль" %>
+    <%= f.submit "Войти", class: "btn btn-success" %>
 <% end %>
 
 <p>Создать нового пользователя? <%= link_to "Зарегистрироваться!", new_user_path %></p>

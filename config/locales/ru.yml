@@ -258,8 +258,11 @@ ru:
   activerecord:
     models:
       user: Пользователь
-      user_info: Информация о пользователе
+      profile: Информация о пользователе
     attributes:
+      session:
+        login: Логин
+        password: Пароль
       user:
         login: Логин
         password: Пароль
@@ -296,7 +299,7 @@ ru:
             login:
               blank: не может быть пустым
               invalid: может содержать только цифры и латинские символы
-        user_info:
+        profile:
           attributes:
             surname:
               blank: не заполнена

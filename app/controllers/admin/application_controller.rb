@@ -1,4 +1,4 @@
-class Admin::ApplicationController < ActionController::Base
+class Admin::ApplicationController < ApplicationController
   before_filter :correct_user
   before_filter :authenticate
   include SessionHelper

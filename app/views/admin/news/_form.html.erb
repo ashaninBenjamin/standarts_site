@@ -1,14 +1,6 @@
-<%= form_for @news, url: url do |f| %>
-    <%= render 'layouts/error_message', :obj => f.object %>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :content %>
-      <%= f.cktext_area :content, ckeditor: {toolbar: "My"} %>
-    </div>
-    <div class="actions">
-      <%= f.submit :class => "btn" %>
-    </div>
+<%= simple_form_for @news, url: url do |f| %>
+    <%= render "layouts/error_message", obj: f.object %>
+    <%= f.input :title %>
+    <%= f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} } %> <br>
+    <%= f.submit class: "btn" %>
 <% end %>

@@ -1,21 +1,10 @@
 <h2>Добавление информации о компании</h2>
 <p><text style="color: red;">Пожалуйста, завершите регистрацию.</text> Шаг 3/3</p>
-<%= form_for @company, url: {action: :create}, :html => { :multipart => true } do |f| %>
+<%= simple_form_for @company, url: {action: :create}, :html => { :multipart => true } do |f| %>
     <%= render 'layouts/error_message', :obj => f.object %>
-    <div class="field">
-      <%= f.label :opf %>
-      <%= f.text_field :opf %>
-    </div>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :logo %>
-      <%= f.file_field :logo, :accept => 'image/jpeg,image/gif,image/png' %>
-      <%= f.hidden_field :logo_cache %>
-    </div>
-    <div class="actions">
-      <%= f.submit :class => "btn btn-success" %>
-    </div>
+    <%= f.input :opf %>
+    <%= f.input :name %>
+    <%= f.input :logo %>
+    <%= f.input :logo_cache, as: :hidden %>
+    <%= f.submit class: "btn" %>
 <% end %>

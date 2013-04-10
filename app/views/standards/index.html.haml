@@ -1,0 +1,13 @@
+%h2 Стандарты
+- if @standards.any?
+  %ul.standard-list
+    - @standards.each do |one|
+      %li= link_to one.code_with_name, standard_path(one.link), style: "margin-left:#{one.depth * 20}px;"
+- else
+  Стандартов ещё нет, #{link_to "создать?", new_standard_path}
+  - if !current_user.super_admin?
+    Или #{link_to "принять шаблон?", take_pattern_standards_path}
+- content_for :submenu do
+  %li= link_to "Новый стандарт", new_standard_path
+  - if !current_user.super_admin?
+    %li= link_to "Принять шаблон", take_pattern_standards_path, data: {confirm: "Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?"}
