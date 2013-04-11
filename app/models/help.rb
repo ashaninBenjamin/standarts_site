@@ -7,7 +7,7 @@ class Help < ActiveRecord::Base
   validates :name, presence: true
   validates :content, presence: true
 
-  scope :sorted, order: :number
+  scope :sorted, -> { order(:number) }
 
   def number_with_name
     "#{number}. #{name}"

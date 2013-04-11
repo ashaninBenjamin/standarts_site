@@ -14,7 +14,7 @@
       - @profiles.each do |one|
         %tr
           %td{:style => "text-align: center;"}= image_tag one.avatar.url(:thumb)
-          %td= link_to one.fi, admin_profile_path(one)
+          %td= link_to one.first_and_last_name, admin_profile_path(one)
           %td= (one.company) ? (link_to one.company.opf_and_name, admin_company_path(one.company)) : "Данные повреждены"
           %td= (one.created_at) ? one.created_at.strftime("%d.%m.%Y %T") : "Нет данных"
           %td= link_to "Удалить", (one.user) ? admin_user_path(one.user) : admin_profile_path(one), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger"

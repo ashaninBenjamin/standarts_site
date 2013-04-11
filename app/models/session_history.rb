@@ -3,6 +3,6 @@ class SessionHistory < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :sorted, order: "updated_at DESC"
+  scope :sorted, -> { order("updated_at DESC") }
 
 end

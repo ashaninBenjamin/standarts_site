@@ -4,6 +4,6 @@ class News < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
 
-  scope :sorted, order: ('created_at DESC')
+  scope :sorted, -> { order('created_at DESC') }
 
 end

@@ -15,7 +15,7 @@
         %tr
           %td{:style => "text-align: center;"}= image_tag one.logo.url(:medium), :style => "width:100px"
           %td= link_to one.opf_and_name, admin_company_path(one)
-          %td= (one.profile) ? (link_to one.profile.fi, admin_profile_path(one.profile)) : "Данные повреждены"
+          %td= (one.profile) ? (link_to one.profile.first_and_last_name, admin_profile_path(one.profile)) : "Данные повреждены"
           %td= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных"
           %td= (link_to "Удалить", admin_company_path(one), method: :delete, class: "btn btn-danger") if !one.user
 
