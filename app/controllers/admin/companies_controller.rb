@@ -3,7 +3,7 @@ class Admin::CompaniesController < Admin::ApplicationController
   # GET /admin/companies
   # GET /admin/companies.json
   def index
-    @q = Company.search(params[:q])
+    @q = Company.ransack(params[:q])
     @companies = @q.result
 
     respond_to do |format|

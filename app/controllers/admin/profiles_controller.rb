@@ -3,7 +3,7 @@ class Admin::ProfilesController < Admin::ApplicationController
   # GET /admin/user_infos
   # GET /admin/user_infos.json
   def index
-    @q = Profile.search(params[:q])
+    @q = Profile.ransack(params[:q])
     @profiles = @q.result
 
     respond_to do |format|
