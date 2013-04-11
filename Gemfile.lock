@@ -31,6 +31,7 @@ GEM
     ancestry (1.3.0)
       activerecord (>= 2.3.14)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     builder (3.0.4)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
@@ -183,6 +184,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  bcrypt-ruby (~> 3.0.0)
   carrierwave
   ckeditor
   coffee-rails (~> 3.2.1)

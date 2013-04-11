@@ -12,10 +12,10 @@ class Standard < ActiveRecord::Base
 
   before_update :check_content
 
-  scope :all_by_super_admin, scoped_by_user_id(User.super_admin)
+  scope :all_by_super_admin, scoped_by_user_id(User.super_admins.first)
 
-  def self.sort_it(it)
-    it.sort_by { |a| a.code.split('.').map &:to_i }
+  def self.sort_standards_by_code(standards)
+    standards.sort_by { |a| a.code.split('.').map &:to_i }
   end
 
   def node_numbers

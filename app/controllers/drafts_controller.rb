@@ -1,7 +1,8 @@
 #coding: utf-8
 class DraftsController < ApplicationController
   before_filter :authenticate
-  before_filter :correct_user, only: [:show, :edit, :update, :destroy]
+  before_filter :correct_user
+  before_filter :user_with_access, only: [:show, :edit, :update, :destroy]
   # GET /dafts
   # GET /dafts.json
   def index
@@ -96,11 +97,8 @@ class DraftsController < ApplicationController
   end
 
   private
-  def authenticate
-    deny_access unless signed_in?
-  end
 
-  def correct_user
+  def user_with_access
     draft = Draft.find(params[:id])
     redirect_to drafts_path unless current_user?(draft.user)
   end

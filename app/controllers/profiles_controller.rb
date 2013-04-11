@@ -33,8 +33,4 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
   end
 
-  private
-  def authenticate
-    deny_access unless signed_in?
-  end
 end

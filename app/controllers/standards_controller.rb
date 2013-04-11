@@ -1,23 +1,24 @@
 # coding: utf-8
 class StandardsController < ApplicationController
   before_filter :authenticate
+  before_filter :correct_user
 
   def index
-    @standards = Standard.sort_it current_user.standards
+    @standards = Standard.sort_standards_by_code current_user.standards
   end
 
   def new
     @standard = Standard.new
-    @select = Standard.sort_it current_user.standards
+    @select = Standard.sort_standards_by_code current_user.standards
     @arr = current_user.standards.root_numbers
   end
 
   def create
     @standard = current_user.standards.build(params[:standard])
-    @select = Standard.sort_it current_user.standards
+    @select = Standard.sort_standards_by_code current_user.standards
     @arr = current_user.standards.root_numbers
     if @standard.save
-      redirect_to standard_path(@standard.link), flash: { success: "Успешно добавлен раздел" }
+      redirect_to standard_path(@standard.link), flash: {success: "Успешно добавлен раздел"}
     else
       render "new"
     end
@@ -25,18 +26,18 @@ class StandardsController < ApplicationController
 
   def edit
     @standard = current_user.standards.find_by_link(params[:id])
-    @select = Standard.sort_it current_user.standards
+    @select = Standard.sort_standards_by_code current_user.standards
     @select.delete(@standard)
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
   end
 
   def update
     @standard = current_user.standards.find_by_link(params[:id])
-    @select = Standard.sort_it current_user.standards
+    @select = Standard.sort_standards_by_code current_user.standards
     @select.delete(@standard)
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
-      redirect_to standard_path(@standard.link), flash: { success: "Раздел успешно обновлён" }
+      redirect_to standard_path(@standard.link), flash: {success: "Раздел успешно обновлён"}
     else
       render "edit"
     end
@@ -44,7 +45,7 @@ class StandardsController < ApplicationController
 
   def show
     @standard = current_user.standards.find_by_link(params[:id])
-    @children = Standard.sort_it @standard.children
+    @children = Standard.sort_standards_by_code @standard.children
   end
 
   def destroy
@@ -60,7 +61,7 @@ class StandardsController < ApplicationController
         @arr = (@arr << Standard.find(params[:native_id]).number).sort
       end
     end
-    render :partial => "standards/number_selection", :locals => {:obj => Standard.new }
+    render :partial => "standards/number_selection", :locals => {:obj => Standard.new}
   end
 
   def take_pattern
@@ -82,11 +83,7 @@ class StandardsController < ApplicationController
         one.update_attributes(parent_id: dict[one.parent_id])
       end
     end
-    redirect_to standards_path, flash: { success: "Шаблон принят" }
+    redirect_to standards_path, flash: {success: "Шаблон принят"}
   end
 
-  private
-  def authenticate
-    deny_access unless signed_in?
-  end
 end

@@ -3,12 +3,15 @@ class Role < ActiveRecord::Base
 
   has_many :users
 
-  def self.super_role
-    self.find_by_name("super")
+  scope :super_roles, -> { where(name: "super") }
+  scope :admin_roles, -> { where(name: "admin") }
+
+  def super_role?
+    name.eql? "super"
   end
 
-  def self.admin_role
-    self.find_by_name("admin")
+  def admin_role?
+    name.eql? "admin"
   end
 
 end

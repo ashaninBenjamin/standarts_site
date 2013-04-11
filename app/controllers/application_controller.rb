@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionHelper
 
   private
+
   def update_session_history
     if signed_in?
       @history = SessionHistory.find_by_user_id_and_ip(current_user, request.remote_ip)
@@ -13,5 +14,13 @@ class ApplicationController < ActionController::Base
         @history.update_attribute(:page, request.fullpath) unless request.fullpath.eql?("/logout")
       end
     end
+  end
+
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+  def correct_user
+    finish_sign_up if !current_user.correct?
   end
 end

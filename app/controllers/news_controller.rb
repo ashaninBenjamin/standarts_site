@@ -1,7 +1,6 @@
 #coding: utf-8
 class NewsController < ApplicationController
-  before_filter :authenticate
-  before_filter :correct_user
+  before_filter :super_admin
   # GET /news
   # GET /news.json
   def index
@@ -25,11 +24,9 @@ class NewsController < ApplicationController
   end
 
   private
-  def authenticate
-    deny_access unless signed_in?
-  end
 
-  def correct_user
+  def super_admin
     redirect_to admin_news_index_path if current_user.super_admin?
   end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408110709) do
+ActiveRecord::Schema.define(:version => 20130411125319) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -116,13 +116,12 @@ ActiveRecord::Schema.define(:version => 20130408110709) do
 
   create_table "users", :force => true do |t|
     t.string   "login"
-    t.string   "en_password"
-    t.string   "salt"
     t.integer  "profile_id"
     t.integer  "role_id"
     t.integer  "company_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "password_digest"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

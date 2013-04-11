@@ -20,13 +20,11 @@ RoR::Application.routes.draw do
     resources :news
   end
 
-  post "/login", :to => 'session#create', as: :signin_post
-  match '/login', :to => 'session#new'
-  match '/logout', :to => 'session#destroy'
+  resource :session, only: [:new, :create, :destroy]
 
   match "helper/number_selection" => "standards#number_selection"
 
-  root to: 'session#new'
+  root to: 'sessions#new'
 
   mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation:

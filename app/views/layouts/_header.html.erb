@@ -31,7 +31,7 @@
     <div class="first-line">
       <%= image_tag current_user.profile.avatar.thumb.url %>
       <%= link_to current_user.profile.fi, user_profile_path %>&nbsp; &nbsp;&nbsp;
-      <%= link_to image_tag("logout-icon.png", :size => "30x30", :title => "Выйти"), logout_path %>
+      <%= link_to image_tag("logout-icon.png", :size => "30x30", :title => "Выйти"), session_path, method: :delete %>
     </div>
     <div class="second-line"> <%= link_to "Настройка", edit_user_path %> </div>
   </div>

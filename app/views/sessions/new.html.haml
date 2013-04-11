@@ -1,0 +1,7 @@
+%h1 Авторизация
+= simple_form_for @type, url: session_path do |f|
+  = f.input :login, label: "Логин"
+  = f.input :password, label: "Пароль"
+  = f.submit "Войти", class: "btn btn-success"
+
+%p Создать нового пользователя #{link_to "Зарегистрироваться!", new_user_path}
