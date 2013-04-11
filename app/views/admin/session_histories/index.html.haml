@@ -1,0 +1,23 @@
+%h2 История сессий пользователями
+- if @session_histories.blank?
+  %em Нет информации
+- else
+  %table.table.table-bordered
+    %thead
+      %tr
+        %td Пользователь
+        %td= sort_link @q, :page, 'Последняя страница'
+        %td= sort_link @q, :ip, 'Ip-адрес'
+        %td= sort_link @q, :updated_at, 'Время'
+        %td Действия
+    %tbody
+      - @session_histories.each do |one|
+        %tr
+          %td= link_to one.user.login, admin_user_path(one.user)
+          %td= one.page
+          %td= one.ip
+          %td= (one.updated_at) ? one.updated_at.strftime("%T %d.%m.%Y ") : "Нет данных"
+          %td= link_to "Удалить", admin_session_history_path(one), method: :delete, class: "btn btn-danger"
+
+
+- render "layouts/admin_left_column"

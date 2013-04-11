@@ -1,0 +1,7 @@
+%h2 Информация о компании
+
+= image_tag @company.logo.url
+%p ОПФ: #{@company.opf}
+%p Название: #{@company.name }
+
+- render "layouts/admin_left_column"

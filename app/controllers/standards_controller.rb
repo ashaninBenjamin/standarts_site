@@ -64,9 +64,8 @@ class StandardsController < ApplicationController
   end
 
   def take_pattern
-    #удаление всего до этого
-    to_delete = current_user.standards
-    to_delete.each { |one| one.destroy }
+    old = current_user.standards
+    old.destroy_all
     #запись нового
     dict = Hash.new
     pattern = Standard.all_by_super_admin
@@ -79,8 +78,8 @@ class StandardsController < ApplicationController
     #сопоставление всех родительских айдишек
     own = current_user.standards
     own.each do |one|
-      if one.parent_id
-        one.update_attribute(:parent_id, dict[one.parent_id])
+      if one.parent
+        one.update_attributes(parent_id: dict[one.parent_id])
       end
     end
     redirect_to standards_path, flash: { success: "Шаблон принят" }

@@ -1,0 +1,10 @@
+%h2 Информация о пользователе
+
+%p= image_tag @profile.avatar.url
+%p Фамилия: #{@profile.surname}
+%p Имя: #{@profile.name}
+%p Отчество: #{@profile.patronymic}
+%p Эл. почта: #{@profile.mail}
+
+- render "layouts/admin_left_column"
+

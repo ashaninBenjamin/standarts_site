@@ -27,6 +27,7 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+gem 'ransack'
 gem 'haml-rails'
 gem 'ancestry'
 gem 'simple_form'

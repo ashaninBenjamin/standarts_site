@@ -3,7 +3,8 @@ class Admin::ProfilesController < Admin::ApplicationController
   # GET /admin/user_infos
   # GET /admin/user_infos.json
   def index
-    @profiles = Profile.scoped
+    @q = Profile.search(params[:q])
+    @profiles = @q.result
 
     respond_to do |format|
       format.html # index.html.erb

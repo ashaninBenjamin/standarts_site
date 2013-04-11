@@ -3,7 +3,8 @@ class Admin::CompaniesController < Admin::ApplicationController
   # GET /admin/companies
   # GET /admin/companies.json
   def index
-    @companies = Company.scoped
+    @q = Company.search(params[:q])
+    @companies = @q.result
 
     respond_to do |format|
       format.html # index.html.erb

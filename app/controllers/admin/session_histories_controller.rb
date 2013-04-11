@@ -2,7 +2,8 @@
 class Admin::SessionHistoriesController < Admin::ApplicationController
 
   def index
-    @session_histories = SessionHistory.sorted
+    @q = SessionHistory.sorted.ransack(params[:q])
+    @session_histories = @q.result(distinct: true)
   end
 
   def destroy
