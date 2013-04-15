@@ -5,11 +5,11 @@ module SessionHelper
   end
 
   def sign_out
-    session[:user_id] = nil
+    reset_session
   end
 
   def signed_in?
-    current_user
+    current_user.present?
   end
 
   def current_user
