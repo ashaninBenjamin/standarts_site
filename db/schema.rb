@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411125319) do
+ActiveRecord::Schema.define(:version => 20130415074911) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -44,15 +44,6 @@ ActiveRecord::Schema.define(:version => 20130411125319) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "elements", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "ancestry"
-  end
-
-  add_index "elements", ["ancestry"], :name => "index_elements_on_ancestry"
 
   create_table "helps", :force => true do |t|
     t.string  "name"
@@ -107,9 +98,9 @@ ActiveRecord::Schema.define(:version => 20130411125319) do
     t.string  "name"
     t.text    "content"
     t.integer "user_id"
-    t.string  "show_number"
-    t.string  "turn_on"
     t.string  "ancestry"
+    t.string  "state"
+    t.string  "access_state"
   end
 
   add_index "standards", ["ancestry"], :name => "index_standards_on_ancestry"

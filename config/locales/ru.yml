@@ -282,6 +282,8 @@ ru:
         content: Содержание
         parent_id: Родительский раздел
         number: Номер
+        access_state: Доступ
+        state: Состояние
       help:
         number: Номер
         name: Название
