@@ -11,3 +11,11 @@
   %li= link_to "Новый стандарт", new_standard_path
   - if !current_user.super_admin?
     %li= link_to "Принять шаблон", take_pattern_standards_path, data: {confirm: "Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?"}
+
+- content_for :left do
+  = search_form_for @q do |f|
+    = f.select :state_cont, [['Стандарты', "standard"], ['Черновики', "draft"]], include_blank: "Все"
+    = f.select :access_state_cont, [['Только для меня', "private"], ['Публичный', "public"], ['Для администратора', "super_admin"]], include_blank: "Все"
+    #form-inline
+      = f.submit "Поиск", name: nil, class: "btn"
+      = f.submit "Очистить", name: nil, class: "btn", id: "q_reset"

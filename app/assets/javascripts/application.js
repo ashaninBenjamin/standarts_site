@@ -67,3 +67,10 @@ $(document).on("change", "#standard_parent_id", function () {
         }
     })
 });
+
+$(function () {
+    $("#q_reset").click(function() {
+        $("#q_state_cont, #q_access_state_cont").val("");
+
+    });
+});

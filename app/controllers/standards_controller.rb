@@ -4,7 +4,8 @@ class StandardsController < ApplicationController
   before_filter :correct_user
 
   def index
-    @standards = Standard.sort_standards_by_code current_user.standards
+    @q = Standard.ransack(params[:q])
+    @standards = Standard.sort_standards_by_code @q.result(distinct: true)
   end
 
   def new
