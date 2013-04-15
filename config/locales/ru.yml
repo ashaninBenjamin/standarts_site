@@ -301,6 +301,7 @@ ru:
             login:
               blank: не может быть пустым
               invalid: может содержать только цифры и латинские символы
+              user_or_password_invalid: Неверный логин или пароль
         profile:
           attributes:
             surname:
