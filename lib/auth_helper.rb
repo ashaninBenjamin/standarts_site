@@ -1,5 +1,5 @@
 # coding: utf-8
-module SessionHelper
+module AuthHelper
   def sign_in(user)
     session[:user_id] = user.id
   end

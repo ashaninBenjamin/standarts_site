@@ -9,16 +9,16 @@ class Standard < ActiveRecord::Base
   validates :number, presence: true
   validates :user, presence: true
 
-  state_machine :state, initial: :standard do
-    state :standard
-    state :draft
+  state_machine :state, initial: :draft do
+    state :published
+    state :refrained
 
-    event :draft do
-      transition :standard => :draft
+    event :keep do
+      transition :published => :refrained
     end
 
-    event :standard do
-      transition :draft => :standard
+    event :publish do
+      transition :refrained => :published
     end
 
   end
@@ -26,29 +26,19 @@ class Standard < ActiveRecord::Base
   state_machine :access_state, initial: :private do
     state :private
     state :public
-    state :super_admin
 
-    event :private do
+    event :hide do
       transition all => :private
     end
 
-    event :public do
+    event :show do
       transition all => :public
-    end
-
-    event :super_admin do
-      transition all => :super_admin
     end
   end
 
   before_update :check_content
 
   scope :all_by_super_admin, scoped_by_user_id(User.super_admins)
-  scope :private_access, -> { where access_state: :private }
-  scope :public_access, -> { where access_state: :public }
-  scope :super_admin_access, -> { where access_state: :super_admin }
-  scope :drafts, -> { where state: :draft }
-  scope :standards, -> { where state: :standard }
 
   def self.sort_standards_by_code(standards)
     standards.sort_by { |a| a.code.split('.').map &:to_i }

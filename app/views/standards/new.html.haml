@@ -8,9 +8,9 @@
   = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
   %br/
   = f.input :state, as: :check_boxes, label: false, wrapper: :inline_checkbox do
-    = f.check_box :state, {}, "draft", "standard"
+    = f.check_box :state, {}, "refrained", "published"
     = f.label "Черновик"
-  = f.input :access_state, as: :radio_buttons, collection: [['Виден только мне', "private"], ['Виден всем пользователям', "public"], ['Только администратору', "super_admin"]]
+  = f.input :access_state, as: :radio_buttons, collection: [['Виден только мне', "private"], ['Виден всем пользователям', "public"]]
   = f.submit class: "btn"
 - content_for :left do
   = link_to "К списку всех стандартов", standards_path

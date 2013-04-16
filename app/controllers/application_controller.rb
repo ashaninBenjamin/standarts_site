@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :update_session_history
   protect_from_forgery
-  include SessionHelper
+  include AuthHelper
 
   private
 
