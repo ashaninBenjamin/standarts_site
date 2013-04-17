@@ -310,3 +310,18 @@ ru:
               blank: не заполнено
             mail:
               blank: не заполнена
+  layouts:
+    header:
+      standards: Стандарты
+      help: Помощь
+      news: Новости
+      admin_room: Админка
+      settings: Настройки
+      logout: Выйти
+  admin:
+    news:
+      index:
+        add_news: Добавить новость
+        header: Новости
+        no_one_news: Нет новостей.
+        create: Создать?

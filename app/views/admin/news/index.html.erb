@@ -1,4 +1,4 @@
-<p class="h" style="margin-bottom: 20px;">Новости</p>
+<p class="h" style="margin-bottom: 20px;"><%= t(".header") %></p>
 <% if @news.any? %>
     <table class="table">
       <% @news.each do |one| %>
@@ -15,9 +15,9 @@
       <% end %>
     </table>
 <% else %>
-    Нет новостей. <%= link_to "Создать?", new_admin_news_path %>
+    <%= t(".no_one_news") %> <%= link_to t(".create"), new_admin_news_path %>
 <% end %>
 
 <% content_for :submenu do %>
-    <li><%= link_to "Добавить новость", new_admin_news_path %></li>
+    <li><%= link_to t(".add_news"), new_admin_news_path %></li>
 <% end %>
