@@ -22,16 +22,22 @@ class Standard < ActiveRecord::Base
     end
   end
 
+  def keep_children
+    children.each { |one| one.keep }
+  end
+
   state_machine :state, initial: :refrained do
     state :published
     state :refrained
 
+    after_transition on: :keep, do: :keep_children
+
     event :keep do
-      transition :published => :refrained
+      transition all => :refrained
     end
 
     event :publish do
-      transition :refrained => :published
+      transition all => :published
     end
 
   end

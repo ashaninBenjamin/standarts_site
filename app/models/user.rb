@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   belongs_to :company, dependent: :destroy
 
   has_many :standards, dependent: :destroy
-  has_many :drafts, dependent: :destroy
   has_many :session_histories, dependent: :destroy
 
   scope :super_admins, -> { where(role_id: Role.super_roles) }

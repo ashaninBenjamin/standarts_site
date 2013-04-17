@@ -3,11 +3,7 @@ RoR::Application.routes.draw do
     get "take_pattern", on: :collection
   end
   resources :helps, :news, only: [:index, :show]
-  resources :drafts do
-    member do
-      get "save"
-    end
-  end
+
   resource :user do
     resource :profile, :company, only: [:show, :new, :create, :edit, :update]
   end

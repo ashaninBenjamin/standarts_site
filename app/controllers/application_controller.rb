@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       if @history.blank?
         SessionHistory.create(user_id: current_user.id, page: request.fullpath, ip: request.remote_ip)
       else
-        @history.update_attribute(:page, request.fullpath) unless request.fullpath.eql?("/logout")
+        @history.update_attribute(:page, request.fullpath) unless request.fullpath.eql?("/session")
       end
     end
   end

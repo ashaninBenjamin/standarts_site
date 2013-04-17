@@ -8,10 +8,6 @@
       <div><%= link_to "Стандарты", standards_path %></div>
     </li>
     <li>
-      <div class="ul-image"><%= link_to image_tag("drafts-ico.png", :size=>"40x40"), drafts_path %></div>
-      <div><%= link_to "Черновики", drafts_path %></div>
-    </li>
-    <li>
       <div class="ul-image"><%= link_to image_tag("help.jpg", :size=>"40x40"), current_user.super_admin? ? admin_helps_path : helps_path  %></div>
       <div><%= link_to "Помощь", current_user.super_admin? ? admin_helps_path : helps_path %></div>
     </li>
