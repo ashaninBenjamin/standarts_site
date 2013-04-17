@@ -10,7 +10,19 @@ class Standard < ActiveRecord::Base
   validates :number, presence: true
   validates :user, presence: true
 
-  state_machine :state, initial: :draft do
+  validates_each :number do |record, attr, value|
+    if record.new_record?
+      if record.siblings.where(number: value).present?
+        record.errors.add(attr, :taken)
+      end
+    else
+      if record.siblings.where("id not IN (?) AND number IN (?)", record.id, value).present?
+        record.errors.add(attr, :taken)
+      end
+    end
+  end
+
+  state_machine :state, initial: :refrained do
     state :published
     state :refrained
 
@@ -34,18 +46,6 @@ class Standard < ActiveRecord::Base
 
     event :show do
       transition all => :public
-    end
-  end
-
-  validates_each :number do |record, attr, value|
-    if record.new_record?
-      if record.siblings.where(number: value).present?
-        record.errors.add(attr, :taken)
-      end
-    else
-      if record.siblings.where("id not IN (?) AND number IN (?)", record.id, value).present?
-        record.errors.add(attr, :taken)
-      end
     end
   end
 
