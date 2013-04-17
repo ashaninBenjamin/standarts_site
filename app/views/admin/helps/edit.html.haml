@@ -1,0 +1,7 @@
+%h2 Редактирование справки
+= render 'form', url: admin_help_path(@help)
+
+- content_for :left do
+  = link_to "Назад к справке", admin_help_path(@help)
+  %br/
+  = link_to "К списку всех справок", admin_helps_path

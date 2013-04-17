@@ -1,0 +1,11 @@
+%h2 Помощь
+- if @helps.any?
+  %ul.list-style-type-none
+    - @helps.each do |one|
+      %li= link_to one.number_with_name, admin_help_path(one)
+- else
+  %i Нет ещё ни одной справки.
+  = link_to "Создать новую", new_admin_help_path
+
+- content_for :submenu do
+  %li= link_to "Новая справка", new_admin_help_path

@@ -1,0 +1,8 @@
+%h2= @help.number_with_name
+= @help.content.html_safe
+
+- content_for :left do
+  = link_to "Все справки", helps_path
+  %ul.list-style-type-none
+    - @helps.each do |one|
+      %li= link_to one.number_with_name, one

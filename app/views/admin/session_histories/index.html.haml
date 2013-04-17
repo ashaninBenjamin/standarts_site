@@ -1,7 +1,5 @@
 %h2 История сессий пользователями
-- if @session_histories.blank?
-  %em Нет информации
-- else
+- if @session_histories.any?
   %table.table.table-bordered
     %thead
       %tr
@@ -18,6 +16,8 @@
           %td= one.ip
           %td= (one.updated_at) ? one.updated_at.strftime("%T %d.%m.%Y ") : "Нет данных"
           %td= link_to "Удалить", admin_session_history_path(one), method: :delete, class: "btn btn-danger"
+- else
+  %em Нет информации
 
 
 - render "layouts/admin_left_column"

@@ -1,0 +1,13 @@
+%p.h{:style => "margin-bottom: 20px;"} Новости
+- if @news.any?
+  %table.table
+    - @news.each do |one|
+      %tr
+        %td
+          %text.title= link_to one.title, one
+          \ 
+          %em= (l one.created_at.getlocal, format: "%d %B в %R") if one.created_at
+          %p{:style => "margin-bottom: 12px;"}
+          = one.content.html_safe
+- else
+  Ещё нет новостей.

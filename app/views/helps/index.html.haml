@@ -1,0 +1,7 @@
+%h2 Помощь
+- if @helps.any?
+  %ul.list-style-type-none
+    - @helps.each do |one|
+      %li= link_to one.number_with_name, one
+- else
+  %em Нет ещё ни одной справки.

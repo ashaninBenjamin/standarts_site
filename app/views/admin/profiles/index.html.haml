@@ -1,7 +1,5 @@
 %h2 Пользователи системы
-- if @profiles.blank?
-  %em Пользователей нет
-- else
+- if @profiles.any?
   %table.table.table-bordered
     %thead
       %tr
@@ -18,6 +16,7 @@
           %td= (one.company) ? (link_to one.company.opf_and_name, admin_company_path(one.company)) : "Данные повреждены"
           %td= (one.created_at) ? one.created_at.strftime("%d.%m.%Y %T") : "Нет данных"
           %td= link_to "Удалить", (one.user) ? admin_user_path(one.user) : admin_profile_path(one), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger"
-
+- else
+  %em Пользователей нет
 
 - render "layouts/admin_left_column"

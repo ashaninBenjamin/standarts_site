@@ -1,6 +1,0 @@
-<h2><%= @news.title %></h2>
-<%= @news.content.html_safe %>
-
-<% content_for :left do %>
-    <%= link_to "Назад", news_index_path %>
-<% end %>
