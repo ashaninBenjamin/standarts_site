@@ -6,4 +6,10 @@ FactoryGirl.define do
     name
     content
   end
+
+  factory :one_another_standard, class: Standard do
+    number 2
+    name
+    content
+  end
 end

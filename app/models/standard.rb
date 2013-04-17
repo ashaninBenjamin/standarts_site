@@ -1,5 +1,6 @@
 # coding: utf-8
 class Standard < ActiveRecord::Base
+  include ActiveModel::Validations
   attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state
 
   has_ancestry
@@ -36,9 +37,21 @@ class Standard < ActiveRecord::Base
     end
   end
 
+  validates_each :number do |record, attr, value|
+    if record.new_record?
+      if record.siblings.where(number: value).present?
+        record.errors.add(attr, :taken)
+      end
+    else
+      if record.siblings.where("id not IN (?) AND number IN (?)", record.id, value).present?
+        record.errors.add(attr, :taken)
+      end
+    end
+  end
+
   before_update :check_content
 
-  scope :all_by_super_admin, scoped_by_user_id(User.super_admins)
+  scope :all_by_super_admin, -> { scoped_by_user_id(User.super_admins) }
 
   def self.sort_standards_by_code(standards)
     standards.sort_by { |a| a.code.split('.').map &:to_i }

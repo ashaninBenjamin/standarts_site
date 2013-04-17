@@ -27,7 +27,7 @@ class StandardsControllerTest < ActionController::TestCase
     post :create
     assert_response :success
 
-    @params[:standard] = attributes_for(:standard)
+    @params[:standard] = attributes_for(:one_another_standard)
     post :create, @params
     assert_response :redirect
   end
