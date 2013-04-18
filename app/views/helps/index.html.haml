@@ -1,7 +1,7 @@
-%h2 Помощь
+%h2= t(".header")
 - if @helps.any?
   %ul.list-style-type-none
     - @helps.each do |one|
       %li= link_to one.number_with_name, one
 - else
-  %em Нет ещё ни одной справки.
+  %em= t(".no_one_help")

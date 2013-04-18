@@ -1,0 +1,4 @@
+%h2= t(".header")
+%p= [t(".opf"), @company.opf].join(": ")
+%p= [t(".name"), @company.name].join(": ")
+= link_to t(".edit_link"), edit_user_company_path, class: "btn btn-success"

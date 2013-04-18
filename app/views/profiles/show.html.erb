@@ -1,9 +1,0 @@
-<h2>Информация о пользователе</h2>
-
-<%= image_tag @profile.avatar.medium.url %><br><br>
-Фамилия: <%= @profile.surname %><br><br>
-Имя: <%= @profile.name %><br><br>
-Отчество: <%= @profile.patronymic %><br><br>
-Эл. почта: <%= @profile.mail %><br><br>
-
-<%= link_to "Редактировать", edit_user_profile_path, :class => "btn btn-success" %>

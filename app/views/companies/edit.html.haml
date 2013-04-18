@@ -1,0 +1,18 @@
+%h2= t(".header")
+= simple_form_for @company, url: user_company_path, html: {multipart: true} do |f|
+  = render 'layouts/error_message', :obj => f.object
+  = f.input :opf
+  = f.input :name
+  = f.input :logo do
+    = image_tag @company.logo.medium.url
+    %br/
+    = f.input_field :logo
+  = f.input :logo_cache, as: :hidden
+  = f.input :remove_logo, as: :boolean, label: t(".destroy_logo") if @company.logo?
+  %br/
+  = f.submit class: "btn"
+
+- content_for :submenu do
+  %li= link_to t(".edit_user_link"), edit_user_path
+  %li= link_to t(".edit_profile_link"), edit_user_profile_path
+  %li= link_to t(".edit_company_link"), edit_user_company_path

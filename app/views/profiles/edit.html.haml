@@ -1,0 +1,20 @@
+%h2= t(".header")
+= simple_form_for @profile, url: user_profile_path, html: {multipart: true} do |f|
+  = render 'layouts/error_message', :obj => f.object
+  = f.input :surname
+  = f.input :name
+  = f.input :patronymic
+  = f.input :mail, as: :email
+  = f.input :avatar do
+    = image_tag @profile.avatar.medium.url
+    %br/
+    = f.input_field :avatar
+  = f.input :avatar_cache, as: :hidden
+  = f.input :remove_avatar, as: :boolean, label: t(".destroy_avatar") if @profile.avatar?
+  %br/
+  = f.submit class: "btn"
+
+- content_for :submenu do
+  %li= link_to t(".edit_user_link"), edit_user_path
+  %li= link_to t(".edit_profile_link"), edit_user_profile_path
+  %li= link_to t(".edit_company_link"), edit_user_company_path

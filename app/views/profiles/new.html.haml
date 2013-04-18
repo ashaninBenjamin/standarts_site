@@ -1,0 +1,13 @@
+%h2= t(".header")
+%p
+  %text{:style => "color: red;"}= t(".complete_signing_up")
+  = t(".steps")
+= simple_form_for @profile, url: user_profile_path, html: { multipart: true } do |f|
+  = render 'layouts/error_message', obj: f.object
+  = f.input :surname
+  = f.input :name
+  = f.input :patronymic
+  = f.input :mail, as: :email
+  = f.input :avatar
+  = f.input :avatar_cache, as: :hidden
+  = f.submit class: "btn"

@@ -416,5 +416,51 @@ ru:
         confirm_destroy: Вы уверены?
       show:
         header: Профиль пользователя
+  companies:
+    show:
+      header: Информация о компании
+      opf: ОПФ
+      name: Наименование
+      edit_link: Редактировать
+    new:
+      header: Добавление компании
+      complete_signing_up: Пожалуйста, завершите регистрацию.
+      steps: Шаг 3/3
+    edit:
+      header: Редактирование информации о компании
+      destroy_logo: Удалить логотип
+      edit_user_link: Логин и пароль
+      edit_profile_link: Информация о пользователе
+      edit_company_link: Информация о компании
+  profiles:
+    show:
+      header: Профиль
+      surname: Фамилия
+      name: Имя
+      patronymic: Отчество
+      mail: Эл.почта
+      edit_link: Редактировать
+    new:
+      header: Добавление профиля
+      complete_signing_up: Пожалуйста, завершите регистрацию.
+      steps: Шаг 2/3
+    edit:
+      header: Редактирование профиля
+      destroy_avatar: Удалить фотографию
+      edit_user_link: Логин и пароль
+      edit_profile_link: Информация о пользователе
+      edit_company_link: Информация о компании
+  helps:
+    index:
+      header: Помощь
+      no_one_help: Нет ещё ни одной справки.
+    show:
+      all_helps_link: Все справки
+  news:
+    index:
+      header: Новости
+      no_one_news: Ещё нет новостей.
+    show:
+      back_link: Назад
 
 
