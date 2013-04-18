@@ -18,7 +18,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "should post create" do
-    @params[:user] = attributes_for(:user)
+    @params[:user] = attributes_for(:sign_in_user)
     get :create, @params
     assert_response :redirect
   end
