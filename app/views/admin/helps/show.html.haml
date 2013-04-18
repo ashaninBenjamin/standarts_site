@@ -2,13 +2,12 @@
 = @help.content.html_safe
 
 - content_for :left do
-  = link_to "Все справки", admin_helps_path
+  = link_to t(".all_helps"), admin_helps_path
   %ul.list-style-type-none
     - @helps.each do |one|
       %li= link_to one.number_with_name, admin_help_path(one)
 
 - content_for :submenu do
-  %li= link_to "Новый справка", new_admin_help_path
-  %li= link_to "Редактировать справку", edit_admin_help_path(@help)
-  %li= link_to "Удалить справку", admin_help_path(@help), :method => :delete, :confirm => "Вы уверены, что хотите удалить эту справку?", |
-      :title => "Удалить #{@help.name}" |
+  %li= link_to t(".new_link"), new_admin_help_path
+  %li= link_to t(".edit_link"), edit_admin_help_path(@help)
+  %li= link_to t(".destroy_link"), admin_help_path(@help), method: :delete, confirm: t(".confirm_destroy")

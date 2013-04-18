@@ -318,10 +318,103 @@ ru:
       admin_room: Админка
       settings: Настройки
       logout: Выйти
+    admin_left_column:
+      users: Учётные записи
+      profiles: Профили
+      companies: Компании
+      session_history: История сессий
   admin:
     news:
       index:
-        add_news: Добавить новость
+        add_link: Добавить новость
         header: Новости
         no_one_news: Нет новостей.
-        create: Создать?
+        create_link: Создать?
+      show:
+        new_link: Добавить ещё новость
+        edit_link: Редактировать новость
+        destroy_link: Удалить новость
+        back_link: Назад
+        confirm_destroy: Вы уверены?
+      new:
+        header: Добавление новости
+        back_link: Назад
+      edit:
+        header: Редактирование новости
+        back_link: Назад
+    helps:
+      index:
+        header: Помощь
+        no_one_help: Нет ещё ни одной справки.
+        create_link_if_apcent: Создать новую
+        create_link: Новая справка
+      show:
+        all_helps: Все справки
+        new_link: Новая справка
+        edit_link: Редактировать справку
+        destroy_link: Удалить справку
+        confirm_destroy: Вы уверены, что хотите удалить эту справку?
+      new:
+        header: Создание новой справки
+        back_link: Назад
+      edit:
+        header: Редактирование справки
+        back_link: Назад
+        all_helps_link: К списку всех справок
+    companies:
+      index:
+        header: Компании
+        logo: Логотип
+        company: Компания
+        profile: Пользователь
+        created_date: Когда создан
+        actions: Действия
+        destroy_link: Удалить
+        bad_info: Данные повреждены
+        no_one_company: Компаний нет
+      show:
+        header: Компания
+        opf: ОПФ
+        name: Наименование
+    profiles:
+      index:
+        header: Профили
+        avatar: Изображение
+        company: Компания
+        profile: Пользователь
+        created_date: Когда создан
+        actions: Действия
+        destroy_link: Удалить
+        confirm_destroy: Вы уверены?
+        bad_info: Данные повреждены
+        no_one_profile: Профилей нет
+      show:
+        header: Профиль
+        surname: Фамилия
+        name: Имя
+        patronymic: Отчество
+        mail: Эл. почта
+    session_histories:
+      index:
+        header: История сессий
+        user: Пользователь
+        last_page: Последняя страница
+        ip: Ip-адрес
+        time: Время
+        actions: Действия
+        destroy_link: Удалить
+    users:
+      index:
+        header: Все учётные записи
+        login: Логин
+        profile: Пользователь
+        company: Компания
+        created_date: Дата создания
+        actions: Действия
+        bad_info: Данные повреждены
+        destroy_link: Удалить
+        confirm_destroy: Вы уверены?
+      show:
+        header: Профиль пользователя
+
+

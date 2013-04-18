@@ -1,22 +1,22 @@
-%h2 Пользователи системы
+%h2= t(".header")
 - if @profiles.any?
   %table.table.table-bordered
     %thead
       %tr
-        %td{:style => "width: 10%;"} Аватар
-        %td= sort_link @q, :surname, 'Пользователь'
-        %td Компания
-        %td= sort_link @q, :created_at, 'Когда создан'
-        %td Действия
+        %td{:style => "width: 10%;"}= t(".avatar")
+        %td= sort_link @q, :surname, t(".profile")
+        %td= t(".company")
+        %td= sort_link @q, :created_at, t(".created_date")
+        %td= t(".actions")
     %tbody
       - @profiles.each do |one|
         %tr
           %td{:style => "text-align: center;"}= image_tag one.avatar.url(:thumb)
           %td= link_to one.first_and_last_name, admin_profile_path(one)
-          %td= (one.company) ? (link_to one.company.opf_and_name, admin_company_path(one.company)) : "Данные повреждены"
-          %td= (one.created_at) ? one.created_at.strftime("%d.%m.%Y %T") : "Нет данных"
-          %td= link_to "Удалить", (one.user) ? admin_user_path(one.user) : admin_profile_path(one), method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger"
+          %td= (one.company) ? (link_to one.company.opf_and_name, admin_company_path(one.company)) : t(".bad_info")
+          %td= one.created_at.strftime("%d.%m.%Y %T")
+          %td= link_to t(".destroy_link"), (one.user) ? admin_user_path(one.user) : admin_profile_path(one), method: :delete, data: { confirm: t(".confirm_destroy") }, class: "btn btn-danger"
 - else
-  %em Пользователей нет
+  %em= t(".no_one_profile")
 
 - render "layouts/admin_left_column"

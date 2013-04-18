@@ -1,0 +1,5 @@
+%h2= t(".header")
+= render 'form', url: admin_news_index_path
+
+- content_for :left do
+  = link_to t(".back_link"), admin_news_index_path

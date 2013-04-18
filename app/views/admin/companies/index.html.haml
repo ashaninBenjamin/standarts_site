@@ -1,23 +1,23 @@
-%h2 Компании системы
-- if @companies.blank?
-  %em Пользователей нет
-- else
+%h2= t(".header")
+- if @companies.any?
   %table.table.table-bordered
     %thead
       %tr
-        %td Логотип
-        %td= sort_link @q, :name, 'Компания'
-        %td Пользователь
-        %td= sort_link @q, :created_at, 'Когда создан'
-        %td Действия
+        %td= t(".logo")
+        %td= sort_link @q, :name, t(".company")
+        %td= t(".profile")
+        %td= sort_link @q, :created_at, t(".created_date")
+        %td= t(".actions")
     %tbody
       - @companies.each do |one|
         %tr
-          %td{:style => "text-align: center;"}= image_tag one.logo.url(:medium), :style => "width:100px"
+          %td{:style => "text-align: center;"}= image_tag one.logo.url(:medium), style: "width:100px"
           %td= link_to one.opf_and_name, admin_company_path(one)
-          %td= (one.profile) ? (link_to one.profile.first_and_last_name, admin_profile_path(one.profile)) : "Данные повреждены"
-          %td= (one.created_at) ? one.created_at.getlocal.strftime("%d.%m.%Y %T") : "Нет данных"
-          %td= (link_to "Удалить", admin_company_path(one), method: :delete, class: "btn btn-danger") if !one.user
+          %td= (one.profile) ? (link_to one.profile.first_and_last_name, admin_profile_path(one.profile)) : t(".bad_info")
+          %td= one.created_at.getlocal.strftime("%d.%m.%Y %T")
+          %td= (link_to t(".destroy_link"), admin_company_path(one), method: :delete, class: "btn btn-danger") if !one.user
+- else
+  %em= t(".no_one_company")
 
 
 - render "layouts/admin_left_column"

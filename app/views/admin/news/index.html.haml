@@ -1,0 +1,17 @@
+%p.h{:style => "margin-bottom: 20px;"}= t(".header")
+- if @news.any?
+  %table.table
+    - @news.each do |one|
+      %tr
+        %td
+          %text.title= link_to one.title, admin_news_path(one)
+           
+          %em= (l one.created_at.getlocal, format: "%d %B в %R") if one.created_at
+          %p{:style => "margin-bottom: 12px;"}
+          = one.content.html_safe
+- else
+  = t(".no_one_news")
+  = link_to t(".create_link"), new_admin_news_path
+
+- content_for :submenu do
+  %li= link_to t(".new_link"), new_admin_news_path

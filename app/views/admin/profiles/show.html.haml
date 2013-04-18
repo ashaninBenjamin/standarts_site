@@ -1,10 +1,10 @@
-%h2 Информация о пользователе
+%h2= t(".header")
 
 %p= image_tag @profile.avatar.url
-%p Фамилия: #{@profile.surname}
-%p Имя: #{@profile.name}
-%p Отчество: #{@profile.patronymic}
-%p Эл. почта: #{@profile.mail}
+%p= [t(".surname"), @profile.surname].join(": ")
+%p= [t(".name"), @profile.name].join(": ")
+%p= [t(".patronymic"), @profile.patronymic].join(": ")
+%p= [t(".mail"), @profile.mail].join(": ")
 
 - render "layouts/admin_left_column"
 

@@ -1,19 +1,19 @@
-%h1 Все учётные записи
+%h1= t(".header")
 %table.table.table-bordered
   %thead
     %tr
-      %td= sort_link @q, :login, 'Логин'
-      %td Пользователь
-      %td Компания
-      %td= sort_link @q, :created_at, 'Дата создания'
-      %td Действия
+      %td= sort_link @q, :login, t(".login")
+      %td= t(".profile")
+      %td= t(".company")
+      %td= sort_link @q, :created_at, t(".created_date")
+      %td= t(".actions")
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.login, admin_user_path(user)
-        %td= user.profile ? (link_to user.profile.first_and_last_name, admin_profile_path(user.profile)) : "Данные повреждены"
-        %td= user.company ? (link_to user.company.opf_and_name, admin_company_path(user.company)) : "Данные повреждены"
+        %td= user.profile ? (link_to user.profile.first_and_last_name, admin_profile_path(user.profile)) : t(".bad_info")
+        %td= user.company ? (link_to user.company.opf_and_name, admin_company_path(user.company)) : t(".bad_info")
         %td= user.created_at.strftime("%d.%m.%Y %T")
-        %td= (link_to "Удалить", admin_user_path(user), method: :delete, data: { confirm: "Вы уверены?" }, class: "btn btn-danger") unless user.super_admin?
+        %td= (link_to t(".destroy_link"), admin_user_path(user), method: :delete, data: { confirm: t(".confirm_destroy") }, class: "btn btn-danger") if !user.super_admin?
 
 - render "layouts/admin_left_column"

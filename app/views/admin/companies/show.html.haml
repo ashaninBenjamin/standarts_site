@@ -1,7 +1,7 @@
-%h2 Информация о компании
+%h2= t(".header")
 
 = image_tag @company.logo.url
-%p ОПФ: #{@company.opf}
-%p Название: #{@company.name }
+%p= "#{t(".opf")}: #{@company.opf}"
+%p= "#{t(".name")}: #{@company.name }"
 
 - render "layouts/admin_left_column"
