@@ -7,6 +7,7 @@
   Стандартов ещё нет, #{link_to "создать?", new_standard_path}
   - if !current_user.super_admin?
     Или #{link_to "принять шаблон?", take_pattern_standards_path}
+
 - content_for :submenu do
   %li= link_to "Новый стандарт", new_standard_path
   - if !current_user.super_admin?

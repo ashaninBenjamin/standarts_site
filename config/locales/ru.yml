@@ -462,5 +462,25 @@ ru:
       no_one_news: Ещё нет новостей.
     show:
       back_link: Назад
+  sessions:
+    new:
+      header: Авторизация
+      new_user: Нет учётной записи?
+      new_user_link: Зарегистрироваться!
+      login_button: Войти
+  users:
+    show:
+      header: Профиль учётной записи
+      edit_link: Редактировать
+    new:
+      header: Регистрация учётной записи
+      button: Зарегистрировать
+    edit:
+      header: Редактировать логин и пароль
+      destroy_link: Удалить учётную запись
+      confirm_destroy: Вы уверены, что хотите удалить свою учётную запись?
+      edit_user_link: Логин и пароль
+      edit_profile_link: Информация о пользователе
+      edit_company_link: Информация о компании
 
 

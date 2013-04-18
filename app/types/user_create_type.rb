@@ -9,6 +9,7 @@ class UserCreateType < User
             uniqueness: true
   validates :password, presence: true,
             length: {within: 3..20}
+  validates :password_confirmation, presence: true
   validates :role, presence: true
 
 end

@@ -1,7 +1,9 @@
-%h1 Авторизация
+%h1= t(".header")
 = simple_form_for @type, url: session_path do |f|
-  = f.input :login, label: "Логин"
-  = f.input :password, label: "Пароль"
-  = f.submit "Войти", class: "btn btn-success"
+  = f.input :login
+  = f.input :password
+  = f.submit t(".login_button"), class: "btn btn-success"
 
-%p Создать нового пользователя #{link_to "Зарегистрироваться!", new_user_path}
+%p
+  = t(".new_user")
+  = link_to t(".new_user_link"), new_user_path
