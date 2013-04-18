@@ -22,7 +22,7 @@ class Standard < ActiveRecord::Base
     end
   end
 
-  def keep_children
+  def refrain_children
     children.each { |one| one.keep }
   end
 
@@ -30,9 +30,9 @@ class Standard < ActiveRecord::Base
     state :published
     state :refrained
 
-    after_transition on: :keep, do: :keep_children
+    after_transition on: :refrain, do: :refrain_children
 
-    event :keep do
+    event :refrain do
       transition all => :refrained
     end
 
