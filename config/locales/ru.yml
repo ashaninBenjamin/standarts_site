@@ -323,6 +323,8 @@ ru:
       profiles: Профили
       companies: Компании
       session_history: История сессий
+    error_message:
+      default_message: "Были обнаружены следующие ошибки:"
   admin:
     news:
       index:

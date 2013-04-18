@@ -29,6 +29,6 @@
       <%= link_to current_user.profile.first_and_last_name, user_profile_path %>&nbsp; &nbsp;&nbsp;
       <%= link_to image_tag("logout-icon.png", :size => "30x30", :title => t(".logout")), session_path, method: :delete %>
     </div>
-    <div class="second-line"> <%= link_to "Настройка", edit_user_path %> </div>
+    <div class="second-line"> <%= link_to t(".settings"), edit_user_path %> </div>
   </div>
 </div>
