@@ -1,21 +1,21 @@
-%h2 Редактирование раздела
+%h2= t(".header")
 #native_id= @standard.id
-= simple_form_for @standard, :url => { :action => :update, :id => @standard.link } do |f|
+= simple_form_for @standard, url: { action: :update, id: @standard.link } do |f|
   = render 'layouts/error_message', :obj => f.object
   = f.input :name
-  = f.input :parent_id, collection: @select.collect {|p| [ p.for_select, p.id ] }, include_blank: 'Не принадлежит'
+  = f.input :parent_id, collection: @select.collect {|p| [ p.for_select, p.id ] }, include_blank: t(".select_include_blank")
   #number
-    = render :partial => "standards/number_selection", :locals => {:obj => @standard }
+    = render :partial => "standards/number_selection", locals: {obj: @standard }
   = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
   %br/
   = f.input :state, as: :check_boxes, label: false, wrapper: :inline_checkbox do
     = f.check_box :state, {}, "refrained", "published"
-    = f.label "Черновик"
-  = f.input :access_state, as: :radio_buttons, collection: [['Виден только мне', "private"], ['Виден всем пользователям', "public"]]
+    = f.label t(".draft")
+  = f.input :access_state, as: :radio_buttons, collection: [[t(".access_private"), "private"], [t(".access_public"), "public"]]
   = f.submit class: "btn"
 
 - content_for :submenu do
-  %li= link_to "Назад", standard_path(@standard.link)
+  %li= link_to t(".back_link"), standard_path(@standard.link)
 
 - content_for :left do
-  = link_to "К списку всех стандартов", standards_path
+  = link_to t(".standards_link"), standards_path

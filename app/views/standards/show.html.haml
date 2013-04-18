@@ -1,24 +1,24 @@
 %h2= @standard.code_with_name
 .standardContent= @standard.content.html_safe
 - if @children.any?
-  Дочерние стандарты:
+  = t(".children")
   %ul.standard-list
     - @children.each do |one|
       %li= link_to one.code_with_name, standard_path(one.link)
 
 - content_for :submenu do
-  %li= link_to "Новый стандарт", new_standard_path
-  %li= link_to "Редактировать стандарт", edit_standard_path(@standard.link)
-  %li= link_to "Удалить стандарт", @standard.link, :method => :delete, :confirm => "Вы уверены, что хотите удалить этот стандарт?", :title => "Удалить #{@standard.name}"                                                                                        |
+  %li= link_to t(".new_link"), new_standard_path
+  %li= link_to t(".edit_link"), edit_standard_path(@standard.link)
+  %li= link_to t(".destroy_link"), @standard.link, method: :delete, confirm: t(".confirm_link")                                                                                        |
 
 - content_for :left do
-  = link_to "К списку всех стандартов", standards_path
+  = link_to t(".standards_link"), standards_path
   %br/
-  = (link_to "К родительскому стандартов", standard_path(@standard.parent.link)) if @standard.parent
+  = (link_to t(".parent_link"), standard_path(@standard.parent.link)) if @standard.parent
   - if @children.any?
     %br/
     %br/
-    Дочерние стандарты:
+    = t(".children") + ":"
     %ul.standard-list
       - @children.each do |one|
         %li= link_to one.code_with_name, standard_path(one.link)

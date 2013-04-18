@@ -1,22 +1,21 @@
-%h2 Стандарты
+%h2= t(".header")
 - if @standards.any?
   %ul.standard-list
     - @standards.each do |one|
       %li= link_to one.code_with_name, standard_path(one.link), style: "margin-left:#{one.depth * 20}px;"
 - else
-  Стандартов ещё нет, #{link_to "создать?", new_standard_path}
-  - if !current_user.super_admin?
-    Или #{link_to "принять шаблон?", take_pattern_standards_path}
+  = t(".no_one_standard")
+  = link_to t(".new_link_if_apcents"), new_standard_path
 
 - content_for :submenu do
-  %li= link_to "Новый стандарт", new_standard_path
+  %li= link_to t(".new_link"), new_standard_path
   - if !current_user.super_admin?
-    %li= link_to "Принять шаблон", take_pattern_standards_path, data: {confirm: "Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?"}
+    %li= link_to t(".take_pattern_link"), take_pattern_standards_path, data: {confirm: t(".confirm_take_pattern")}
 
 - content_for :left do
   = search_form_for @q do |f|
-    = f.select :state_cont, [['Стандарты', "published"], ['Черновики', "refrained"]], include_blank: "Все"
-    = f.select :access_state_cont, [['Только для меня', "private"], ['Публичный', "public"]], include_blank: "Все"
+    = f.select :state_cont, [[t(".search_published"), "published"], [t(".search_refrained"), "refrained"]], include_blank: t(".search_all")
+    = f.select :access_state_cont, [[t(".search_access_private"), "private"], [t(".search_access_public"), "public"]], include_blank: t(".search_all")
     #form-inline
-      = f.submit "Поиск", name: nil, class: "btn"
-      = f.submit "Очистить", name: nil, class: "btn", id: "q_reset"
+      = f.submit t(".search_submit"), name: nil, class: "btn"
+      = f.submit t(".search_clear"), name: nil, class: "btn", id: "q_reset"

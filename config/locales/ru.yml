@@ -482,5 +482,42 @@ ru:
       edit_user_link: Логин и пароль
       edit_profile_link: Информация о пользователе
       edit_company_link: Информация о компании
-
+  standards:
+    index:
+      header: Стандарты
+      no_one_standard: Стандартов ещё нет.
+      new_link_if_apcents: Создать?
+      new_link: Новый стандарт
+      take_pattern_link: Принять шаблон
+      confirm_take_pattern: Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?
+      search_all: Все
+      search_access_private: Только для меня
+      search_access_public: Публичный
+      search_published: Стандарты
+      search_refrained: Черновики
+      search_submit: Поиск
+      search_clear: Очистить
+    show:
+      children: Дочерние стандарты
+      new_link: Новый стандарт
+      edit_link: Редактировать стандарт
+      destroy_link: Удалить стандарт
+      confirm_link: Вы уверены, что хотите удалить этот стандарт?
+      standards_link: К списку всех стандартов
+      parent_link: К родительскому стандарту
+    new:
+      header: Создание нового стандарта
+      select_include_blank: Не принадлежит
+      draft: Черновик
+      access_private: Виден только мне
+      access_public: Виден всем пользователям
+      standards_link: К списку всех стандартов
+    edit:
+      header: Редактирование раздела
+      select_include_blank: Не принадлежит
+      draft: Черновик
+      access_private: Виден только мне
+      access_public: Виден всем пользователям
+      standards_link: К списку всех стандартов
+      back_link: Отменить редактирование
 
