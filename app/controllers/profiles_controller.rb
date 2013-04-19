@@ -10,7 +10,8 @@ class ProfilesController < ApplicationController
     @profile = current_user.build_profile(params[:profile])
     if @profile.save
       current_user.save
-      redirect_to new_user_company_path, flash: {success: "Успешно добавлена информация о пользователе"}
+      redirect_to new_user_company_path
+      flash_success
     else
       render "new"
     end
@@ -23,7 +24,8 @@ class ProfilesController < ApplicationController
   def update
     @profile = current_user.profile
     if @profile.update_attributes(params[:profile])
-      redirect_to edit_user_profile_path, flash: {success: "Обновление прошло успешно"}
+      redirect_to edit_user_profile_path
+      flash_success
     else
       render "edit"
     end

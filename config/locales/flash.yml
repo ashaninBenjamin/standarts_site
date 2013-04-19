@@ -1,0 +1,13 @@
+ru:
+  flash:
+      controllers:
+        companies:
+          create:
+            success: Успешно добавлена информация о компании. Регистрация прошла успешно!
+          update:
+            success: Обновление прошло успешно
+        profiles:
+          create:
+            success: Успешно добавлена информация о пользователе
+          update:
+            success: Обновление прошло успешно
