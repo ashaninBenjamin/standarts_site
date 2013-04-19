@@ -1,7 +1,7 @@
 # coding: utf-8
 class Standard < ActiveRecord::Base
   include ActiveModel::Validations
-  attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state
+  attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
   has_ancestry
   belongs_to :user
