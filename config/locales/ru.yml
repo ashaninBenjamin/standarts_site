@@ -326,6 +326,10 @@ ru:
       session_history: История сессий
     error_message:
       default_message: "Были обнаружены следующие ошибки:"
+    account_settings_submenu:
+      edit_user_link: Логин и пароль
+      edit_profile_link: Информация о пользователе
+      edit_company_link: Информация о компании
   admin:
     news:
       index:
@@ -431,10 +435,8 @@ ru:
       steps: Шаг 3/3
     edit:
       header: Редактирование информации о компании
+    form:
       destroy_logo: Удалить логотип
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
   profiles:
     show:
       header: Профиль
@@ -450,9 +452,8 @@ ru:
     edit:
       header: Редактирование профиля
       destroy_avatar: Удалить фотографию
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
+    form:
+      destroy_avatar: Удалить логотип
   helps:
     index:
       header: Помощь
@@ -482,9 +483,6 @@ ru:
       header: Редактировать логин и пароль
       destroy_link: Удалить учётную запись
       confirm_destroy: Вы уверены, что хотите удалить свою учётную запись?
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
   standards:
     index:
       header: Стандарты
@@ -510,17 +508,12 @@ ru:
       parent_link: К родительскому стандарту
     new:
       header: Создание нового стандарта
-      select_include_blank: Не принадлежит
-      draft: Черновик
-      access_private: Виден только мне
-      access_public: Виден всем пользователям
       standards_link: К списку всех стандартов
     edit:
       header: Редактирование раздела
-      select_include_blank: Не принадлежит
-      draft: Черновик
-      access_private: Виден только мне
-      access_public: Виден всем пользователям
       standards_link: К списку всех стандартов
       back_link: Отменить редактирование
+    form:
+      draft: Черновик
+      select_include_blank: Не принадлежит
 

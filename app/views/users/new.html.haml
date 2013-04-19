@@ -1,7 +1,2 @@
 %h1= t(".header")
-= simple_form_for @user, url: {action: :create} do |f|
-  = render 'layouts/error_message', obj: f.object
-  = f.input :login
-  = f.input :password
-  = f.input :password_confirmation
-  = f.submit t(".button"), class: "btn btn-success"
+= render "form", url: {action: :create}
