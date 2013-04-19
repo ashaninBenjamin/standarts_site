@@ -1,7 +1,4 @@
 %h2= t(".header")
 = render "form"
 
-- content_for :submenu do
-  %li= link_to t(".edit_user_link"), edit_user_path
-  %li= link_to t(".edit_profile_link"), edit_user_profile_path
-  %li= link_to t(".edit_company_link"), edit_user_company_path
+= render "layouts/account_settings_submenu"

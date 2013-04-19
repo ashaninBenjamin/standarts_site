@@ -326,6 +326,10 @@ ru:
       session_history: История сессий
     error_message:
       default_message: "Были обнаружены следующие ошибки:"
+    account_settings_submenu:
+      edit_user_link: Логин и пароль
+      edit_profile_link: Информация о пользователе
+      edit_company_link: Информация о компании
   admin:
     news:
       index:
@@ -431,9 +435,6 @@ ru:
       steps: Шаг 3/3
     edit:
       header: Редактирование информации о компании
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
     form:
       destroy_logo: Удалить логотип
   profiles:
@@ -451,9 +452,6 @@ ru:
     edit:
       header: Редактирование профиля
       destroy_avatar: Удалить фотографию
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
     form:
       destroy_avatar: Удалить логотип
   helps:
@@ -485,9 +483,6 @@ ru:
       header: Редактировать логин и пароль
       destroy_link: Удалить учётную запись
       confirm_destroy: Вы уверены, что хотите удалить свою учётную запись?
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
   standards:
     index:
       header: Стандарты
