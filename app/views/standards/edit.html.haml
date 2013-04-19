@@ -7,11 +7,10 @@
   #number
     = render :partial => "standards/number_selection", locals: {obj: @standard }
   = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
-  %br/
+  = f.input :access_state_event, as: :access_state_event
   = f.input :state, as: :check_boxes, label: false, wrapper: :inline_checkbox do
     = f.check_box :state, {}, "refrained", "published"
     = f.label t(".draft")
-  = f.input :access_state_event, as: :access_state_event
   = f.submit class: "btn"
 
 - content_for :submenu do
