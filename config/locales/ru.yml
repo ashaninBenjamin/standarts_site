@@ -312,11 +312,18 @@ ru:
             mail:
               blank: не заполнена
   layouts:
+    admin:
+      header:
+        standards: Стандарты
+        help: Помощь
+        news: Новости
+        admin_room: Админка
+        settings: Настройки
+        logout: Выйти
     header:
       standards: Стандарты
       help: Помощь
       news: Новости
-      admin_room: Админка
       settings: Настройки
       logout: Выйти
     admin_left_column:

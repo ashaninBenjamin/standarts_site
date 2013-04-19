@@ -6,11 +6,14 @@
       .ul-image= link_to image_tag("task.jpg", :size=>"40x40"), standards_path
       %div= link_to t(".standards"), standards_path
     %li
-      .ul-image= link_to image_tag("help.jpg", :size=>"40x40"), helps_path
-      %div= link_to t(".help"), helps_path
+      .ul-image= link_to image_tag("help.jpg", :size=>"40x40"), admin_helps_path
+      %div= link_to t(".help"), admin_helps_path
     %li
-      .ul-image= link_to image_tag("news-ico.jpg", :size=>"40x40"), news_index_path
-      %div= link_to t(".news"), news_index_path
+      .ul-image= link_to image_tag("news-ico.jpg", :size=>"40x40"), admin_news_index_path
+      %div= link_to t(".news"), admin_news_index_path
+    %li
+      .ul-image= link_to image_tag("admin_ico.png", :size=>"40x40"), admin_users_path
+      %div= link_to t(".admin_room"), admin_users_path
   .bar-user
     .first-line
       = image_tag current_user.profile.avatar.thumb.url
