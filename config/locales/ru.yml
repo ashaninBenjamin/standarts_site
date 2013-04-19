@@ -454,6 +454,8 @@ ru:
       edit_user_link: Логин и пароль
       edit_profile_link: Информация о пользователе
       edit_company_link: Информация о компании
+    form:
+      destroy_avatar: Удалить логотип
   helps:
     index:
       header: Помощь
