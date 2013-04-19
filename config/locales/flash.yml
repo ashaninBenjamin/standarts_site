@@ -15,3 +15,10 @@ ru:
           create:
             success: Вход выполнен успешно
             error: Неверная пара логин/пароль
+        standards:
+          create:
+            success: Стандарт успешно добавлен
+          update:
+            success: Стандарт успешно обновлён
+          destroy:
+            notice: Стандарт удалён

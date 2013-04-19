@@ -19,7 +19,8 @@ class StandardsController < ApplicationController
     @select = Standard.sort_standards_by_code current_user.standards
     @arr = current_user.standards.root_numbers
     if @standard.save
-      redirect_to standard_path(@standard.link), flash: {success: "Успешно добавлен раздел"}
+      redirect_to standard_path(@standard.link)
+      flash_success
     else
       render "new"
     end
@@ -38,7 +39,8 @@ class StandardsController < ApplicationController
     @select.delete(@standard)
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
-      redirect_to standard_path(@standard.link), flash: {success: "Раздел успешно обновлён"}
+      redirect_to standard_path(@standard.link)
+      flash_success
     else
       render "edit"
     end
@@ -52,7 +54,8 @@ class StandardsController < ApplicationController
   def destroy
     standard = current_user.standards.find_by_link(params[:id])
     standard.destroy
-    redirect_to standards_path, notice: "Раздел успешно удалён"
+    redirect_to standards_path
+    flash_notice
   end
 
   def number_selection
