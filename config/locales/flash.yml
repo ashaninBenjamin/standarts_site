@@ -29,3 +29,8 @@ ru:
             success: Стандарт успешно обновлён
           destroy:
             notice: Стандарт удалён
+
+        admin:
+          companies:
+            destroy:
+              notice: Компания была удалена
