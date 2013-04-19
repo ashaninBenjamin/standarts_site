@@ -1,0 +1,18 @@
+ru:
+  activerecord:
+      state_machines:
+        standard:
+          state:
+            states:
+              published: Стандарт
+              refrained: Черновик
+            events:
+              refrain: Сохранить в черновики
+              publish: Сохранить в стандарты
+          access_state:
+            states:
+              private: Приватный
+              public: Публичный
+            events:
+              hide: Скрыть из общего доступа
+              show: Открыть на общий доступ

@@ -32,6 +32,9 @@ GEM
       activerecord (>= 2.3.14)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.0.4)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
@@ -40,6 +43,7 @@ GEM
     ckeditor (4.0.4)
       mime-types
       orm_adapter
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -195,6 +199,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   bcrypt-ruby (~> 3.0.0)
+  better_errors
   carrierwave
   ckeditor
   coffee-rails (~> 3.2.1)
