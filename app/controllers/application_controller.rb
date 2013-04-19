@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :update_session_history
   protect_from_forgery
   include AuthHelper
+  include FlashHelper
 
   helper_method :signed_in?, :current_user
 
