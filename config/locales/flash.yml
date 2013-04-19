@@ -34,3 +34,26 @@ ru:
           companies:
             destroy:
               notice: Компания была удалена
+          helps:
+            create:
+              success: Справка успешно добавлена
+            update:
+              success: Справка успешно обновлёна
+            destroy:
+              notice: Справка была удалена
+          news:
+            create:
+              success: Новость была успешно добавлена
+            update:
+              success: Новость была успешно обновлена
+            destroy:
+              notice: Новость была успешно удалена
+          profiles:
+            destroy:
+              notice: Информация о пользователе была удалена
+          session_histories:
+            destroy:
+              notice: Запись удалена
+          users:
+            destroy:
+              notice: Учётная запись и все связанное с ним было удалено

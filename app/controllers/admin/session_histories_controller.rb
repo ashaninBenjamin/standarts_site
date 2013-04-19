@@ -8,7 +8,8 @@ class Admin::SessionHistoriesController < Admin::ApplicationController
 
   def destroy
     SessionHistory.find(params[:id]).destroy
-    redirect_to admin_session_histories_path, :notice => "Запись удалена"
+    redirect_to admin_session_histories_path
+    flash_notice
   end
 
 end
