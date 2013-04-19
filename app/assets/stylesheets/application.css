@@ -41,7 +41,9 @@ div#native_id {
     padding-top: 10px;
 }
 
-
+.ckeditor {
+    margin-bottom: 10px;
+}
 
 
 /* Basic */
