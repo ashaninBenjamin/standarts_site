@@ -1,6 +1,13 @@
 ru:
   flash:
       controllers:
+        users:
+          create:
+            success: Учётная запись зарегистрирована
+          update:
+            success: Изменения вступили в силу
+          destroy:
+            notice: Пользователь удалён
         companies:
           create:
             success: Успешно добавлена информация о компании. Регистрация прошла успешно!
