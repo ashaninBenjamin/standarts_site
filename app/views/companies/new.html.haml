@@ -2,10 +2,4 @@
 %p
   %text{:style => "color: red;"}= t(".complete_signing_up")
   = t(".steps")
-= simple_form_for @company, url: {action: :create}, :html => { :multipart => true } do |f|
-  = render 'layouts/error_message', :obj => f.object
-  = f.input :opf
-  = f.input :name
-  = f.input :logo
-  = f.input :logo_cache, as: :hidden
-  = f.submit class: "btn"
+= render "form", url: {action: :create}
