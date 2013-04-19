@@ -508,17 +508,12 @@ ru:
       parent_link: К родительскому стандарту
     new:
       header: Создание нового стандарта
-      select_include_blank: Не принадлежит
-      draft: Черновик
-      access_private: Виден только мне
-      access_public: Виден всем пользователям
       standards_link: К списку всех стандартов
     edit:
       header: Редактирование раздела
-      select_include_blank: Не принадлежит
-      draft: Черновик
-      access_private: Виден только мне
-      access_public: Виден всем пользователям
       standards_link: К списку всех стандартов
       back_link: Отменить редактирование
+    form:
+      draft: Черновик
+      select_include_blank: Не принадлежит
 
