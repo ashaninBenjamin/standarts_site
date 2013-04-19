@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @user.role = Role.admin_roles.first
     if @user.save
       sign_in @user
-      redirect_to new_user_profile_path, flash: {success: "Учётная запись зарегистрирована"}
+      redirect_to new_user_profile_path
+      flash_success
     else
       render 'new'
     end
@@ -29,7 +30,8 @@ class UsersController < ApplicationController
   def update
     @user = UserEditType.find(current_user)
     if @user.update_attributes(params[:user])
-      redirect_to edit_user_path, flash: {success: "Изменения вступили в силу"}
+      redirect_to edit_user_path
+      flash_success
     else
       render 'edit'
     end
@@ -39,7 +41,8 @@ class UsersController < ApplicationController
     user = current_user
     user.destroy
     sign_out
-    redirect_to new_session_path, notice: "Пользователь удалён"
+    redirect_to new_session_path
+    flash_notice
   end
 
 end

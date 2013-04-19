@@ -14,8 +14,9 @@ class SessionsController < ApplicationController
       user = @type.user
       sign_in user
       redirect_to standards_path
+      flash_success
     else
-      flash.now[:error] = "Неверная пара логин/пароль"
+      flash_error
       render 'new'
     end
   end

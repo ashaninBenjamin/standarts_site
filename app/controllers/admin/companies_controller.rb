@@ -26,7 +26,8 @@ class Admin::CompaniesController < Admin::ApplicationController
   def destroy
     company = Company.find(params[:id])
     company.destroy
-    redirect_to admin_companies_path, notice: "Компания была удалена"
+    redirect_to admin_companies_path
+    flash_notice
   end
 
 end

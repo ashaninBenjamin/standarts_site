@@ -26,7 +26,8 @@ class Admin::ProfilesController < Admin::ApplicationController
   def destroy
     profile = Profile.find(params[:id])
     profile.destroy
-    redirect_to admin_profiles_path, notice: "Информация о пользователе была удалена"
+    redirect_to admin_profiles_path
+    flash_notice
   end
 
 end

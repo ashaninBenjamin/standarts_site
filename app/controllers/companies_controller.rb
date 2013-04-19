@@ -10,7 +10,8 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(params[:company])
     if @company.save
       current_user.save
-      redirect_to standards_path, flash: {success: "Успешно добавлена информация о компании. Регистрация прошла успешно!"}
+      redirect_to standards_path
+      flash_success
     else
       render "new"
     end
@@ -23,7 +24,8 @@ class CompaniesController < ApplicationController
   def update
     @company = current_user.company
     if @company.update_attributes(params[:company])
-      redirect_to edit_user_company_path, flash: {success: "Обновление прошло успешно"}
+      redirect_to edit_user_company_path
+      flash_success
     else
       render "edit"
     end

@@ -1,0 +1,59 @@
+ru:
+  flash:
+      controllers:
+        users:
+          create:
+            success: Учётная запись зарегистрирована
+          update:
+            success: Изменения вступили в силу
+          destroy:
+            notice: Пользователь удалён
+        companies:
+          create:
+            success: Успешно добавлена информация о компании. Регистрация прошла успешно!
+          update:
+            success: Обновление прошло успешно
+        profiles:
+          create:
+            success: Успешно добавлена информация о пользователе
+          update:
+            success: Обновление прошло успешно
+        sessions:
+          create:
+            success: Вход выполнен успешно
+            error: Неверная пара логин/пароль
+        standards:
+          create:
+            success: Стандарт успешно добавлен
+          update:
+            success: Стандарт успешно обновлён
+          destroy:
+            notice: Стандарт удалён
+
+        admin:
+          companies:
+            destroy:
+              notice: Компания была удалена
+          helps:
+            create:
+              success: Справка успешно добавлена
+            update:
+              success: Справка успешно обновлёна
+            destroy:
+              notice: Справка была удалена
+          news:
+            create:
+              success: Новость была успешно добавлена
+            update:
+              success: Новость была успешно обновлена
+            destroy:
+              notice: Новость была успешно удалена
+          profiles:
+            destroy:
+              notice: Информация о пользователе была удалена
+          session_histories:
+            destroy:
+              notice: Запись удалена
+          users:
+            destroy:
+              notice: Учётная запись и все связанное с ним было удалено

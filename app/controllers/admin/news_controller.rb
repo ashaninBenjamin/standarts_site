@@ -45,8 +45,9 @@ class Admin::NewsController < Admin::ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to admin_news_path(@news), flash: { success: 'Новость была успешно добавлена' } }
+        format.html { redirect_to admin_news_path(@news) }
         format.json { render json: @news, status: :created, location: @news }
+        flash_success
       else
         format.html { render action: "new" }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -61,8 +62,9 @@ class Admin::NewsController < Admin::ApplicationController
 
     respond_to do |format|
       if @news.update_attributes(params[:news])
-        format.html { redirect_to admin_news_path(@news), flash: { success: 'Новость была успешно обновлена' } }
+        format.html { redirect_to admin_news_path(@news) }
         format.json { head :no_content }
+        flash_success
       else
         format.html { render action: "edit" }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -75,9 +77,10 @@ class Admin::NewsController < Admin::ApplicationController
   def destroy
     @news = News.find(params[:id])
     @news.destroy
+    flash_notice
 
     respond_to do |format|
-      format.html { redirect_to admin_news_index_url, notice: "Новость была успешно удалена" }
+      format.html { redirect_to admin_news_index_url }
       format.json { head :no_content }
     end
   end

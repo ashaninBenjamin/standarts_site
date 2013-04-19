@@ -46,8 +46,9 @@ class Admin::HelpsController < Admin::ApplicationController
 
     respond_to do |format|
       if @help.save
-        format.html { redirect_to admin_help_path(@help), flash: { success: "Справка успешно добавлена" } }
+        format.html { redirect_to admin_help_path(@help) }
         format.json { render json: @help, status: :created, location: @help }
+        flash_success
       else
         format.html { render action: "new" }
         format.json { render json: @help.errors, status: :unprocessable_entity }
@@ -62,8 +63,9 @@ class Admin::HelpsController < Admin::ApplicationController
 
     respond_to do |format|
       if @help.update_attributes(params[:help])
-        format.html { redirect_to admin_help_path(@help), {success: "Справка успешно обновлёна"} }
+        format.html { redirect_to admin_help_path(@help) }
         format.json { head :no_content }
+        flash_success
       else
         format.html { render action: "edit" }
         format.json { render json: @help.errors, status: :unprocessable_entity }
@@ -76,6 +78,7 @@ class Admin::HelpsController < Admin::ApplicationController
   def destroy
     @help = Help.find(params[:id])
     @help.destroy
+    flash_notice
 
     respond_to do |format|
       format.html { redirect_to admin_helps_url }
