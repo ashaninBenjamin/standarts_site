@@ -283,6 +283,7 @@ ru:
         parent_id: Родительский раздел
         number: Номер
         access_state: Доступ
+        access_state_event: Доступ
         state: Состояние
       help:
         number: Номер

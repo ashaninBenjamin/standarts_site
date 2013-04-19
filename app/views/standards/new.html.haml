@@ -10,7 +10,7 @@
   = f.input :state, as: :check_boxes, label: false, wrapper: :inline_checkbox do
     = f.check_box :state, {}, "refrained", "published"
     = f.label t(".draft")
-  = f.input :access_state, as: :radio_buttons, collection: [[t(".access_private"), "private"], [t(".access_public"), "public"]]
+  = f.input :access_state_event, as: :access_state_event
   = f.submit class: "btn"
 
 - content_for :left do
