@@ -340,7 +340,7 @@ ru:
   admin:
     news:
       index:
-        add_link: Добавить новость
+        new_link: Добавить новость
         header: Новости
         no_one_news: Нет новостей.
         create_link: Создать?
