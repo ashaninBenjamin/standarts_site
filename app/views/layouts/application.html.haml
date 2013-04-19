@@ -5,7 +5,11 @@
     = render "layouts/stylesheet"
   %body
     #outer
-      = render "layouts/header" if signed_in? && current_user.correct?
+      - if signed_in? && current_user.correct?
+        - if current_user.super_admin?
+          = render "layouts/admin/header"
+        - else
+          = render "layouts/header"
       #content
         #primaryContentContainer
           #primaryContent

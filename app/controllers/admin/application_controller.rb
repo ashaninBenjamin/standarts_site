@@ -1,6 +1,6 @@
 class Admin::ApplicationController < ApplicationController
-  before_filter :super_admin
   before_filter :authenticate
+  before_filter :super_admin
   before_filter :correct_user
 
   private
