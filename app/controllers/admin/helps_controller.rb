@@ -3,7 +3,7 @@ class Admin::HelpsController < Admin::ApplicationController
   # GET /admin/helps
   # GET /admin/helps.json
   def index
-    @helps = Help.sorted
+    @helps = HelpDecorator.decorate_collection(Help.sorted)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,8 +14,8 @@ class Admin::HelpsController < Admin::ApplicationController
   # GET /admin/helps/1
   # GET /admin/helps/1.json
   def show
-    @help = Help.find(params[:id])
-    @helps = Help.sorted
+    @help = Help.find(params[:id]).decorate
+    @helps = HelpDecorator.decorate_collection Help.sorted
 
     respond_to do |format|
       format.html # show.html.erb
