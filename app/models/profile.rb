@@ -10,8 +10,4 @@ class Profile < ActiveRecord::Base
   validates :name, presence: true
   validates :mail, presence: true, email: true, uniqueness: true
 
-  def first_and_last_name
-    "#{surname} #{name}"
-  end
-
 end

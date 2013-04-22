@@ -9,7 +9,4 @@ class Company < ActiveRecord::Base
   validates :opf, presence: true
   validates :name, presence: true
 
-  def opf_and_name
-    "#{opf} #{name}"
-  end
 end
