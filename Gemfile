@@ -29,9 +29,12 @@ group :test do
 end
 
 group :development do
+  gem 'pre-commit'
   gem "better_errors"
 end
 
+gem 'draper'
+gem 'usefull_scopes'
 gem 'state_machine'
 gem 'ransack'
 gem 'haml-rails'

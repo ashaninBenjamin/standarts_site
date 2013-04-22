@@ -4,7 +4,7 @@ class Admin::CompaniesController < Admin::ApplicationController
   # GET /admin/companies.json
   def index
     @q = Company.ransack(params[:q])
-    @companies = @q.result
+    @companies = CompanyDecorator.decorate_collection @q.result
 
     respond_to do |format|
       format.html # index.html.erb

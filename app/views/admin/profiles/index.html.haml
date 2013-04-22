@@ -13,8 +13,8 @@
         %tr
           %td{:style => "text-align: center;"}= image_tag one.avatar.url(:thumb)
           %td= link_to one.first_and_last_name, admin_profile_path(one)
-          %td= (one.company) ? (link_to one.company.opf_and_name, admin_company_path(one.company)) : t(".bad_info")
-          %td= one.created_at.strftime("%d.%m.%Y %T")
+          %td= one.link_to_company
+          %td= one.created_at
           %td= link_to t(".destroy_link"), (one.user) ? admin_user_path(one.user) : admin_profile_path(one), method: :delete, data: { confirm: t(".confirm_destroy") }, class: "btn btn-danger"
 - else
   %em= t(".no_one_profile")

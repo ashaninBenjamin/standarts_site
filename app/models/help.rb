@@ -9,7 +9,4 @@ class Help < ActiveRecord::Base
 
   scope :sorted, -> { order(:number) }
 
-  def number_with_name
-    "#{number}. #{name}"
-  end
 end

@@ -4,7 +4,7 @@ class Admin::ProfilesController < Admin::ApplicationController
   # GET /admin/user_infos.json
   def index
     @q = Profile.ransack(params[:q])
-    @profiles = @q.result
+    @profiles = ProfileDecorator.decorate_collection @q.result
 
     respond_to do |format|
       format.html # index.html.erb

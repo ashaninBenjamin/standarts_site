@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /admin/users.json
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = UserDecorator.decorate_collection @q.result(distinct: true)
 
     respond_to do |format|
       format.html # index.html.erb

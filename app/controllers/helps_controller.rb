@@ -3,12 +3,12 @@ class HelpsController < ApplicationController
   before_filter :super_admin
 
   def index
-    @helps = Help.sorted
+    @helps = HelpDecorator.decorate_collection Help.sorted
   end
 
   def show
-    @help = Help.find(params[:id])
-    @helps = Help.sorted
+    @help = Help.find(params[:id]).decorate
+    @helps = HelpDecorator.decorate_collection Help.sorted
   end
 
   private
