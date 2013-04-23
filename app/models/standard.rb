@@ -2,7 +2,7 @@
 class Standard < ActiveRecord::Base
   include ActiveModel::Validations
   include StandardRepository
-  attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
+  attr_accessible :content, :name, :number, :user_id, :user, :parent_id, :state, :access_state, :access_state_event
 
   has_ancestry
   belongs_to :user
@@ -13,14 +13,18 @@ class Standard < ActiveRecord::Base
 
   validates_each :number do |record, attr, value|
     if record.new_record?
-      if record.siblings.where(number: value).present?
+      if record.siblings.with(number: value).present?
         record.errors.add(attr, :taken)
       end
     else
-      if record.siblings.where("id not IN (?) AND number IN (?)", record.id, value).present?
+      if record.siblings.exclude(record.id).with(number: value).present?
         record.errors.add(attr, :taken)
       end
     end
+  end
+
+  def siblings
+    Standard.where(ancestry: self.ancestry, user_id: self.user)
   end
 
   def refrain_children
