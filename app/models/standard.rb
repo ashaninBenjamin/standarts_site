@@ -1,6 +1,7 @@
 # coding: utf-8
 class Standard < ActiveRecord::Base
   include ActiveModel::Validations
+  include StandardRepository
   attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
   has_ancestry
@@ -57,8 +58,6 @@ class Standard < ActiveRecord::Base
 
   before_update :check_content
 
-  scope :all_by_super_admin, -> { scoped_by_user_id(User.super_admins) }
-
   def self.sort_standards_by_code(standards)
     standards.sort_by { |a| a.code.split('.').map &:to_i }
   end
@@ -67,7 +66,7 @@ class Standard < ActiveRecord::Base
     if (children.empty?)
       return [1]
     end
-    all = children.order("number DESC")
+    all = children.sorted
     last_number = all.first.number + 1
     array = (1..last_number).to_a
     all.each do |one|
@@ -77,7 +76,7 @@ class Standard < ActiveRecord::Base
   end
 
   def self.root_numbers
-    all = roots.order("number DESC")
+    all = roots.sorted
     if all.empty?
       return [1]
     end
