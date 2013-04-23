@@ -2,7 +2,7 @@
 class Admin::SessionHistoriesController < Admin::ApplicationController
 
   def index
-    @q = SessionHistory.sorted.ransack(params[:q])
+    @q = SessionHistory.by_updated_at.ransack(params[:q])
     @session_histories = @q.result(distinct: true)
   end
 
