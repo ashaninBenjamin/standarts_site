@@ -1,4 +1,5 @@
 class Help < ActiveRecord::Base
+  include HelpRepository
   attr_accessible :content, :name, :number
 
   validates :number, presence: true,
@@ -6,7 +7,5 @@ class Help < ActiveRecord::Base
             uniqueness: true
   validates :name, presence: true
   validates :content, presence: true
-
-  scope :sorted, -> { order(:number) }
 
 end
