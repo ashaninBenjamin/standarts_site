@@ -2,7 +2,7 @@
 class Standard < ActiveRecord::Base
   include ActiveModel::Validations
   include StandardRepository
-  attr_accessible :content, :name, :number, :user_id, :user, :parent_id, :state, :access_state, :access_state_event
+  attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
   has_ancestry
   belongs_to :user
