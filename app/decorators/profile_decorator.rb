@@ -1,14 +1,15 @@
 class ProfileDecorator < Draper::Decorator
-  delegate_all
-  decorates_finders
+  delegate :surname, :name, :avatar
+  decorates_association :user
+  decorates_association :company
 
   def first_and_last_name
     "#{surname} #{name}"
   end
 
   def link_to_company
-    if model.company
-      h.link_to model.company.decorate.opf_and_name, h.admin_company_path(model.company)
+    if company
+      h.link_to company.opf_and_name, h.admin_company_path(company)
     else
       h.t(".bad_info")
     end

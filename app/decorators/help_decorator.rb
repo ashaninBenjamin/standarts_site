@@ -1,6 +1,5 @@
 class HelpDecorator < Draper::Decorator
-  delegate_all
-  decorates_finders
+  delegate :number, :name, :content
 
   def number_with_name
     "#{number}. #{name}"

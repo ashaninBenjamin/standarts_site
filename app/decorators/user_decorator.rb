@@ -1,17 +1,19 @@
 class UserDecorator < Draper::Decorator
-  delegate_all
+  delegate :login, :super_admin?
+  decorates_association :profile
+  decorates_association :company
 
   def link_to_company
-    if model.company
-      h.link_to model.company.decorate.opf_and_name, h.admin_company_path(model.company)
+    if company
+      h.link_to company.opf_and_name, h.admin_company_path(company)
     else
       h.t(".bad_info")
     end
   end
 
   def link_to_profile
-    if model.profile
-      h.link_to model.profile.decorate.first_and_last_name, h.admin_profile_path(model.profile)
+    if profile
+      h.link_to profile.first_and_last_name, h.admin_profile_path(profile)
     else
       h.t(".bad_info")
     end
