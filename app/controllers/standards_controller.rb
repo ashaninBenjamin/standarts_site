@@ -73,7 +73,7 @@ class StandardsController < ApplicationController
     old.destroy_all
     #запись нового
     dict = Hash.new
-    pattern = Standard.scoped_by_super_admin
+    pattern = Standard.with(user_id: User.super_admins)
     pattern.each do |one|
       new = one.dup
       new.user_id = current_user.id
