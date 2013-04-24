@@ -14,7 +14,7 @@
   .bar-user
     .first-line
       = image_tag current_user.profile.avatar.thumb.url
-      = link_to current_user.profile.decorate.first_and_last_name, user_profile_path
+      = link_to current_user.profile.first_and_last_name, user_profile_path
       = link_to image_tag("logout-icon.png", :size => "30x30", :title => t(".logout")), session_path, method: :delete
     .second-line
       = link_to t(".settings"), edit_user_path
