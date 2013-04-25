@@ -52,6 +52,7 @@ class Admin::NewsController < Admin::ApplicationController
   def destroy
     @news = News.find(params[:id])
     @news.destroy
+    redirect_to admin_news_index_path
     flash_notice
   end
 

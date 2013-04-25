@@ -1,6 +1,7 @@
 #coding: utf-8
 class CompaniesController < ApplicationController
-  before_filter :authenticate, only: [:edit, :update, :show]
+  skip_before_filter :authenticate!, only: [:new, :create]
+  skip_before_filter :registration_passed!, only: [:new, :create]
 
   def new
     @company = Company.new

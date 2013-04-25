@@ -53,6 +53,7 @@ class Admin::HelpsController < Admin::ApplicationController
   def destroy
     @help = Help.find(params[:id])
     @help.destroy
+    redirect_to admin_helps_path
     flash_notice
   end
 

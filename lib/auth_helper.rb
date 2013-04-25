@@ -20,11 +20,19 @@ module AuthHelper
     user == current_user
   end
 
-  def deny_access
-    redirect_to new_session_path, :notice => "Пожалуйста, авторизируйтесь"
+  def authenticate!
+    if !signed_in?
+      redirect_to new_session_path, :notice => "Пожалуйста, авторизируйтесь"
+    end
   end
 
-  def finish_sign_up
-    redirect_to (current_user.profile) ? new_user_company_path : new_user_profile_path, flash: {error: "Пройдите регистрацию до конца!"}
+  def authorized_admin!
+    redirect_to root_path if !current_user.super_admin?
+  end
+
+  def registration_passed!
+    if !current_user.correct?
+      redirect_to (current_user.profile) ? new_user_company_path : new_user_profile_path, flash: {error: "Пройдите регистрацию до конца!"}
+    end
   end
 end

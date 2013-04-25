@@ -1,7 +1,5 @@
 # coding: utf-8
 class StandardsController < ApplicationController
-  before_filter :authenticate
-  before_filter :correct_user
 
   def index
     @q = current_user.standards.ransack(params[:q])

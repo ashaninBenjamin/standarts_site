@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :authenticate, only: [:index, :show, :edit, :update, :destroy]
-  before_filter :correct_user, only: [:index, :show, :edit, :update, :destroy]
+  skip_before_filter :authenticate!, only: [:new, :create]
+  skip_before_filter :registration_passed!, only: [:new, :create]
 
   def new
     @user = UserCreateType.new
