@@ -1,5 +1,8 @@
 # coding: utf-8
 class SessionsController < ApplicationController
+  skip_before_filter :authenticate!
+  skip_before_filter :registration_passed!
+
   def new
     if signed_in? && current_user.correct?
       redirect_to standards_path

@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :update_session_history, if: :signed_in?
+  before_filter :authenticate!
+  before_filter :registration_passed!
   protect_from_forgery
   include AuthHelper
   include FlashHelper
@@ -15,13 +17,5 @@ class ApplicationController < ActionController::Base
     else
       @history.update_attribute(:page, request.fullpath)
     end
-  end
-
-  def authenticate
-    deny_access unless signed_in?
-  end
-
-  def correct_user
-    finish_sign_up if !current_user.correct?
   end
 end

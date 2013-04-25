@@ -1,6 +1,5 @@
 #coding: utf-8
 class Admin::UsersController < Admin::ApplicationController
-
   # GET /admin/users
   # GET /admin/users.json
   def index
@@ -19,6 +18,7 @@ class Admin::UsersController < Admin::ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    redirect_to admin_users_path
     flash_notice
   end
 
