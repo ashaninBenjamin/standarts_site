@@ -1,0 +1,1 @@
+json.(@news, :title, :content)
