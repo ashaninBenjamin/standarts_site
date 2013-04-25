@@ -1,6 +1,0 @@
-= simple_form_for @help, url: url do |f|
-  = render "layouts/error_message", obj: f.object
-  = f.input :number
-  = f.input :name
-  = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
-  = f.submit class: "btn"

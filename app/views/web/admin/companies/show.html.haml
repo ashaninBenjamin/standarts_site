@@ -1,0 +1,7 @@
+%h2= t(".header")
+
+= image_tag @company.logo.url
+%p= "#{t(".opf")}: #{@company.opf}"
+%p= "#{t(".name")}: #{@company.name }"
+
+- render "layouts/web/admin/admin_left_column"
