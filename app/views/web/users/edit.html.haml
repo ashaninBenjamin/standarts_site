@@ -1,0 +1,6 @@
+%h2= t(".header")
+= render "form", url: user_path
+
+= (link_to t(".destroy_link"), user_path, method: :delete, class: "btn btn-danger", confirm: t(".confirm_destroy")) if !current_user.super_admin?
+
+= render "layouts/web/account_settings_submenu"

@@ -1,0 +1,6 @@
+= simple_form_for @user, url: url do |f|
+  = f.error_notification
+  = f.input :login
+  = f.input :password
+  = f.input :password_confirmation
+  = f.submit class: "btn"

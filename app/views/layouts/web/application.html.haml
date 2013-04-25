@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title Стандарты компании
+    = render "layouts/web/stylesheet"
+  %body
+    #outer
+      - if signed_in? && current_user.correct?
+        - if current_user.super_admin?
+          = render "layouts/web/admin/header"
+        - else
+          = render "layouts/web/header"
+      #content
+        #primaryContentContainer
+          #primaryContent
+            = render "layouts/web/submenu"
+            - flash.each do |key, value|
+              %div{:class => "flash #{key}"}= value
+            = yield
+            = debug(params) if Rails.env.development? && false
+        - if signed_in?
+          #secondaryContent
+            = render "layouts/web/left_column"
+        .clear
+      = render "layouts/web/footer"

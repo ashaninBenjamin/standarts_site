@@ -1,0 +1,12 @@
+= simple_form_for @standard, url: url do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :parent_id, collection: @select.collect {|p| [ p.for_select, p.id ] }, include_blank: t(".select_include_blank")
+  #number
+    = render :partial => "web/standards/number_selection", locals: {obj: @standard }
+  = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
+  = f.input :access_state_event, as: :access_state_event
+  = f.input :state, as: :check_boxes, label: false, wrapper: :inline_checkbox do
+    = f.check_box :state, {}, "refrained", "published"
+    = f.label t(".draft")
+  = f.submit class: "btn"
