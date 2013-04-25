@@ -70,7 +70,7 @@ class Standard < ActiveRecord::Base
     if (children.empty?)
       return [1]
     end
-    all = children.sorted
+    all = children.by_number
     last_number = all.first.number + 1
     array = (1..last_number).to_a
     all.each do |one|
@@ -80,7 +80,7 @@ class Standard < ActiveRecord::Base
   end
 
   def self.root_numbers
-    all = roots.sorted
+    all = roots.by_number
     if all.empty?
       return [1]
     end
