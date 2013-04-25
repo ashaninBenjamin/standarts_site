@@ -16,6 +16,10 @@ RoR::Application.routes.draw do
     resources :news
   end
 
+  namespace :api do
+    resources :news, only: [:index, :show]
+  end
+
   resource :session, only: [:new, :create, :destroy]
 
   match "helper/number_selection" => "standards#number_selection"

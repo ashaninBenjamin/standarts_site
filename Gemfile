@@ -51,7 +51,7 @@ gem 'email_validator'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 # Deploy with Capistrano
 # gem 'capistrano'
