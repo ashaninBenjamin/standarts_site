@@ -1,6 +1,6 @@
 #coding: utf-8
 class ProfilesController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :destroy, :show]
+  before_filter :authenticate, only: [:edit, :update, :destroy, :show]
 
   def new
     @profile = Profile.new

@@ -1,6 +1,6 @@
 #coding: utf-8
 class CompaniesController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update, :show]
+  before_filter :authenticate, only: [:edit, :update, :show]
 
   def new
     @company = Company.new

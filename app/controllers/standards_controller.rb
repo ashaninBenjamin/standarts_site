@@ -63,13 +63,13 @@ class StandardsController < ApplicationController
         @arr = (@arr << Standard.find(params[:native_id]).number).sort
       end
     end
-    render :partial => "standards/number_selection", :locals => {:obj => Standard.new}
+    render partial: "standards/number_selection", locals: {obj: Standard.new}
   end
 
   def take_pattern
     old = current_user.standards
     old.destroy_all
-    #запись нового
+
     dict = Hash.new
     pattern = Standard.all_by_super_admin
     pattern.each do |one|
@@ -78,7 +78,7 @@ class StandardsController < ApplicationController
       new.save
       dict[one.id] = new.id
     end
-    #сопоставление всех родительских айдишек
+
     own = current_user.standards
     own.each do |one|
       if one.parent
