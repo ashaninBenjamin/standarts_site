@@ -27,15 +27,15 @@ class Standard < ActiveRecord::Base
     Standard.where(ancestry: self.ancestry, user_id: self.user)
   end
 
-  def refrain_children
-    children.each { |one| one.keep }
+  def refrain_descendants
+    descendants.each { |one| one.refrain }
   end
 
   state_machine :state, initial: :refrained do
     state :published
     state :refrained
 
-    after_transition on: :refrain, do: :refrain_children
+    after_transition on: :refrain, do: :refrain_descendants
 
     event :refrain do
       transition all => :refrained
