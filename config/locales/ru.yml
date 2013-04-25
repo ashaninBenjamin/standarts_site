@@ -309,215 +309,217 @@ ru:
             mail:
               blank: не заполнена
   layouts:
-    admin:
+    web:
+      admin:
+        admin_left_column:
+          users: Учётные записи
+          profiles: Профили
+          companies: Компании
+          session_history: История сессий
+        header:
+          standards: Стандарты
+          help: Помощь
+          news: Новости
+          admin_room: Админка
+          settings: Настройки
+          logout: Выйти
       header:
         standards: Стандарты
         help: Помощь
         news: Новости
-        admin_room: Админка
         settings: Настройки
         logout: Выйти
-    header:
-      standards: Стандарты
-      help: Помощь
-      news: Новости
-      settings: Настройки
-      logout: Выйти
-    admin_left_column:
-      users: Учётные записи
-      profiles: Профили
-      companies: Компании
-      session_history: История сессий
-    error_message:
-      default_message: "Были обнаружены следующие ошибки:"
-    account_settings_submenu:
-      edit_user_link: Логин и пароль
-      edit_profile_link: Информация о пользователе
-      edit_company_link: Информация о компании
-  admin:
-    news:
-      index:
-        new_link: Добавить новость
-        header: Новости
-        no_one_news: Нет новостей.
-        create_link: Создать?
-      show:
-        new_link: Добавить ещё новость
-        edit_link: Редактировать новость
-        destroy_link: Удалить новость
-        back_link: Назад
-        confirm_destroy: Вы уверены?
-      new:
-        header: Добавление новости
-        back_link: Назад
-      edit:
-        header: Редактирование новости
-        back_link: Назад
-    helps:
-      index:
-        header: Помощь
-        no_one_help: Нет ещё ни одной справки.
-        create_link_if_apcent: Создать новую
-        create_link: Новая справка
-      show:
-        all_helps: Все справки
-        new_link: Новая справка
-        edit_link: Редактировать справку
-        destroy_link: Удалить справку
-        confirm_destroy: Вы уверены, что хотите удалить эту справку?
-      new:
-        header: Создание новой справки
-        back_link: Назад
-      edit:
-        header: Редактирование справки
-        back_link: Назад
-        all_helps_link: К списку всех справок
+      error_message:
+        default_message: "Были обнаружены следующие ошибки:"
+      account_settings_submenu:
+        edit_user_link: Логин и пароль
+        edit_profile_link: Информация о пользователе
+        edit_company_link: Информация о компании
+  web:
+    admin:
+      news:
+        index:
+          new_link: Добавить новость
+          header: Новости
+          no_one_news: Нет новостей.
+          create_link: Создать?
+        show:
+          new_link: Добавить ещё новость
+          edit_link: Редактировать новость
+          destroy_link: Удалить новость
+          back_link: Назад
+          confirm_destroy: Вы уверены?
+        new:
+          header: Добавление новости
+          back_link: Назад
+        edit:
+          header: Редактирование новости
+          back_link: Назад
+      helps:
+        index:
+          header: Помощь
+          no_one_help: Нет ещё ни одной справки.
+          create_link_if_apcent: Создать новую
+          create_link: Новая справка
+        show:
+          all_helps: Все справки
+          new_link: Новая справка
+          edit_link: Редактировать справку
+          destroy_link: Удалить справку
+          confirm_destroy: Вы уверены, что хотите удалить эту справку?
+        new:
+          header: Создание новой справки
+          back_link: Назад
+        edit:
+          header: Редактирование справки
+          back_link: Назад
+          all_helps_link: К списку всех справок
+      companies:
+        index:
+          header: Компании
+          logo: Логотип
+          company: Компания
+          profile: Пользователь
+          created_date: Когда создан
+          actions: Действия
+          destroy_link: Удалить
+          bad_info: Данные повреждены
+          no_one_company: Компаний нет
+        show:
+          header: Компания
+          opf: ОПФ
+          name: Наименование
+      profiles:
+        index:
+          header: Профили
+          avatar: Изображение
+          company: Компания
+          profile: Пользователь
+          created_date: Когда создан
+          actions: Действия
+          destroy_link: Удалить
+          confirm_destroy: Вы уверены?
+          bad_info: Данные повреждены
+          no_one_profile: Профилей нет
+        show:
+          header: Профиль
+          surname: Фамилия
+          name: Имя
+          patronymic: Отчество
+          mail: Эл. почта
+      session_histories:
+        index:
+          header: История сессий
+          user: Пользователь
+          last_page: Последняя страница
+          ip: Ip-адрес
+          time: Время
+          actions: Действия
+          destroy_link: Удалить
+      users:
+        index:
+          header: Все учётные записи
+          login: Логин
+          profile: Пользователь
+          company: Компания
+          created_date: Дата создания
+          actions: Действия
+          bad_info: Данные повреждены
+          destroy_link: Удалить
+          confirm_destroy: Вы уверены?
+        show:
+          header: Профиль пользователя
     companies:
-      index:
-        header: Компании
-        logo: Логотип
-        company: Компания
-        profile: Пользователь
-        created_date: Когда создан
-        actions: Действия
-        destroy_link: Удалить
-        bad_info: Данные повреждены
-        no_one_company: Компаний нет
       show:
-        header: Компания
+        header: Информация о компании
         opf: ОПФ
         name: Наименование
+        edit_link: Редактировать
+      new:
+        header: Добавление компании
+        complete_signing_up: Пожалуйста, завершите регистрацию.
+        steps: Шаг 3/3
+      edit:
+        header: Редактирование информации о компании
+      form:
+        destroy_logo: Удалить логотип
     profiles:
-      index:
-        header: Профили
-        avatar: Изображение
-        company: Компания
-        profile: Пользователь
-        created_date: Когда создан
-        actions: Действия
-        destroy_link: Удалить
-        confirm_destroy: Вы уверены?
-        bad_info: Данные повреждены
-        no_one_profile: Профилей нет
       show:
         header: Профиль
         surname: Фамилия
         name: Имя
         patronymic: Отчество
-        mail: Эл. почта
-    session_histories:
+        mail: Эл.почта
+        edit_link: Редактировать
+      new:
+        header: Добавление профиля
+        complete_signing_up: Пожалуйста, завершите регистрацию.
+        steps: Шаг 2/3
+      edit:
+        header: Редактирование профиля
+        destroy_avatar: Удалить фотографию
+      form:
+        destroy_avatar: Удалить логотип
+    helps:
       index:
-        header: История сессий
-        user: Пользователь
-        last_page: Последняя страница
-        ip: Ip-адрес
-        time: Время
-        actions: Действия
-        destroy_link: Удалить
-    users:
-      index:
-        header: Все учётные записи
-        login: Логин
-        profile: Пользователь
-        company: Компания
-        created_date: Дата создания
-        actions: Действия
-        bad_info: Данные повреждены
-        destroy_link: Удалить
-        confirm_destroy: Вы уверены?
+        header: Помощь
+        no_one_help: Нет ещё ни одной справки.
       show:
-        header: Профиль пользователя
-  companies:
-    show:
-      header: Информация о компании
-      opf: ОПФ
-      name: Наименование
-      edit_link: Редактировать
-    new:
-      header: Добавление компании
-      complete_signing_up: Пожалуйста, завершите регистрацию.
-      steps: Шаг 3/3
-    edit:
-      header: Редактирование информации о компании
-    form:
-      destroy_logo: Удалить логотип
-  profiles:
-    show:
-      header: Профиль
-      surname: Фамилия
-      name: Имя
-      patronymic: Отчество
-      mail: Эл.почта
-      edit_link: Редактировать
-    new:
-      header: Добавление профиля
-      complete_signing_up: Пожалуйста, завершите регистрацию.
-      steps: Шаг 2/3
-    edit:
-      header: Редактирование профиля
-      destroy_avatar: Удалить фотографию
-    form:
-      destroy_avatar: Удалить логотип
-  helps:
-    index:
-      header: Помощь
-      no_one_help: Нет ещё ни одной справки.
-    show:
-      all_helps_link: Все справки
-  news:
-    index:
-      header: Новости
-      no_one_news: Ещё нет новостей.
-    show:
-      back_link: Назад
-  sessions:
-    new:
-      header: Авторизация
-      new_user: Нет учётной записи?
-      new_user_link: Зарегистрироваться!
-      login_button: Войти
-  users:
-    show:
-      header: Профиль учётной записи
-      edit_link: Редактировать
-    new:
-      header: Регистрация учётной записи
-      button: Зарегистрировать
-    edit:
-      header: Редактировать логин и пароль
-      destroy_link: Удалить учётную запись
-      confirm_destroy: Вы уверены, что хотите удалить свою учётную запись?
-  standards:
-    index:
-      header: Стандарты
-      no_one_standard: Стандартов ещё нет.
-      new_link_if_apcents: Создать?
-      new_link: Новый стандарт
-      take_pattern_link: Принять шаблон
-      confirm_take_pattern: Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?
-      search_all: Все
-      search_access_private: Только для меня
-      search_access_public: Публичный
-      search_published: Стандарты
-      search_refrained: Черновики
-      search_submit: Поиск
-      search_clear: Очистить
-    show:
-      children: Дочерние стандарты
-      new_link: Новый стандарт
-      edit_link: Редактировать стандарт
-      destroy_link: Удалить стандарт
-      confirm_link: Вы уверены, что хотите удалить этот стандарт?
-      standards_link: К списку всех стандартов
-      parent_link: К родительскому стандарту
-    new:
-      header: Создание нового стандарта
-      standards_link: К списку всех стандартов
-    edit:
-      header: Редактирование раздела
-      standards_link: К списку всех стандартов
-      back_link: Отменить редактирование
-    form:
-      draft: Черновик
-      select_include_blank: Не принадлежит
+        all_helps_link: Все справки
+    news:
+      index:
+        header: Новости
+        no_one_news: Ещё нет новостей.
+      show:
+        back_link: Назад
+    sessions:
+      new:
+        header: Авторизация
+        new_user: Нет учётной записи?
+        new_user_link: Зарегистрироваться!
+        login_button: Войти
+    users:
+      show:
+        header: Профиль учётной записи
+        edit_link: Редактировать
+      new:
+        header: Регистрация учётной записи
+        button: Зарегистрировать
+      edit:
+        header: Редактировать логин и пароль
+        destroy_link: Удалить учётную запись
+        confirm_destroy: Вы уверены, что хотите удалить свою учётную запись?
+    standards:
+      index:
+        header: Стандарты
+        no_one_standard: Стандартов ещё нет.
+        new_link_if_apcents: Создать?
+        new_link: Новый стандарт
+        take_pattern_link: Принять шаблон
+        confirm_take_pattern: Все ваши стандарты будут удалены и записаны шаблонные стандарты. Вы уверены?
+        search_all: Все
+        search_access_private: Только для меня
+        search_access_public: Публичный
+        search_published: Стандарты
+        search_refrained: Черновики
+        search_submit: Поиск
+        search_clear: Очистить
+      show:
+        children: Дочерние стандарты
+        new_link: Новый стандарт
+        edit_link: Редактировать стандарт
+        destroy_link: Удалить стандарт
+        confirm_link: Вы уверены, что хотите удалить этот стандарт?
+        standards_link: К списку всех стандартов
+        parent_link: К родительскому стандарту
+      new:
+        header: Создание нового стандарта
+        standards_link: К списку всех стандартов
+      edit:
+        header: Редактирование раздела
+        standards_link: К списку всех стандартов
+        back_link: Отменить редактирование
+      form:
+        draft: Черновик
+        select_include_blank: Не принадлежит
 
