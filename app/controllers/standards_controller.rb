@@ -28,13 +28,13 @@ class StandardsController < ApplicationController
 
   def edit
     @standard = current_user.standards.find_by_link(params[:id])
-    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.children << @standard)
+    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard)
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
   end
 
   def update
     @standard = current_user.standards.find_by_link(params[:id])
-    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.children << @standard)
+    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard)
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
       redirect_to standard_path(@standard.link)
