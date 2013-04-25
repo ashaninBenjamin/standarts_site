@@ -3,6 +3,6 @@ module StandardRepository
   include BaseRepository
 
   included do
-    scope :scoped_by_super_admin, -> { with(user_id: User.super_admins) }
+    scope :all_by_super_admin, -> { with(user_id: User.super_admins) }
   end
 end
