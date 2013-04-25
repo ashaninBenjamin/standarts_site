@@ -7,7 +7,8 @@ class Admin::SessionHistoriesController < Admin::ApplicationController
   end
 
   def destroy
-    SessionHistory.find(params[:id]).destroy
+    session_history = SessionHistory.find(params[:id])
+    session_history.destroy
     redirect_to admin_session_histories_path
     flash_notice
   end

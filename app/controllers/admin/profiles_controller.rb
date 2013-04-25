@@ -5,22 +5,12 @@ class Admin::ProfilesController < Admin::ApplicationController
   def index
     @q = Profile.ransack(params[:q])
     @profiles = ProfileDecorator.decorate_collection @q.result
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @profiles }
-    end
   end
 
   # GET /admin/user_infos/1
   # GET /admin/user_infos/1.json
   def show
     @profile = Profile.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @profile }
-    end
   end
 
   def destroy
