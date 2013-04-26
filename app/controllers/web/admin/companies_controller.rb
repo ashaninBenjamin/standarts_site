@@ -1,14 +1,11 @@
 #coding: utf-8
 class Web::Admin::CompaniesController < Web::Admin::ApplicationController
-  # GET /admin/companies
-  # GET /admin/companies.json
+
   def index
     @q = Company.ransack(params[:q])
     @companies = CompanyDecorator.decorate_collection @q.result
   end
 
-  # GET /admin/companies/1
-  # GET /admin/companies/1.json
   def show
     @company = Company.find(params[:id])
   end
