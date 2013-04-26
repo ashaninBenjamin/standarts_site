@@ -25,13 +25,15 @@ class Web::StandardsController < Web::ApplicationController
   end
 
   def edit
-    @standard = current_user.standards.find_by_link(params[:id]).decorate
+    @standard = current_user.standards.find_by_link(params[:id])
+    @link = @standard.decorate.link
     @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
   end
 
   def update
-    @standard = current_user.standards.find_by_link(params[:id]).decorate
+    @standard = current_user.standards.find_by_link(params[:id])
+    @link = @standard.decorate.link
     @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
