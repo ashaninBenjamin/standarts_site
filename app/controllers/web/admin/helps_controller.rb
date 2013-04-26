@@ -2,12 +2,12 @@
 class Web::Admin::HelpsController < Web::Admin::ApplicationController
 
   def index
-    @helps = HelpDecorator.decorate_collection Help.by_number
+    @helps = Help.by_number.decorate
   end
 
   def show
     @help = Help.find(params[:id]).decorate
-    @helps = HelpDecorator.decorate_collection Help.by_number
+    @helps = Help.by_number.decorate
   end
 
   def new

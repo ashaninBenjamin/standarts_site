@@ -1,6 +1,6 @@
 class ProfileDecorator < Draper::Decorator
-  delegate :surname, :name, :avatar
-  decorates_association :user
+  delegate :surname, :name, :avatar, :avatar_cache, :remove_avatar, :avatar?, :patronymic, :mail, :update_attributes,
+           :to_key, :persisted?, :errors, :user
   decorates_association :company
 
   def first_and_last_name

@@ -3,7 +3,7 @@ class Web::Admin::CompaniesController < Web::Admin::ApplicationController
 
   def index
     @q = Company.ransack(params[:q])
-    @companies = CompanyDecorator.decorate_collection @q.result
+    @companies = @q.result.decorate
   end
 
   def show

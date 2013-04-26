@@ -273,10 +273,12 @@ ru:
         patronymic: Отчество
         mail: Электронная почта
         avatar: Фотография профиля
+        remove_avatar: Удалить фотографию
       company:
         opf: ОПФ
         name: Наименование
         logo: Логотип компании
+        remove_logo: Удалить логотип
       standard:
         name: Название
         content: Содержание
@@ -441,8 +443,6 @@ ru:
         steps: Шаг 3/3
       edit:
         header: Редактирование информации о компании
-      form:
-        destroy_logo: Удалить логотип
     profiles:
       show:
         header: Профиль
@@ -457,9 +457,6 @@ ru:
         steps: Шаг 2/3
       edit:
         header: Редактирование профиля
-        destroy_avatar: Удалить фотографию
-      form:
-        destroy_avatar: Удалить логотип
     helps:
       index:
         header: Помощь
@@ -522,4 +519,7 @@ ru:
       form:
         draft: Черновик
         select_include_blank: Не принадлежит
+  auth_helper:
+    please_authorize: Пожалуйста, авторизируйтесь
+    pass_registration: Пройдите регистрацию до конца!
 
