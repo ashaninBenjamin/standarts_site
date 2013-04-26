@@ -1,6 +1,5 @@
 class CompanyDecorator < Draper::Decorator
-  delegate :logo, :opf, :name
-  decorates_association :user
+  delegate :logo, :logo_cache, :remove_logo, :logo?, :opf, :name, :update_attributes, :user, :to_key, :persisted?, :errors
   decorates_association :profile
 
   def opf_and_name
