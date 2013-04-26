@@ -1,7 +1,7 @@
 %h2= t(".header")
 = image_tag @profile.avatar.medium.url
-= [t(".surname"), @profile.surname].join(": ")
-= [t(".name"), @profile.name].join(": ")
-= [t(".patronymic"), @profile.patronymic].join(": ")
-= [t(".mail"), @profile.mail].join(": ")
-= link_to t(".edit_link"), edit_user_profile_path, class: "btn btn-success"
+%p= [t(".surname"), @profile.surname].join(": ")
+%p= [t(".name"), @profile.name].join(": ")
+%p= [t(".patronymic"), @profile.patronymic].join(": ")
+%p= [t(".mail"), @profile.mail].join(": ")
+%p= link_to t(".edit_link"), edit_user_profile_path, class: "btn btn-success"
