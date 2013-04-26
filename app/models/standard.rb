@@ -23,19 +23,13 @@ class Standard < ActiveRecord::Base
     end
   end
 
-  def siblings
-    Standard.where(ancestry: self.ancestry, user_id: self.user)
-  end
-
-  def refrain_descendants
-    descendants.each { |one| one.refrain }
-  end
-
   state_machine :state, initial: :refrained do
     state :published
     state :refrained
 
-    after_transition on: :refrain, do: :refrain_descendants
+    after_transition on: :refrain do |standard, transition|
+      standard.descendants.each { |one| one.refrain }
+    end
 
     event :refrain do
       transition all => :refrained
@@ -88,13 +82,6 @@ class Standard < ActiveRecord::Base
       array.delete(one.number)
     end
     return array
-  end
-
-  def self.find_by_link(link)
-    all.each do |one|
-      return one if one.decorate.link == link
-    end
-    nil
   end
 
 end
