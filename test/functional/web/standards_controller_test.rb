@@ -5,7 +5,7 @@ class Web::StandardsControllerTest < ActionController::TestCase
     user = create :user
     sign_in user
     @standard = create :standard, user: user
-    @params = {id: @standard.link}
+    @params = {id: @standard.decorate.link}
   end
 
   test "should get index" do

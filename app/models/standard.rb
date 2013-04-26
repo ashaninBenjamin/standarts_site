@@ -90,31 +90,9 @@ class Standard < ActiveRecord::Base
     return array
   end
 
-  def for_select
-    ("-" * depth) + "#{code} #{name}"
-  end
-
-  def code
-    ret = self.number.to_s
-    temp = self
-    while temp.parent
-      temp = temp.parent
-      ret = "#{temp.number.to_s}.#{ret}"
-    end
-    ret
-  end
-
-  def link
-    self.code.gsub(".", "-")
-  end
-
-  def code_with_name
-    "#{code}. #{name}"
-  end
-
   def self.find_by_link(link)
     all.each do |one|
-      return one if one.link == link
+      return one if one.decorate.link == link
     end
     nil
   end
