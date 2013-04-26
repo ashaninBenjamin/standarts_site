@@ -1,6 +1,6 @@
 class UserDecorator < Draper::Decorator
   delegate :id, :login, :super_admin?, :correct?, :standards, :destroy, :build_profile, :build_company,
-           :to_key, :persisted?, :save, :profile, :user
+           :to_key, :persisted?, :save
   decorates_association :profile
   decorates_association :company
 
