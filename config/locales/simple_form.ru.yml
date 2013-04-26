@@ -7,3 +7,20 @@ ru:
       mark: '*'
     error_notification:
       default_message: "Были обнаружены следующие ошибки:"
+    labels:
+      user:
+        login: Логин
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      profile:
+        surname: Фамилия
+        name: Имя
+        patronymic: Отчество
+        mail: Электронная почта
+        avatar: Фотография профиля
+        remove_avatar: Удалить фотографию
+      company:
+        opf: ОПФ
+        name: Наименование
+        logo: Логотип компании
+        remove_logo: Удалить логотип

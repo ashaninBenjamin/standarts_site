@@ -7,6 +7,6 @@
     %br/
     = f.input_field :logo
   = f.input :logo_cache, as: :hidden
-  = f.input :remove_logo, as: :boolean, label: t(".destroy_logo") if @company.logo?
+  = f.input :remove_logo, as: :boolean if @company.logo?
   %br/
   = f.submit class: "btn"

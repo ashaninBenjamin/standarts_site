@@ -9,6 +9,6 @@
     %br/
     = f.input_field :avatar
   = f.input :avatar_cache, as: :hidden
-  = f.input :remove_avatar, as: :boolean, label: t(".destroy_avatar") if @profile.avatar?
+  = f.input :remove_avatar, as: :boolean if @profile.avatar?
   %br/
   = f.submit class: "btn"
