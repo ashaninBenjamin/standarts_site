@@ -3,7 +3,7 @@ class Web::Admin::ProfilesController < Web::Admin::ApplicationController
 
   def index
     @q = Profile.ransack(params[:q])
-    @profiles = ProfileDecorator.decorate_collection @q.result
+    @profiles = @q.result.decorate
   end
 
   def show

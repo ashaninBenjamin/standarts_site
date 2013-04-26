@@ -37,7 +37,7 @@ class Web::StandardsController < Web::ApplicationController
     @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
-      redirect_to standard_path(@standard.link)
+      redirect_to standard_path(@link)
       flash_success
     else
       render action: :edit
