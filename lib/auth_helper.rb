@@ -26,7 +26,7 @@ module AuthHelper
     end
   end
 
-  def authorized_admin!
+  def authorize_admin!
     redirect_to root_path if !current_user.super_admin?
   end
 
