@@ -23,7 +23,7 @@ class Web::Admin::NewsController < Web::Admin::ApplicationController
       redirect_to admin_news_path(@news)
       flash_success
     else
-      render action: "new"
+      render action: :new
     end
   end
 
@@ -33,7 +33,7 @@ class Web::Admin::NewsController < Web::Admin::ApplicationController
       redirect_to admin_news_path(@news)
       flash_success
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 

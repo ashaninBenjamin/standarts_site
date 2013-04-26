@@ -20,7 +20,7 @@ class Web::SessionsController < Web::ApplicationController
       flash_success
     else
       flash_error
-      render 'new'
+      render action: :new
     end
   end
 

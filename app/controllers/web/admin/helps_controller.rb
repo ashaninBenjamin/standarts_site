@@ -24,7 +24,7 @@ class Web::Admin::HelpsController < Web::Admin::ApplicationController
       redirect_to admin_help_path(@help)
       flash_success
     else
-      render action: "new"
+      render action: :new
     end
   end
 
@@ -34,7 +34,7 @@ class Web::Admin::HelpsController < Web::Admin::ApplicationController
       redirect_to admin_help_path(@help)
       flash_success
     else
-      render action: "edit"
+      render action: :edit
     end
   end
 

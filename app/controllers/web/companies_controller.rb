@@ -14,7 +14,7 @@ class Web::CompaniesController < Web::ApplicationController
       redirect_to standards_path
       flash_success
     else
-      render "new"
+      render action: :new
     end
   end
 
@@ -28,7 +28,7 @@ class Web::CompaniesController < Web::ApplicationController
       redirect_to edit_user_company_path
       flash_success
     else
-      render "edit"
+      render action: :edit
     end
   end
 

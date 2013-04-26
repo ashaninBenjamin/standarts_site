@@ -20,7 +20,7 @@ class Web::StandardsController < Web::ApplicationController
       redirect_to standard_path(@standard.link)
       flash_success
     else
-      render "new"
+      render action: :new
     end
   end
 
@@ -38,7 +38,7 @@ class Web::StandardsController < Web::ApplicationController
       redirect_to standard_path(@standard.link)
       flash_success
     else
-      render "edit"
+      render action: :edit
     end
   end
 

@@ -15,7 +15,7 @@ class Web::UsersController < Web::ApplicationController
       redirect_to new_user_profile_path
       flash_success
     else
-      render 'new'
+      render action: :new
     end
   end
 
@@ -33,7 +33,7 @@ class Web::UsersController < Web::ApplicationController
       redirect_to edit_user_path
       flash_success
     else
-      render 'edit'
+      render action: :edit
     end
   end
 

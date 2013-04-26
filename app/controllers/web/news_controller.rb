@@ -1,5 +1,6 @@
 #coding: utf-8
 class Web::NewsController < Web::ApplicationController
+
   def index
     @news = News.by_created_at
   end
