@@ -9,7 +9,7 @@
 - content_for :submenu do
   %li= link_to t(".new_link"), new_standard_path
   %li= link_to t(".edit_link"), edit_standard_path(@standard.link)
-  %li= link_to t(".destroy_link"), @standard.link, method: :delete, confirm: t(".confirm_link")                                                                                        |
+  %li= link_to t(".destroy_link"), @standard.link, method: :delete, confirm: t(".confirm_link")
 
 - content_for :left do
   = link_to t(".standards_link"), standards_path
