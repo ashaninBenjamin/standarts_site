@@ -60,8 +60,6 @@ class Standard < ActiveRecord::Base
     end
   end
 
-  before_update :check_content
-
   def self.sort_standards_by_code(standards)
     standards.sort_by { |a| a.code.split('.').map &:to_i }
   end
@@ -121,10 +119,4 @@ class Standard < ActiveRecord::Base
     nil
   end
 
-  private
-  def check_content
-    if self.content.eql? "<br />\r\n" || self.content.blank?
-      self.content = ""
-    end
-  end
 end
