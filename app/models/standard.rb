@@ -4,8 +4,8 @@ class Standard < ActiveRecord::Base
   include StandardRepository
   attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
-  has_ancestry
   belongs_to :user
+  has_ancestry
 
   validates :name, presence: true
   validates :number, presence: true
@@ -58,11 +58,11 @@ class Standard < ActiveRecord::Base
     standards.sort_by { |a| a.code.split('.').map &:to_i }
   end
 
-  def node_numbers
-    if (children.empty?)
+  def self.root_numbers
+    all = roots.by_number
+    if all.empty?
       return [1]
     end
-    all = children.by_number
     last_number = all.first.number + 1
     array = (1..last_number).to_a
     all.each do |one|
@@ -71,11 +71,11 @@ class Standard < ActiveRecord::Base
     return array
   end
 
-  def self.root_numbers
-    all = roots.by_number
-    if all.empty?
+  def node_numbers
+    if (children.empty?)
       return [1]
     end
+    all = children.by_number
     last_number = all.first.number + 1
     array = (1..last_number).to_a
     all.each do |one|
