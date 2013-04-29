@@ -59,8 +59,9 @@ class Web::StandardsController < Web::ApplicationController
   def number_selection
     @arr = params[:value].blank? ? current_user.standards.root_numbers : Standard.find(params[:value]).node_numbers
     if (params[:native_id])
-      if (params[:value].to_i.eql?(Standard.find(params[:native_id]).parent_id))
-        @arr = (@arr << Standard.find(params[:native_id]).number).sort
+      if (params[:value].eql? Standard.find(params[:native_id]).parent_id.to_s)
+        @arr << Standard.find(params[:native_id]).number
+        @arr.sort!
       end
     end
     render partial: "web/standards/number_selection", locals: {obj: Standard.new}

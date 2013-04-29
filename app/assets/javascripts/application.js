@@ -39,9 +39,9 @@ $(document).ready(function () {
 
 $(document).on("change", "#standard_parent_id", function () {
     var urlstr = Routes.helper_number_selection_path({value: $("#standard_parent_id option:selected").val()});
-    if ($("#native_id").text() !== '')
+    if ($("#native_id").text())
         urlstr = Routes.helper_number_selection_path({value: $("#standard_parent_id option:selected").val(),
-            native_id: $("#native_id").text});
+            native_id: $("#native_id").text() });
     $.ajax({
         url: urlstr,
         type: 'get',
