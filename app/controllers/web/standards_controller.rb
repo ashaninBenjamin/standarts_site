@@ -2,22 +2,22 @@
 class Web::StandardsController < Web::ApplicationController
 
   def index
-    @q = current_user.standards.ransack(params[:q])
+    @q = current_user.standards.stem.ransack(params[:q])
     @standards = Standard.sort_standards_by_code @q.result(distinct: true).decorate
   end
 
   def new
     @standard = Standard.new
-    @select = Standard.sort_standards_by_code current_user.standards.decorate
+    @select = Standard.sort_standards_by_code current_user.standards.stem.decorate
     @arr = current_user.standards.root_numbers
   end
 
   def create
     @standard = current_user.standards.build(params[:standard])
-    @select = Standard.sort_standards_by_code current_user.standards.decorate
+    @select = Standard.sort_standards_by_code current_user.standards.stem.decorate
     @arr = current_user.standards.root_numbers
     if @standard.save
-      redirect_to standard_path(@standard.decorate.link)
+      redirect_to standard_path(@standard.link)
       flash_success
     else
       render action: :new
@@ -26,18 +26,16 @@ class Web::StandardsController < Web::ApplicationController
 
   def edit
     @standard = current_user.standards.find_by_link(params[:id])
-    @link = @standard.decorate.link
-    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
+    @select = Standard.sort_standards_by_code current_user.standards.stem.exclude(@standard.subtree).decorate
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
   end
 
   def update
     @standard = current_user.standards.find_by_link(params[:id])
-    @link = @standard.decorate.link
-    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
+    @select = Standard.sort_standards_by_code current_user.standards.stem.exclude(@standard.subtree).decorate
     @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
     if @standard.update_attributes(params[:standard])
-      redirect_to standard_path(@link)
+      redirect_to standard_path(@standard.link)
       flash_success
     else
       render action: :edit

@@ -3,9 +3,10 @@ require 'test_helper'
 class Web::StandardsControllerTest < ActionController::TestCase
   def setup
     user = create :user
+    create :root_standard, user: user
     sign_in user
     @standard = create :standard, user: user
-    @params = {id: @standard.decorate.link}
+    @params = {id: @standard.link}
   end
 
   test "should get index" do

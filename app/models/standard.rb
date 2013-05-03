@@ -23,6 +23,9 @@ class Standard < ActiveRecord::Base
     end
   end
 
+  before_save :set_root
+  before_save :save_link
+
   state_machine :state, initial: :refrained do
     state :published
     state :refrained
@@ -59,7 +62,7 @@ class Standard < ActiveRecord::Base
   end
 
   def self.root_numbers
-    all = roots.by_number
+    all = with(number: 0).first.children.by_number
     if all.empty?
       return [1]
     end
@@ -82,6 +85,23 @@ class Standard < ActiveRecord::Base
       array.delete(one.number)
     end
     return array
+  end
+
+  private
+
+  def set_root
+    return if number == 0
+    self.parent = user.standards.with(number: 0).first unless parent
+  end
+
+  def save_link
+    return if number == 0
+    if parent.number == 0
+      self.link = number.to_s
+    else
+      #FIXME! При изменении наследования возможно неправильное сохранение ссылки
+      self.link = "#{parent.link}-#{number}"
+    end
   end
 
 end

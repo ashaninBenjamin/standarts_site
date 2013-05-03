@@ -3,7 +3,8 @@ require 'test_helper'
 class StandardTest < ActiveSupport::TestCase
   def setup
     @user = create :user
-    @standard = create :standard, user: @user
+    root = create :root_standard, user: @user
+    @standard = create :standard, user: @user, parent: root
     @children = create :standard, user: @user, parent: @standard
   end
 
