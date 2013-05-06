@@ -95,12 +95,11 @@ class Standard < ActiveRecord::Base
   end
 
   def save_link
-    return if number == 0
-    if parent.number == 0
-      self.link = number.to_s
-    else
+    if parent && parent.number != 0
       #FIXME! При изменении наследования возможно неправильное сохранение ссылки
       self.link = "#{parent.link}-#{number}"
+    else
+      self.link = number.to_s
     end
   end
 
