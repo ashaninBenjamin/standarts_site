@@ -12,19 +12,21 @@ class Standard < ActiveRecord::Base
   validates :user, presence: true
 
   validates_each :number do |record, attr, value|
-    if record.new_record?
-      if record.siblings.with(number: value).present?
-        record.errors.add(attr, :taken)
-      end
-    else
-      if record.siblings.exclude(record.id).with(number: value).present?
-        record.errors.add(attr, :taken)
+    if record.number
+      if record.number.nonzero?
+        if record.siblings.exclude(record).with(number: value).any?
+          record.errors.add(attr, :taken)
+        end
+      else
+        if record.siblings.exclude(record).with(user_id: record.user_id).any?
+          record.errors.add(attr, :taken)
+        end
       end
     end
   end
 
   before_save :set_root
-  before_save :save_link
+  before_save :set_link
 
   state_machine :state, initial: :refrained do
     state :published
@@ -87,15 +89,19 @@ class Standard < ActiveRecord::Base
     return array
   end
 
+  def code
+    link.gsub("-", ".")
+  end
+
   private
 
   def set_root
-    return if number == 0
+    return if number.zero?
     self.parent = user.standards.with(number: 0).first unless parent
   end
 
-  def save_link
-    if parent && parent.number != 0
+  def set_link
+    if parent && parent.number.nonzero?
       #FIXME! При изменении наследования возможно неправильное сохранение ссылки
       self.link = "#{parent.link}-#{number}"
     else
