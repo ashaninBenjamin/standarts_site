@@ -102,10 +102,15 @@ class Standard < ActiveRecord::Base
 
   def set_link
     if parent && parent.number.nonzero?
-      #FIXME! При изменении наследования возможно неправильное сохранение ссылки
-      self.link = "#{parent.link}-#{number}"
+      link = "#{parent.link}-#{number}"
     else
-      self.link = number.to_s
+      link = number.to_s
+    end
+    #FIXME! Не очень хороший способ перезаписывать поле link для дочерних элементов
+    unless link.eql? self.link
+      self.link = link
+      self.save
+      self.children.find_each {|child| child.save}
     end
   end
 
