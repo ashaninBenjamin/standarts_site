@@ -33,6 +33,7 @@ group :development do
   gem "better_errors"
 end
 
+gem 'js-routes'
 gem 'draper'
 gem 'usefull_scopes'
 gem 'state_machine'
