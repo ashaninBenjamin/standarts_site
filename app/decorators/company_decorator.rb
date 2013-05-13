@@ -15,7 +15,7 @@ class CompanyDecorator < Draper::Decorator
   end
 
   def created_at
-    source.created_at.strftime("%d.%m.%Y %T")
+    h.l source.created_at, format: :long
   end
 
 end
