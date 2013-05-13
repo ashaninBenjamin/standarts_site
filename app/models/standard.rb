@@ -1,6 +1,5 @@
 # coding: utf-8
 class Standard < ActiveRecord::Base
-  include ActiveModel::Validations
   include StandardRepository
   attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
@@ -8,22 +7,8 @@ class Standard < ActiveRecord::Base
   has_ancestry
 
   validates :name, presence: true
-  validates :number, presence: true
+  validates :number, presence: true, unique_number: true
   validates :user, presence: true
-
-  validates_each :number do |record, attr, value|
-    if record.number
-      if record.number.nonzero?
-        if record.siblings.exclude(record).with(number: value).any?
-          record.errors.add(attr, :taken)
-        end
-      else
-        if record.siblings.exclude(record).with(user_id: record.user_id).any?
-          record.errors.add(attr, :taken)
-        end
-      end
-    end
-  end
 
   before_save :set_root
 
@@ -62,27 +47,14 @@ class Standard < ActiveRecord::Base
     standards.sort_by { |a| a.code.split('.').map &:to_i }
   end
 
-  def self.root_numbers
-    all = with(number: 0).first.children.by_number
-    if all.empty?
-      return [1]
-    end
-    last_number = all.first.number + 1
-    array = (1..last_number).to_a
-    all.each do |one|
-      array.delete(one.number)
-    end
-    return array
-  end
-
   def node_numbers
     if (children.empty?)
       return [1]
     end
-    all_children = children.by_number
-    last_number = all_children.first.number + 1
+    sorted_children = children.by_number
+    last_number = sorted_children.first.number + 1
     array = (1..last_number).to_a
-    all_children.each do |one|
+    sorted_children.each do |one|
       array.delete(one.number)
     end
     array
@@ -106,7 +78,7 @@ class Standard < ActiveRecord::Base
 
   def set_root
     return if number.zero?
-    self.parent = user.standards.with(number: 0).first unless parent
+    self.parent = user.standards.roots.first unless parent_id
   end
 
 end

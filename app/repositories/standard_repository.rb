@@ -8,7 +8,7 @@ module StandardRepository
     def self.find_by_link(link)
       numbers = link.split('-').map { |number_s| number_s.to_i }
 
-      standard = with(number: 0).first
+      standard = roots.first
       numbers.each do |number|
         standard = standard.children.with(number: number).first
         break unless standard
@@ -17,7 +17,7 @@ module StandardRepository
     end
 
     def self.stem
-      with(number: 0).first.descendants
+      roots.first.descendants
     end
 
   end

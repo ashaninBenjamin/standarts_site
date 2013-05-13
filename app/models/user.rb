@@ -13,12 +13,21 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  after_create :add_root
+
   def correct?
     ((profile.present?) && (company.present?))
   end
 
   def super_admin?
     role.super_role?
+  end
+
+  private
+
+  def add_root
+    root = standards.build(name: "root", number: 0)
+    root.save
   end
 
 end

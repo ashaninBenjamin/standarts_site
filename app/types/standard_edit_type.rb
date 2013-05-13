@@ -1,8 +1,10 @@
 class StandardEditType < Standard
   include BaseType
 
-  def available_numbers(user)
-    ((parent ? parent.node_numbers : user.standards.root_numbers) << number).sort
+  def available_numbers
+    numbers = parent.node_numbers
+    numbers << number
+    numbers.sort
   end
 
   def available_parents(user)

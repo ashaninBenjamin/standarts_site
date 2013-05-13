@@ -3,13 +3,8 @@ require 'test_helper'
 class StandardTest < ActiveSupport::TestCase
   def setup
     @user = create :user
-    root = create :root_standard, user: @user
-    @standard = create :standard, user: @user, parent: root
+    @standard = create :standard, user: @user
     @children = create :standard, user: @user, parent: @standard
-  end
-
-  test "find_root_numbers" do
-    assert (@user.standards.root_numbers == [2])
   end
 
   test "find_standard_node_numbers" do
