@@ -1,6 +1,5 @@
 # coding: utf-8
 class Standard < ActiveRecord::Base
-  include ActiveModel::Validations
   include StandardRepository
   attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
@@ -8,22 +7,8 @@ class Standard < ActiveRecord::Base
   has_ancestry
 
   validates :name, presence: true
-  validates :number, presence: true
+  validates :number, presence: true, unique_number: true
   validates :user, presence: true
-
-  validates_each :number do |record, attr, value|
-    if record.number
-      if record.number.nonzero?
-        if record.siblings.exclude(record).with(number: value).any?
-          record.errors.add(attr, :taken)
-        end
-      else
-        if record.siblings.exclude(record).with(user_id: record.user_id).any?
-          record.errors.add(attr, :taken)
-        end
-      end
-    end
-  end
 
   before_save :set_root
 
@@ -93,7 +78,7 @@ class Standard < ActiveRecord::Base
 
   def set_root
     return if number.zero?
-    self.parent = user.standards.with(number: 0).first unless parent
+    self.parent = user.standards.roots.first unless parent_id
   end
 
 end
