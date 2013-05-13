@@ -25,6 +25,11 @@ RoR::Application.routes.draw do
 
   namespace :api do
     resources :news, only: [:index, :show]
+    resources :standards, only: [] do
+      member do
+        get :numbers
+      end
+    end
   end
 
   mount Ckeditor::Engine => '/ckeditor'

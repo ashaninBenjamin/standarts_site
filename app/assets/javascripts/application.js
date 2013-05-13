@@ -38,27 +38,19 @@ $(document).ready(function () {
 });
 
 $(document).on("change", "#standard_parent_id", function () {
-    var urlstr = Routes.helper_number_selection_path({value: $("#standard_parent_id option:selected").val()});
-    if ($("#native_id").text())
-        urlstr = Routes.helper_number_selection_path({value: $("#standard_parent_id option:selected").val(),
-            native_id: $("#native_id").text() });
-    $.ajax({
-        url: urlstr,
-        type: 'get',
-        dataType: 'html',
-        processData: false,
-        success: function (data) {
-            $("#number").html(data);
-        },
-        error: function () {
-            alert("fatal error!");
-        }
-    });
+    var select = $("#standard_number"), i;
+    var parent_id = $("#standard_parent_id").val();
+    $.get(Routes.numbers_api_standard_path(parent_id),function (data) {
+        select.find('option').remove();
+        for (i in data)
+            select.append('<option value=' + data[i].number + '>' + data[i].number + '</option>');
+    }, 'json').error(function () {
+            alert("error!");
+        });
 });
 
 $(function () {
     $("#q_reset").click(function () {
         $("#q_state_cont, #q_access_state_cont").val("");
-
     });
 });
