@@ -38,9 +38,16 @@ $(document).ready(function () {
 });
 
 $(document).on("change", "#standard_parent_id", function () {
-    var select = $("#standard_number"), i;
-    var parent_id = $("#standard_parent_id").val();
-    $.get(Routes.numbers_api_standard_path(parent_id),function (data) {
+    var select = $("#standard_number"),
+        i,
+        parent_select =$(this),
+        selected_parent_id = parent_select.val(),
+        native_parent_id = parent_select.find('option[selected="selected"]').val();
+
+    if (native_parent_id === selected_parent_id)
+        var native_number = $("#native_number").text();
+
+    $.get(Routes.numbers_api_standard_path(selected_parent_id, {native_number: native_number}),function (data) {
         select.find('option').remove();
         for (i in data)
             select.append('<option value=' + data[i].number + '>' + data[i].number + '</option>');
