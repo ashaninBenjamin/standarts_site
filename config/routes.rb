@@ -18,8 +18,6 @@ RoR::Application.routes.draw do
     end
     resource :session, only: [:new, :create, :destroy]
 
-    match "helper/number_selection" => "standards#number_selection"
-
     root to: 'standards#index'
   end
 

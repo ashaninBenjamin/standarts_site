@@ -18,7 +18,7 @@ div.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
 
 span.error { padding-left: 10px; }
 
-div#native_id {
+div#native_number {
     position: absolute;
     visibility: hidden;
 }

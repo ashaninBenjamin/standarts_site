@@ -1,11 +1,10 @@
 class Api::StandardsController < Api::ApplicationController
   def numbers
-    #FIXME! Исправить!
-    @arr = Standard.find(params[:id]).node_numbers
-    @numbers = []
-    @arr.each do |one|
-      @numbers << {number: one}
+    @array_of_numbers = Standard.find(params[:id]).node_numbers
+    if (params[:native_number].present?)
+      @array_of_numbers << params[:native_number].to_i
+      @array_of_numbers.sort!
     end
-    respond_with @numbers
+    respond_with @array_of_numbers
   end
 end

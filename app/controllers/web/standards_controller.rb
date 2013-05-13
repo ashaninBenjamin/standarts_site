@@ -57,16 +57,6 @@ class Web::StandardsController < Web::ApplicationController
     flash_notice
   end
 
-  def number_selection
-    @available_numbers = params[:value].blank? ? current_user.standards.root_numbers : Standard.find(params[:value]).node_numbers
-    if (params[:native_id])
-      if (params[:value].to_i.eql?(Standard.find(params[:native_id]).parent_id))
-        @available_numbers = (@available_numbers << Standard.find(params[:native_id]).number).sort
-      end
-    end
-    render partial: "web/standards/number_selection", locals: {obj: Standard.new}
-  end
-
   def take_pattern
     old = current_user.standards
     old.destroy_all
