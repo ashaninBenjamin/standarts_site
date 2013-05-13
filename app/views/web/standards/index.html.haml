@@ -2,7 +2,7 @@
 - if @standards.any?
   %ul.standard-list
     - @standards.each do |one|
-      %li= link_to one.code_with_name, standard_path(one.link), style: "margin-left:#{one.depth * 20}px;"
+      %li= link_to one.code_with_name, standard_path(one.link), style: "margin-left:#{(one.depth - 1) * 20}px;"
 - else
   = t(".no_one_standard")
   = link_to t(".new_link_if_apcents"), new_standard_path

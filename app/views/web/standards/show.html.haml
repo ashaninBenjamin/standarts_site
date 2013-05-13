@@ -1,5 +1,5 @@
 %h2= @standard.code_with_name
-.standardContent= @standard.content.html_safe
+.standardContent= raw @standard.content
 - if @children.any?
   = t(".children")
   %ul.standard-list
@@ -14,7 +14,7 @@
 - content_for :left do
   = link_to t(".standards_link"), standards_path
   %br/
-  = (link_to t(".parent_link"), standard_path(@standard.parent.link)) if @standard.parent
+  = (link_to t(".parent_link"), standard_path(@standard.parent.link)) unless @standard.parent.is_root?
   - if @children.any?
     %br/
     %br/

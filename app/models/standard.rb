@@ -12,16 +12,20 @@ class Standard < ActiveRecord::Base
   validates :user, presence: true
 
   validates_each :number do |record, attr, value|
-    if record.new_record?
-      if record.siblings.with(number: value).present?
-        record.errors.add(attr, :taken)
-      end
-    else
-      if record.siblings.exclude(record.id).with(number: value).present?
-        record.errors.add(attr, :taken)
+    if record.number
+      if record.number.nonzero?
+        if record.siblings.exclude(record).with(number: value).any?
+          record.errors.add(attr, :taken)
+        end
+      else
+        if record.siblings.exclude(record).with(user_id: record.user_id).any?
+          record.errors.add(attr, :taken)
+        end
       end
     end
   end
+
+  before_save :set_root
 
   state_machine :state, initial: :refrained do
     state :published
@@ -59,7 +63,7 @@ class Standard < ActiveRecord::Base
   end
 
   def self.root_numbers
-    all = roots.by_number
+    all = with(number: 0).first.children.by_number
     if all.empty?
       return [1]
     end
@@ -82,6 +86,23 @@ class Standard < ActiveRecord::Base
       array.delete(one.number)
     end
     return array
+  end
+
+  def code
+    code = number.to_s
+    temp = self
+    while temp.parent && temp.parent.number.nonzero?
+      temp = temp.parent
+      code = "#{temp.number}.#{code}"
+    end
+    code
+  end
+
+  private
+
+  def set_root
+    return if number.zero?
+    self.parent = user.standards.with(number: 0).first unless parent
   end
 
 end

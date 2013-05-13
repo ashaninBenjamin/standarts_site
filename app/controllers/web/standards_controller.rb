@@ -2,22 +2,23 @@
 class Web::StandardsController < Web::ApplicationController
 
   def index
-    @q = current_user.standards.ransack(params[:q])
+    @q = current_user.standards.stem.ransack(params[:q])
     @standards = Standard.sort_standards_by_code @q.result(distinct: true).decorate
   end
 
   def new
-    @standard = Standard.new
-    @select = Standard.sort_standards_by_code current_user.standards.decorate
-    @arr = current_user.standards.root_numbers
+    @standard = StandardNewType.new
+    @available_numbers = @standard.available_numbers(current_user)
+    @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
   end
 
   def create
     @standard = current_user.standards.build(params[:standard])
-    @select = Standard.sort_standards_by_code current_user.standards.decorate
-    @arr = current_user.standards.root_numbers
+    @standard = @standard.becomes(StandardNewType)
+    @available_numbers = @standard.available_numbers(current_user)
+    @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
     if @standard.save
-      redirect_to standard_path(@standard.decorate.link)
+      redirect_to standard_path(@standard.link)
       flash_success
     else
       render action: :new
@@ -26,18 +27,18 @@ class Web::StandardsController < Web::ApplicationController
 
   def edit
     @standard = current_user.standards.find_by_link(params[:id])
-    @link = @standard.decorate.link
-    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
-    @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
+    @standard = @standard.becomes(StandardEditType)
+    @available_numbers = @standard.available_numbers(current_user)
+    @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
   end
 
   def update
     @standard = current_user.standards.find_by_link(params[:id])
-    @link = @standard.decorate.link
-    @select = Standard.sort_standards_by_code current_user.standards.exclude(@standard.descendants << @standard).decorate
-    @arr = ((@standard.parent ? @standard.parent.node_numbers : current_user.standards.root_numbers) << @standard.number).sort
+    @standard = @standard.becomes(StandardEditType)
+    @available_numbers = @standard.available_numbers(current_user)
+    @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
     if @standard.update_attributes(params[:standard])
-      redirect_to standard_path(@link)
+      redirect_to standard_path(@standard.link)
       flash_success
     else
       render action: :edit
@@ -57,10 +58,10 @@ class Web::StandardsController < Web::ApplicationController
   end
 
   def number_selection
-    @arr = params[:value].blank? ? current_user.standards.root_numbers : Standard.find(params[:value]).node_numbers
+    @available_numbers = params[:value].blank? ? current_user.standards.root_numbers : Standard.find(params[:value]).node_numbers
     if (params[:native_id])
       if (params[:value].to_i.eql?(Standard.find(params[:native_id]).parent_id))
-        @arr = (@arr << Standard.find(params[:native_id]).number).sort
+        @available_numbers = (@available_numbers << Standard.find(params[:native_id]).number).sort
       end
     end
     render partial: "web/standards/number_selection", locals: {obj: Standard.new}
