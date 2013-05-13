@@ -2,7 +2,7 @@
 class Standard < ActiveRecord::Base
   include ActiveModel::Validations
   include StandardRepository
-  attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event, :link
+  attr_accessible :content, :name, :number, :user_id, :parent_id, :state, :access_state, :access_state_event
 
   belongs_to :user
   has_ancestry
@@ -26,7 +26,6 @@ class Standard < ActiveRecord::Base
   end
 
   before_save :set_root
-  before_save :set_link
 
   state_machine :state, initial: :refrained do
     state :published
@@ -89,6 +88,16 @@ class Standard < ActiveRecord::Base
     return array
   end
 
+  def link
+    link = number.to_s
+    temp = self
+    while temp.parent && temp.parent.number.nonzero?
+      temp = temp.parent
+      link = "#{temp.number}-#{link}"
+    end
+    link
+  end
+
   def code
     link.gsub("-", ".")
   end
@@ -98,20 +107,6 @@ class Standard < ActiveRecord::Base
   def set_root
     return if number.zero?
     self.parent = user.standards.with(number: 0).first unless parent
-  end
-
-  def set_link
-    if parent && parent.number.nonzero?
-      link = "#{parent.link}-#{number}"
-    else
-      link = number.to_s
-    end
-    #FIXME! Не очень хороший способ перезаписывать поле link для дочерних элементов
-    unless link.eql? self.link
-      self.link = link
-      self.save
-      self.children.find_each {|child| child.save}
-    end
   end
 
 end
