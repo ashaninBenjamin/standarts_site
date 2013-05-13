@@ -52,11 +52,6 @@ class Web::StandardsControllerTest < ActionController::TestCase
     assert !Standard.exists?(@standard)
   end
 
-  test "should get number_seletion" do
-    get :number_selection
-    assert_response :success
-  end
-
   test "should take_pattern" do
     get :take_pattern
     assert_response :redirect
