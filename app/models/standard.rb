@@ -88,18 +88,14 @@ class Standard < ActiveRecord::Base
     return array
   end
 
-  def link
-    link = number.to_s
+  def code
+    code = number.to_s
     temp = self
     while temp.parent && temp.parent.number.nonzero?
       temp = temp.parent
-      link = "#{temp.number}-#{link}"
+      code = "#{temp.number}.#{code}"
     end
-    link
-  end
-
-  def code
-    link.gsub("-", ".")
+    code
   end
 
   private
