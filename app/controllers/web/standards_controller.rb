@@ -28,14 +28,14 @@ class Web::StandardsController < Web::ApplicationController
   def edit
     @standard = current_user.standards.find_by_link(params[:id])
     @standard = @standard.becomes(StandardEditType)
-    @available_numbers = @standard.available_numbers(current_user)
+    @available_numbers = @standard.available_numbers
     @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
   end
 
   def update
     @standard = current_user.standards.find_by_link(params[:id])
     @standard = @standard.becomes(StandardEditType)
-    @available_numbers = @standard.available_numbers(current_user)
+    @available_numbers = @standard.available_numbers
     @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
     if @standard.update_attributes(params[:standard])
       redirect_to standard_path(@standard.link)

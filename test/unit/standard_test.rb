@@ -8,10 +8,6 @@ class StandardTest < ActiveSupport::TestCase
     @children = create :standard, user: @user, parent: @standard
   end
 
-  test "find_root_numbers" do
-    assert (@user.standards.root_numbers == [2])
-  end
-
   test "find_standard_node_numbers" do
     assert (@standard.node_numbers == [2])
   end

@@ -2,7 +2,7 @@ class StandardNewType < Standard
   include BaseType
 
   def available_numbers(user)
-    user.standards.root_numbers
+    user.standards.root.node_numbers
   end
 
   def available_parents(user)

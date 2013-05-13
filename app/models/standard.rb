@@ -62,27 +62,14 @@ class Standard < ActiveRecord::Base
     standards.sort_by { |a| a.code.split('.').map &:to_i }
   end
 
-  def self.root_numbers
-    all = with(number: 0).first.children.by_number
-    if all.empty?
-      return [1]
-    end
-    last_number = all.first.number + 1
-    array = (1..last_number).to_a
-    all.each do |one|
-      array.delete(one.number)
-    end
-    return array
-  end
-
   def node_numbers
     if (children.empty?)
       return [1]
     end
-    all_children = children.by_number
-    last_number = all_children.first.number + 1
+    sorted_children = children.by_number
+    last_number = sorted_children.first.number + 1
     array = (1..last_number).to_a
-    all_children.each do |one|
+    sorted_children.each do |one|
       array.delete(one.number)
     end
     array

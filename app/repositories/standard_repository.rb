@@ -16,6 +16,10 @@ module StandardRepository
       standard
     end
 
+    def self.root
+      with(number: 0).first
+    end
+
     def self.stem
       with(number: 0).first.descendants
     end
