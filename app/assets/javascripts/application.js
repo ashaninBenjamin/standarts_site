@@ -50,7 +50,7 @@ $(document).on("change", "#standard_parent_id", function () {
     $.get(Routes.numbers_api_standard_path(selected_parent_id, {native_number: native_number}),function (data) {
         select.find('option').remove();
         for (i in data)
-            select.append('<option value=' + data[i].number + '>' + data[i].number + '</option>');
+            select.append('<option value=' + data[i] + '>' + data[i] + '</option>');
     }, 'json').error(function () {
             alert("error!");
         });
