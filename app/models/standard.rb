@@ -98,6 +98,10 @@ class Standard < ActiveRecord::Base
     code
   end
 
+  def link
+    code.gsub(".", "-")
+  end
+
   private
 
   def set_root
