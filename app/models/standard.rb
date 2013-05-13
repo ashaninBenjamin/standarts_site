@@ -79,13 +79,13 @@ class Standard < ActiveRecord::Base
     if (children.empty?)
       return [1]
     end
-    all = children.by_number
-    last_number = all.first.number + 1
+    all_children = children.by_number
+    last_number = all_children.first.number + 1
     array = (1..last_number).to_a
-    all.each do |one|
+    all_children.each do |one|
       array.delete(one.number)
     end
-    return array
+    array
   end
 
   def code

@@ -43,7 +43,7 @@ $(document).on("change", "#standard_parent_id", function () {
         parent_select =$(this),
         selected_parent_id = parent_select.val(),
         native_parent_id = parent_select.find('option[selected="selected"]').val();
-
+    //FIXME!!! Данный подход не очень хорош в силу того, что нужно хранить родной номер где-то в скрытом диве на странице.
     if (native_parent_id === selected_parent_id)
         var native_number = $("#native_number").text();
 
