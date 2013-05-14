@@ -2,8 +2,7 @@
   = f.error_notification
   = f.input :name
   = f.input :parent_id, collection: @available_parents.collect {|p| [ p.for_select, p.id ] }, include_blank: false
-  #number
-    = render partial: "web/standards/number_selection", locals: {obj: @standard }
+  = f.input :number, collection: @available_numbers, include_blank: false
   = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
   = f.input :access_state_event, as: :access_state_event
   = f.input :state, as: :check_boxes, label: false, wrapper: :inline_checkbox do
