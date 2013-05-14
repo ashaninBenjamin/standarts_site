@@ -33,8 +33,8 @@ class Web::ProfilesControllerTest < ActionController::TestCase
     @params[:profile] = attributes_for(:profile)
     put :update, @params
     assert_response :redirect
-    profile = Profile.find(@params[:id])
-    assert profile
+    @profile.reload
+    assert @profile
   end
 
 end

@@ -38,8 +38,8 @@ class Web::Admin::NewsControllerTest < ActionController::TestCase
     @params[:news] = attributes_for(:news)
     put :update, @params
     assert_response :redirect
-    news = News.find(@params[:id])
-    assert news
+    @news.reload
+    assert @news
   end
 
   test "should get destroy" do

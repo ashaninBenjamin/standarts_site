@@ -41,8 +41,8 @@ class Web::StandardsControllerTest < ActionController::TestCase
     @params[:standard] = attributes_for(:standard)
     put :update, @params
     assert_response :redirect
-    standard = Standard.find_by_link(@params[:id])
-    assert standard
+    @standard.reload
+    assert @standard
   end
 
   test "should delete destroy" do

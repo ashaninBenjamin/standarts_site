@@ -32,8 +32,8 @@ class Web::UsersControllerTest < ActionController::TestCase
     @params[:user] = attributes_for(:user)
     put :update, @params
     assert_response :redirect
-    user = User.find(@params[:id])
-    assert user
+    @user.reload
+    assert @user
   end
 
   test "should delete destroy" do

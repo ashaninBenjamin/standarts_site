@@ -33,8 +33,8 @@ class Web::CompaniesControllerTest < ActionController::TestCase
     @params[:company] = attributes_for(:company)
     put :update, @params
     assert_response :redirect
-    company = Company.find(@params[:id])
-    assert company
+    @company.reload
+    assert @company
   end
 
 end
