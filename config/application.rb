@@ -58,7 +58,10 @@ module RoR
     config.assets.version = '1.0'
 
     config.generators do |g|
-      g.fixture_replacement :factory_girl
+      g.template_engine :haml
+      g.test_framework  :test_unit, fixture: true, fixture_replacement: :factory_girl
+      g.stylesheets false
+      g.javascripts false
     end
   end
 end
