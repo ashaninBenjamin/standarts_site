@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :user, class: UserCreateType do
+  factory :user, class: UserCreateEditType do
     login "login"
     password "123"
     password_confirmation "123"
@@ -10,7 +10,7 @@ FactoryGirl.define do
     association :role
   end
 
-  factory :super_user, class: UserCreateType do
+  factory :super_user, class: UserCreateEditType do
     login "admin"
     password "123"
     password_confirmation "123"

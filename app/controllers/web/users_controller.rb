@@ -4,11 +4,11 @@ class Web::UsersController < Web::ApplicationController
   skip_before_filter :registration_passed!, only: [:new, :create]
 
   def new
-    @user = UserCreateType.new
+    @user = UserCreateEditType.new
   end
 
   def create
-    @user = UserCreateType.new(params[:user])
+    @user = UserCreateEditType.new(params[:user])
     @user.role = Role.admin_roles.first
     if @user.save
       sign_in @user
@@ -28,7 +28,7 @@ class Web::UsersController < Web::ApplicationController
   end
 
   def update
-    @user = UserEditType.find(current_user)
+    @user = UserCreateEditType.find(current_user)
     if @user.update_attributes(params[:user])
       redirect_to edit_user_path
       flash_success

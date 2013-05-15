@@ -11,7 +11,7 @@ class Web::SessionsController < Web::ApplicationController
   end
 
   def create
-    @type = UserSignInType.new(params[:user])
+    @type = UserSignInType.new(params[:user_sign_in_type])
 
     if @type.valid?
       user = @type.user

@@ -16,9 +16,7 @@ profile = Profile.find_or_initialize_by_mail(surname: "Иванов", name: "И�
 profile.save!
 company = Company.new(name:"TheCompany", opf: "ООО")
 company.save!
-user = UserCreateType.find_or_initialize_by_login(login: "admin")
-user.password = "123"
-user.password_confirmation = "123"
+user = UserCreateType.find_or_initialize_by_login(login: "admin", password: '123')
 user.role = super_role
 user.profile = profile
 user.company = company

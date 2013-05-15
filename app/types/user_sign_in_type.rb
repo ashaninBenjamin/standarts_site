@@ -1,6 +1,10 @@
-class UserSignInType < User
+class UserSignInType
   include ActiveModel::Validations
-  include BaseType
+  include ActiveModel::Conversion
+  include Virtus
+
+  attribute :login, String
+  attribute :password, String
 
   validates :login, presence: true
   validates :password, presence: true
@@ -11,6 +15,10 @@ class UserSignInType < User
     if !user.try(:authenticate, record.password)
       record.errors.add(attr, :user_or_password_invalid)
     end
+  end
+
+  def persisted?
+    false
   end
 
   def user

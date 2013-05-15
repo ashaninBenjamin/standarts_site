@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :login, :password, :role_id, :profile_id, :company_id
 
+  validates :login, presence: true
+  validates :password, presence: true
+  validates :role, presence: true
+
   belongs_to :role
   belongs_to :profile, dependent: :destroy
   belongs_to :company, dependent: :destroy
