@@ -26,14 +26,14 @@ class Web::StandardsController < Web::ApplicationController
   end
 
   def edit
-    @standard = current_user.standards.find_by_link(params[:id])
+    @standard = current_user.standards.standard_by_link(params[:id])
     @standard = @standard.becomes(StandardEditType)
     @available_numbers = @standard.available_numbers
     @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
   end
 
   def update
-    @standard = current_user.standards.find_by_link(params[:id])
+    @standard = current_user.standards.standard_by_link(params[:id])
     @standard = @standard.becomes(StandardEditType)
     @available_numbers = @standard.available_numbers
     @available_parents = Standard.sort_standards_by_code @standard.available_parents(current_user).decorate
@@ -46,12 +46,12 @@ class Web::StandardsController < Web::ApplicationController
   end
 
   def show
-    @standard = current_user.standards.find_by_link(params[:id]).decorate
+    @standard = current_user.standards.standard_by_link(params[:id]).decorate
     @children = Standard.sort_standards_by_code @standard.children
   end
 
   def destroy
-    standard = current_user.standards.find_by_link(params[:id])
+    standard = current_user.standards.standard_by_link(params[:id])
     standard.destroy
     redirect_to standards_path
     flash_notice
