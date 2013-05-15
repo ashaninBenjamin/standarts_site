@@ -8,7 +8,8 @@ class UserCreateType < User
             format: {with: /\A[a-zA-Z0-9]+\z/},
             uniqueness: true
   validates :password, presence: true,
-            length: {within: 3..20}
+            length: {within: 3..20},
+            confirmation: true
   validates :password_confirmation, presence: true
   validates :role, presence: true
 

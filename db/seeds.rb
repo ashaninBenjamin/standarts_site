@@ -8,8 +8,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-role = Role.create(name: "super", description: "Супер администратор")
-Role.create(name: "admin", description: "Администратор")
-profile = Profile.create(surname: "Иванов", name: "Иван", patronymic: "Иванович", mail:"mail@mail.ru")
-company = Company.create(name:"TheCompany", opf: "ООО")
-UserCreateType.create(login: "admin", password: "123", profile_id: profile.id, role_id: role.id, company_id: company.id)
+super_role = Role.find_or_initialize_by_name(name: "super", description: "Супер администратор")
+super_role.save!
+admin_role = Role.find_or_initialize_by_name(name: "admin", description: "Администратор")
+admin_role.save!
+profile = Profile.find_or_initialize_by_mail(surname: "Иванов", name: "Иван", patronymic: "Иванович", mail:"mail@mail.ru")
+profile.save!
+company = Company.new(name:"TheCompany", opf: "ООО")
+company.save!
+user = UserCreateType.find_or_initialize_by_login(login: "admin")
+user.password = "123"
+user.password_confirmation = "123"
+user.role = super_role
+user.profile = profile
+user.company = company
+user.save!
