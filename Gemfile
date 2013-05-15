@@ -31,8 +31,15 @@ end
 group :development do
   gem 'pre-commit'
   gem "better_errors"
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+  gem 'capi'
+  gem 'capistrano-maintenance'
 end
 
+gem 'virtus'
 gem 'js-routes'
 gem 'draper'
 gem 'usefull_scopes'
@@ -53,9 +60,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
