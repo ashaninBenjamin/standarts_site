@@ -1,0 +1,10 @@
+%h2
+  Публичный стандарт
+  = @standard.name
+= raw @standard.content
+
+- content_for :submenu do
+  = link_to "Копировать к себе", take_public_standard_path(@standard)
+
+- content_for :left do
+  = link_to "Назад", public_standards_path

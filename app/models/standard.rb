@@ -18,6 +18,7 @@ class Standard < ActiveRecord::Base
 
     after_transition on: :refrain do |standard, transition|
       standard.descendants.each { |one| one.refrain }
+      standard.descendants.each { |one| one.hide }
     end
 
     event :refrain do
@@ -72,6 +73,15 @@ class Standard < ActiveRecord::Base
 
   def link
     code.gsub(".", "-")
+  end
+
+  def available_number
+    sorted_children = children.by_number
+    if sorted_children.any?
+      sorted_children.first.number + 1
+    else
+      1
+    end
   end
 
   private
