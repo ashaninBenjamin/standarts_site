@@ -57,26 +57,4 @@ class Web::StandardsController < Web::ApplicationController
     flash_notice
   end
 
-  def take_pattern
-    old = current_user.standards
-    old.destroy_all
-
-    dict = Hash.new
-    pattern = Standard.all_by_super_admin
-    pattern.each do |one|
-      new = one.dup
-      new.user_id = current_user.id
-      new.save
-      dict[one.id] = new.id
-    end
-
-    own = current_user.standards
-    own.each do |one|
-      if one.parent
-        one.update_attributes(parent_id: dict[one.parent_id])
-      end
-    end
-    redirect_to standards_path, flash: {success: "Шаблон принят"}
-  end
-
 end

@@ -1,8 +1,6 @@
 RoR::Application.routes.draw do
   scope module: :web do
-    resources :standards do
-      get "take_pattern", on: :collection
-    end
+    resources :standards
     resources :public_standards, only: [:index, :show] do
       get "take", on: :member
     end

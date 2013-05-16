@@ -50,9 +50,4 @@ class Web::StandardsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert !Standard.exists?(@standard)
   end
-
-  test "should take_pattern" do
-    get :take_pattern
-    assert_response :redirect
-  end
 end

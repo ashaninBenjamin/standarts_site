@@ -9,8 +9,6 @@
 
 - content_for :submenu do
   %li= link_to t(".new_link"), new_standard_path
-  - if !current_user.super_admin?
-    %li= link_to t(".take_pattern_link"), take_pattern_standards_path, data: {confirm: t(".confirm_take_pattern")}
 
 - content_for :left do
   = search_form_for @q do |f|
