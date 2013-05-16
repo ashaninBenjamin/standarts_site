@@ -2,7 +2,7 @@ RoR::Application.routes.draw do
   scope module: :web do
     resources :standards
     resources :public_standards, only: [:index, :show] do
-      get "take", on: :member
+      get :take, on: :member
     end
     resources :helps, :news, only: [:index, :show]
 
@@ -25,9 +25,7 @@ RoR::Application.routes.draw do
   namespace :api do
     resources :news, only: [:index, :show]
     resources :standards, only: [] do
-      member do
-        get :numbers
-      end
+      get :numbers, on: :member
     end
   end
 
