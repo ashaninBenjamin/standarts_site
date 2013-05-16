@@ -53,6 +53,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'jquery-rails'
 gem 'email_validator'
+gem 'configus'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
