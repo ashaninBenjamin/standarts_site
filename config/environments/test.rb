@@ -1,4 +1,6 @@
 RoR::Application.configure do
+
+  config.carrier_wave_storage = :file
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
