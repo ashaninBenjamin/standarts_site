@@ -1,4 +1,4 @@
-%h2 Публичные стандарты
+%h2= t(".header")
 - @users.each do |user|
   - if user.standards.public.any?
     %h4= user.profile.first_and_last_name

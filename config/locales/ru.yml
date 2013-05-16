@@ -491,6 +491,9 @@ ru:
         header: Редактировать логин и пароль
         destroy_link: Удалить учётную запись
         confirm_destroy: Вы уверены, что хотите удалить свою учётную запись?
+    public_standards:
+      index:
+        header: Публичные стандарты
     standards:
       index:
         header: Стандарты
