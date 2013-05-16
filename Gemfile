@@ -34,7 +34,6 @@ group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'
   gem 'capistrano-ext'
-  gem 'capistrano_colors'
   gem 'capi'
   gem 'capistrano-maintenance'
 end

@@ -49,7 +49,6 @@ GEM
       capistrano (>= 1.0.0)
     capistrano-maintenance (0.0.3)
       capistrano (>= 2.0.0)
-    capistrano_colors (0.5.5)
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -241,7 +240,6 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capistrano-maintenance
-  capistrano_colors
   carrierwave
   ckeditor
   coffee-rails (~> 3.2.1)
