@@ -74,6 +74,15 @@ class Standard < ActiveRecord::Base
     code.gsub(".", "-")
   end
 
+  def available_number
+    sorted_children = children.by_number
+    if sorted_children.any?
+      sorted_children.first.number + 1
+    else
+      1
+    end
+  end
+
   private
 
   def set_root

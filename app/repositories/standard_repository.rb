@@ -20,5 +20,7 @@ module StandardRepository
       roots.first.descendants
     end
 
+    scope :public, -> { with(access_state: :public) }
+
   end
 end

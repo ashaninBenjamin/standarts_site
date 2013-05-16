@@ -3,6 +3,9 @@ RoR::Application.routes.draw do
     resources :standards do
       get "take_pattern", on: :collection
     end
+    resources :public_standards, only: [:index, :show] do
+      get "take", on: :member
+    end
     resources :helps, :news, only: [:index, :show]
 
     resource :user do
