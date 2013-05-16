@@ -4,16 +4,16 @@ FactoryGirl.define do
   factory :user do
     login "login"
     password "123"
-    association :profile
-    association :company
-    association :role
+    profile
+    company
+    role
   end
 
   factory :super_user, class: User do
     login "admin"
     password "123"
-    association :profile
-    association :company
+    profile
+    company
     association :role, factory: :super_role
   end
 
