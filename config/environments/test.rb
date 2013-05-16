@@ -1,6 +1,5 @@
 RoR::Application.configure do
 
-  config.carrier_wave_storage = :file
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
@@ -36,4 +35,8 @@ RoR::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+end
+
+ActionDispatch::Reloader.to_prepare do
+  load Rails.root.join('lib/configus.rb')
 end

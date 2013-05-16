@@ -1,6 +1,5 @@
 RoR::Application.configure do
 
-  config.carrier_wave_storage = :file
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -36,4 +35,8 @@ RoR::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+end
+
+ActionDispatch::Reloader.to_prepare do
+  load Rails.root.join('lib/configus.rb')
 end

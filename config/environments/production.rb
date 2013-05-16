@@ -1,6 +1,5 @@
 RoR::Application.configure do
 
-  config.carrier_wave_storage = :fog
   # For ckeditor working on Heroku
   config.assets.precompile += ['ckeditor/*']
   # Settings specified here will take precedence over those in config/application.rb
