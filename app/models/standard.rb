@@ -18,6 +18,7 @@ class Standard < ActiveRecord::Base
 
     after_transition on: :refrain do |standard, transition|
       standard.descendants.each { |one| one.refrain }
+      standard.descendants.each { |one| one.hide }
     end
 
     event :refrain do
