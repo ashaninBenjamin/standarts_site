@@ -84,6 +84,10 @@ class Standard < ActiveRecord::Base
     end
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def set_root
