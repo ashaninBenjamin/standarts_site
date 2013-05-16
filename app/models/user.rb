@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   include UserRepository
 
-  attr_accessible :login, :password, :role_id, :profile_id, :company_id, :password_confirmation
+  attr_accessible :login, :password, :password_confirmation
 
   validates :login, presence: true,
             length: {within: 3..15},
