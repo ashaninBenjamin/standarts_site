@@ -24,3 +24,6 @@ ru:
         name: Наименование
         logo: Логотип компании
         remove_logo: Удалить логотип
+      user_sign_in_type:
+        login: Логин
+        password: Пароль
