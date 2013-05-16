@@ -16,10 +16,10 @@ class Web::PublicStandardsController < Web::ApplicationController
     dup_of_standard.parent = current_user.standards.roots.first
     if dup_of_standard.save
       redirect_to public_standards_path
-      flash[:success] = "Продублировано в стандарты как публичный стандарт"
+      flash_success
     else
       redirect_to public_standards_path
-      flash[:error] = "Произошли какие-то ошибки"
+      flash_error
     end
   end
 end

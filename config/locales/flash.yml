@@ -30,6 +30,10 @@ ru:
               success: Стандарт успешно обновлён
             destroy:
               notice: Стандарт удалён
+          public_standards:
+            take:
+              success: Продублировано в стандарты
+              error: При сохранении произошли ошибки
 
           admin:
             companies:
