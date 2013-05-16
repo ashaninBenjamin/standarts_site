@@ -1,7 +1,7 @@
 %h2= t(".header")
 - @users.each do |user|
   - if user.standards.public.any?
-    %h4= user.profile.first_and_last_name
+    %h4= user.profile.full_name
     %ul.standard-list
       - user.standards.public.each do |standard|
         %li= link_to standard.name, public_standard_path(standard)

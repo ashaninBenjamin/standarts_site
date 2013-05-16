@@ -3,7 +3,7 @@ class ProfileDecorator < Draper::Decorator
            :to_key, :persisted?, :errors, :user
   decorates_association :company
 
-  def first_and_last_name
+  def full_name
     "#{surname} #{name}"
   end
 

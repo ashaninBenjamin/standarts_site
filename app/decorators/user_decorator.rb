@@ -14,7 +14,7 @@ class UserDecorator < Draper::Decorator
 
   def link_to_profile
     if profile
-      h.link_to profile.first_and_last_name, h.admin_profile_path(profile)
+      h.link_to profile.full_name, h.admin_profile_path(profile)
     else
       h.t(".bad_info")
     end
