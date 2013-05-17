@@ -1,5 +1,5 @@
 class Help < ActiveRecord::Base
-  include UsefullScopes
+  include HelpRepository
   attr_accessible :content, :name, :number
 
   validates :number, presence: true,
