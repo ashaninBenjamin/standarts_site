@@ -19,7 +19,8 @@ profile = Profile.find_or_initialize_by_mail(surname: configus.super_admin.profi
 profile.save!
 company = Company.new(name: configus.super_admin.company.name, opf: configus.super_admin.company.opf)
 company.save!
-user = UserCreateType.find_or_initialize_by_login(login: configus.super_admin.user.login, password: configus.super_admin.user.password)
+user = User.find_or_initialize_by_login(configus.super_admin.user.login)
+user.password = configus.super_admin.user.password
 user.role = super_role
 user.profile = profile
 user.company = company
