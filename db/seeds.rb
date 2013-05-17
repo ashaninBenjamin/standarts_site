@@ -8,15 +8,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-super_role = Role.find_or_initialize_by_name(name: "super", description: "Супер администратор")
+super_role = Role.find_or_initialize_by_name(name: configus.role.super_admin.name, description: configus.role.super_admin.description)
 super_role.save!
-admin_role = Role.find_or_initialize_by_name(name: "admin", description: "Администратор")
+admin_role = Role.find_or_initialize_by_name(name: configus.role.admin.name, description: configus.role.admin.description)
 admin_role.save!
-profile = Profile.find_or_initialize_by_mail(surname: "Иванов", name: "Иван", patronymic: "Иванович", mail:"mail@mail.ru")
+profile = Profile.find_or_initialize_by_mail(surname: configus.super_admin.profile.surname,
+                                             name: configus.super_admin.profile.name,
+                                             patronymic: configus.super_admin.profile.patronymic,
+                                             mail: configus.super_admin.profile.mail)
 profile.save!
-company = Company.new(name:"TheCompany", opf: "ООО")
+company = Company.new(name: configus.super_admin.company.name, opf: configus.super_admin.company.opf)
 company.save!
-user = UserCreateType.find_or_initialize_by_login(login: "admin", password: '123')
+user = UserCreateType.find_or_initialize_by_login(login: configus.super_admin.user.login, password: configus.super_admin.user.password)
 user.role = super_role
 user.profile = profile
 user.company = company
