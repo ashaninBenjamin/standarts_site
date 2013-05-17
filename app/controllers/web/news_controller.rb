@@ -2,7 +2,7 @@
 class Web::NewsController < Web::ApplicationController
 
   def index
-    @news = News.by_created_at
+    @news = News.web
   end
 
   def show

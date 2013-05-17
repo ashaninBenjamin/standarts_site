@@ -1,5 +1,5 @@
 class News < ActiveRecord::Base
-  include UsefullScopes
+  include NewsRepository
   attr_accessible :content, :title
 
   validates :title, presence: true
