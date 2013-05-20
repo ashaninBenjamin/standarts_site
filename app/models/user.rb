@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     role.super_role?
   end
 
+  def to_s
+    login
+  end
+
   private
 
   def add_root
