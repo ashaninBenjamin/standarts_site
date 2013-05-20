@@ -1,6 +1,6 @@
 = simple_form_for @help, url: url do |f|
   = f.error_notification
-  = f.input :number
+  = f.input :number, input_html: { min: 1 }
   = f.input :name
   = f.input :content, as: :ckeditor, input_html: { ckeditor: {toolbar: 'My'} }
   = f.submit class: "btn"

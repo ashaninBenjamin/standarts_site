@@ -3,7 +3,7 @@ class Help < ActiveRecord::Base
   attr_accessible :content, :name, :number
 
   validates :number, presence: true,
-            numericality: {only_integer: true},
+            numericality: {only_integer: true, greater_than: 0},
             uniqueness: true
   validates :name, presence: true
   validates :content, presence: true
