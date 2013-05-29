@@ -1,6 +1,6 @@
 class StandardDecorator < Draper::Decorator
   delegate :id, :number, :depth, :name, :link, :code, :content, :update_attributes, :to_key, :parent_id,
-           :access_state_transitions, :access_state_event, :state, :persisted?, :node_numbers, :is_root?
+           :access_state_transitions, :access_state_event, :state, :persisted?, :node_numbers, :is_root?, :to_s
   decorates_association :parent
   decorates_association :children
   decorates_association :descendants
