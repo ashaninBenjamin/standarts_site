@@ -1,0 +1,17 @@
+%body
+  = render 'layouts/web/global/signed_in/navbar'
+
+  .row-fluid
+    .span12
+      &nbsp;
+
+  = render 'layouts/web/global/signed_in/main_menu'
+
+  .container-fluid.main-container
+    .row-fluid
+      .span12
+        .container-fluid.content-wrapper
+          = bootstrap_flash
+          = yield
+
+  = render 'layouts/web/global/signed_in/toolbar'

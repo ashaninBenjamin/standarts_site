@@ -1,9 +1,15 @@
-%h1= t(".header")
-= simple_form_for @type, url: session_path do |f|
-  = f.input :login
-  = f.input :password
-  = f.submit t(".login_button"), class: "btn btn-success"
+- content_for(:not_signed_title) do
+  = t('.header')
 
-%p
-  = t(".new_user")
-  = link_to t(".new_user_link"), new_user_path
+= simple_form_for @type, url: session_path, html: {class: 'form-horizontal'} do |f|
+  .input-prepend
+    %span.add-on
+      %i.radmin-icon.radmin-user
+    = f.input_field :login, class: 'input-large'
+  .input-prepend
+    %span.add-on
+      %i.radmin-icon.radmin-locked
+    = f.input_field :password, class: 'input-large'
+  .form-actions
+    = link_to t(".new_user_link"), new_user_path, class: 'btn-link pull-left'
+    = f.submit t(".login_button"), class: "btn btn-large btn-inverse pull-right"

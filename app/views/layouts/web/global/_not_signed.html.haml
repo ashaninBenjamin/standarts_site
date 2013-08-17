@@ -1,0 +1,19 @@
+%body#body-login
+  .container-fluid
+    .row-fluid
+      .span4
+      .span4.login-span
+        .login-radmin.align-center
+          %h1.brand Стандарты
+        .login-wrapper
+          .login-inner
+            - if content_for?(:not_signed_title)
+              %h2.sign-in
+                = yield(:not_signed_title)
+            - if content_for?(:not_signed_tip)
+              %small.muted
+                = yield(:not_signed_tip)
+            .squiggly-border
+            .login-inner
+              = yield
+      .span4

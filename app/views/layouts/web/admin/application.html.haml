@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    = render 'layouts/web/admin/global/head'
+  %body
+    = render 'layouts/web/admin/global/navbar'
+    .container-fluid
+      .row-fluid
+        = bootstrap_flash
+        = yield

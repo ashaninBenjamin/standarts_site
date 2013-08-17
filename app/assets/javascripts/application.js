@@ -12,24 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require js-routes
 //= require ckeditor/ckeditor
 //= require ckeditor/config
-//= require_tree .
-
-$(function () {
-    $("#header img").load(function () {
-        this.width.percent = "100%";
-    });
-});
-
-$(function () {
-    $(".blockName, .blockContentWatchAll, .point").mouseover(function () {
-        $(this).addClass("over, roundMenu");
-    }).mouseout(function () {
-            $(this).removeClass("over, roundMenu");
-        });
-});
 
 $(document).ready(function () {
     $("div.error, div.alert, div.notice, div.success, div.info").delay(1500).animate({
