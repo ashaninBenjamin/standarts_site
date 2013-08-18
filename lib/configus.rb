@@ -33,7 +33,7 @@ Configus.build Rails.env do
     end
   end
 
-  env :development do
+  env :development, parent: :production do
     carrierwave do
       storage :file
     end

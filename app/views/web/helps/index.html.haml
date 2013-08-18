@@ -1,7 +1,9 @@
-%h2= t(".header")
-- if @helps.any?
-  %ul.list-style-type-none
+%h1= t(".header")
+.squiggly-border
+
+.items
+  - if @helps.any?
     - @helps.each do |one|
-      %li= link_to one.number_with_name, one
-- else
-  %em= t(".no_one_help")
+      .item= link_to one.number_with_name, one
+  - else
+    %em= t(".no_one_help")
