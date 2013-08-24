@@ -1,7 +1,0 @@
-%h2= t(".header")
-= render 'form', url: admin_help_path(@help)
-
-- content_for :left do
-  = link_to t(".back_link"), admin_help_path(@help)
-  %br/
-  = link_to t(".all_helps_link"), admin_helps_path

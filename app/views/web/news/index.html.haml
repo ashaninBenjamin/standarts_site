@@ -1,4 +1,6 @@
-%p.h{style: "margin-bottom: 20px;"}= t(".header")
+%h1= t(".header")
+.squiggly-border
+
 - if @news.any?
   %table.table
     - @news.each do |one|

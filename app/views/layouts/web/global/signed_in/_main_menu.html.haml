@@ -1,0 +1,15 @@
+.row-fluid.hidden-phone.hidden-tablet
+  .span12.top-stats
+    %ul.top-nav-boxes
+      %li.first
+        = link_to standards_path do
+          %i.radmin-bookmark
+          %span= t(".standards")
+      %li
+        = link_to helps_path do
+          %i.radmin-pencil
+          %span= t(".help")
+      %li
+        = link_to news_index_path do
+          %i.radmin-pencil
+          %span= t(".news")

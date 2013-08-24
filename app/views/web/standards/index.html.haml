@@ -1,19 +1,9 @@
-%h2= t(".header")
-- if @standards.any?
-  %ul.standard-list
+%h1= t(".header")
+.squiggly-border
+
+.items
+  - if @standards.any?
     - @standards.each do |one|
-      %li= link_to one.code_with_name, standard_path(one.link), style: "margin-left:#{(one.depth - 1) * 20}px;"
-- else
-  = t(".no_one_standard")
-  = link_to t(".new_link_if_apcents"), new_standard_path
-
-- content_for :submenu do
-  %li= link_to t(".new_link"), new_standard_path
-
-- content_for :left do
-  = search_form_for @q do |f|
-    = f.select :state_cont, [[t(".search_published"), "published"], [t(".search_refrained"), "refrained"]], include_blank: t(".search_all")
-    = f.select :access_state_cont, [[t(".search_access_private"), "private"], [t(".search_access_public"), "public"]], include_blank: t(".search_all")
-    #form-inline
-      = f.submit t(".search_submit"), name: nil, class: "btn"
-      = f.submit t(".search_clear"), name: nil, class: "btn", id: "q_reset"
+      .item= link_to one.code_with_name, standard_path(one.link), style: "margin-left:#{(one.depth - 1) * 20}px;"
+  - else
+    = t(".no_one_standard")

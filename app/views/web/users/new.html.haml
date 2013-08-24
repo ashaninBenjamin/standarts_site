@@ -1,2 +1,4 @@
-%h1= t(".header")
+- content_for(:not_signed_title) do
+  = t('.header')
+
 = render "form", url: {action: :create}

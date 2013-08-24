@@ -1,9 +1,3 @@
 %h2= t(".header")
 #native_number= @standard.number
 = render "form", url: { action: :update, id: @standard.link }
-
-- content_for :submenu do
-  %li= link_to t(".back_link"), standard_path(@standard.link)
-
-- content_for :left do
-  = link_to t(".standards_link"), standards_path

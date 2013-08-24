@@ -1,0 +1,22 @@
+.items {
+  margin-left: 20px;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.item a{
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+}
+
+.item a:visited {
+  color: black;
+}
+
+.item a:hover {
+  color: #800000;
+  text-decoration: none;
+}

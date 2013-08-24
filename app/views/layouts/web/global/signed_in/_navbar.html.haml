@@ -1,0 +1,13 @@
+.navbar.navbar-inverse.navbar-static-top
+  .navbar-inner.black-gradient
+    .container-fluid
+      %a.brand{href: '#'}
+        %span.rad Standards
+      .nav-collapse.collapse
+        %p.navbar-text.pull-right
+          = link_to user_profile_path, class: 'navbar-link user-info', id: 'user-popover' do
+            %i.radmin-icon.radmin-user
+            = current_user.profile.full_name
+          = link_to session_path, method: :delete, class: 'btn btn-mini btn-inverse navbar-link logout' do
+            %i.radmin-icon.radmin-redo
+            = t(".logout")
